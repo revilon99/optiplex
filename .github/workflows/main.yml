@@ -32,5 +32,5 @@ jobs:
     runs-on: self-hosted
     needs: [setup-hello-world, setup-hello-world-2]
     steps:
-      - run: RUNNER_TRACKING_ID="" && /home/ocass/optiplex/main/run-all-node-projects.sh
+      - run: RUNNER_TRACKING_ID="" && chmod +x /home/ocass/optiplex/main/run-all-node-projects.sh && /home/ocass/optiplex/main/run-all-node-projects.sh
   
