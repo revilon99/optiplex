@@ -7,14 +7,11 @@ jobs:
   fetch-main-branch:
     runs-on: self-hosted
     steps:
-      - run: cd /home/ocass/optiplex
-      - run: git fetch https://github.com/revilon99/optiplex main
+      - run: cd /home/ocass/optiplex && git fetch https://github.com/revilon99/optiplex main
 
   run-hello-world:
     runs-on: self-hosted
+    needs: fetch-main-branch
     steps:
-      - run: cd /home/ocass/optiplex
-      - run: cd hello-world
-      - run: npm install --save
-      - run: node index.js &
-      - run: cd ..
+      - run: cd /home/ocass/optiplex/hello-world && npm install --save
+      - run: node /home/ocass/optiplex/hello-world/index.js &
