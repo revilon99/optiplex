@@ -7,7 +7,7 @@ jobs:
   kill-all-node-processes:
     runs-on: self-hosted
     steps:
-      - run: pkill -f node
+      - run: killall node
 
   fetch-main-branch:
     needs: kill-all-node-processes 
