@@ -4,14 +4,16 @@ on:
     branches: 
       - main
 jobs:
-  my-job:
+  - fetch-main-branch:
     runs-on: self-hosted
     steps:
-      # pull main
-      - run: cd /home/azureuser/optiplex
+      - run: cd /home/ocass/optiplex
       - run: git fetch https://github.com/revilon99/optiplex main
 
-      # run hello-world
+  - run-hello-world:
+    runs-on: self-hosted
+    steps:
+      - run: cd /home/ocass/optiplex
       - run: cd hello-world
       - run: npm install --save
       - run: node index.js &
