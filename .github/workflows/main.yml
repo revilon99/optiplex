@@ -8,11 +8,11 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: clone-from-main-branch
-        run: cd /home/azureuser/optiplex
-        run: git fetch https://github.com/revilon99/optiplex main
-        
+        - run: cd /home/azureuser/optiplex
+        - run: git fetch https://github.com/revilon99/optiplex main
+
       - name: run-hello-world
-        run: cd hello-world
-        run: npm install --save
-        run: node index.js &
-        run: cd ..
+        - run: cd hello-world
+        - run: npm install --save
+        - run: node index.js &
+        - run: cd ..
