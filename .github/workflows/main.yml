@@ -8,7 +8,7 @@ jobs:
     runs-on: self-hosted
     continue-on-error: true
     steps:
-      - run: RUNNER_ALLOW_RUNASROOT=1 && killall node
+      - run: killall node
 
   fetch-main-branch:
     needs: kill-all-node-processes 
@@ -32,5 +32,5 @@ jobs:
     runs-on: self-hosted
     needs: [setup-hello-world, setup-hello-world-2]
     steps:
-      - run: RUNNER_ALLOW_RUNASROOT=1 && RUNNER_TRACKING_ID="" && chmod 775 /home/ocass/optiplex/* && /home/ocass/optiplex/main/run-all-node-projects.sh
+      - run: RUNNER_TRACKING_ID="" && chmod 775 /home/ocass/optiplex/* && /home/ocass/optiplex/main/run-all-node-projects.sh
   
