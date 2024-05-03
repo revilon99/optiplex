@@ -1,8 +1,18 @@
-name: hello-world
-on: push
+name: deploy-main-to-optiplex
+on: 
+  push:
+    branches: 
+      - main
 jobs:
   my-job:
     runs-on: self-hosted
     steps:
-      - name: my-step
-        run: echo "Hello World!"
+      - name: clone-from-main-branch
+        run: 
+        - cd /home/azureuser/optiplex
+        - git fetch https://github.com/revilon99/optiplex main
+      - name: run-hello-world
+        - cd hello-world
+        - npm install --save
+        - node index.js &
+        - cd ..
