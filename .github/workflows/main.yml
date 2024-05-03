@@ -6,7 +6,7 @@ on:
 jobs:
   kill-all-node-processes:
     runs-on: self-hosted
-    allow-failure: true
+    allow_failure: true
     steps:
       - run: killall node
 
