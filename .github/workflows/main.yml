@@ -14,4 +14,4 @@ jobs:
     needs: fetch-main-branch
     steps:
       - run: cd /home/ocass/optiplex/main/hello-world && npm install --save
-      - run: node /home/ocass/optiplex/main/hello-world/index.js &
+      - run: cd /home/ocass/optiplex/main/hello-world && npm run run
