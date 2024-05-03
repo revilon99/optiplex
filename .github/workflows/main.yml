@@ -4,13 +4,13 @@ on:
     branches: 
       - main
 jobs:
-  - fetch-main-branch:
+  fetch-main-branch:
     runs-on: self-hosted
     steps:
       - run: cd /home/ocass/optiplex
       - run: git fetch https://github.com/revilon99/optiplex main
 
-  - run-hello-world:
+  run-hello-world:
     runs-on: self-hosted
     steps:
       - run: cd /home/ocass/optiplex
