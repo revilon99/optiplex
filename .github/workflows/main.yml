@@ -6,8 +6,9 @@ on:
 jobs:
   kill-all-node-processes:
     runs-on: self-hosted
+    allow-failure: true
     steps:
-      - run: killall node 2>/dev/null
+      - run: killall node
 
   fetch-main-branch:
     needs: kill-all-node-processes 
