@@ -17,14 +17,14 @@ jobs:
 
   run-hello-world:
     runs-on: self-hosted
-    needs: [kill-all-node-processes fetch-main-branch]
+    needs: [kill-all-node-processes, fetch-main-branch]
     steps:
       - run: cd /home/ocass/optiplex/main/hello-world && npm install --save
       - run: cd /home/ocass/optiplex/main/hello-world && RUNNER_TRACKING_ID="" && (nohup npm run run&)
 
   run-hello-world-2:
     runs-on: self-hosted
-    needs: [kill-all-node-processes fetch-main-branch]
+    needs: [kill-all-node-processes, fetch-main-branch]
     steps:
       - run: cd /home/ocass/optiplex/main/hello-world-2 && npm install --save
       - run: cd /home/ocass/optiplex/main/hello-world-2 && RUNNER_TRACKING_ID="" && (nohup npm run run&)
