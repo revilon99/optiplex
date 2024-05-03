@@ -7,7 +7,7 @@ jobs:
   fetch-main-branch:
     runs-on: self-hosted
     steps:
-      - run: cd /home/ocass/optiplex && git fetch https://github.com/revilon99/optiplex main
+      - run: cd /home/ocass/optiplex && git fetch origin
 
   run-hello-world:
     runs-on: self-hosted
