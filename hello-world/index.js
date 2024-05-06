@@ -2,7 +2,8 @@ var app = require('http').createServer(handler)
 var io = require('socket.io')(app);
 var fs = require('fs');
 
-app.listen(3000);
+var args = process.argv.slice(2);
+app.listen(args[2]);
 
 function handler (req, res) {
   fs.readFile(__dirname + '/index.html',
