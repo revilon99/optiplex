@@ -8,6 +8,6 @@
   },
   "scripts": {
     "main": "node index.js 5000",
-    "develop": "node index.js 5001"
+    "develop": "node index.js 3000"
   }
 }

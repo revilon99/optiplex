@@ -8,7 +8,8 @@ jobs:
     runs-on: self-hosted
     continue-on-error: true
     steps:
-      - run: kill -9 $(lsof -t -i:5000) && kill -9 $(lsof -t -i:5001)
+      - run: kill -9 $(lsof -t -i:5000)
+      - run: kill -9 $(lsof -t -i:5001)
 
   fetch-main-branch:
     needs: kill-all-node-processes 
