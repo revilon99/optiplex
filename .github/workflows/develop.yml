@@ -10,11 +10,11 @@ jobs:
     steps:
       - run: kill -9 $(lsof -t -i:3000) && kill -9 $(lsof -t -i:3001)
 
-  fetch-main-branch:
+  fetch-develop-branch:
     needs: kill-all-node-processes 
     runs-on: self-hosted
     steps:
-      - run: cd /home/ocass/optiplex && rm -r -f main && git clone -b main https://github.com/revilon99/optiplex develop
+      - run: cd /home/ocass/optiplex && rm -r -f develop && git clone -b develop https://github.com/revilon99/optiplex develop
 
   setup-hello-world:
     runs-on: self-hosted
