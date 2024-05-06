@@ -8,7 +8,7 @@ jobs:
     runs-on: self-hosted
     continue-on-error: true
     steps:
-      - run: killall -9 "npm run develop"
+      - run: kill -9 $(lsof -t -i:3000) && kill -9 $(lsof -t -i:3001)
 
   fetch-main-branch:
     needs: kill-all-node-processes 
