@@ -3,6 +3,7 @@ var io = require('socket.io')(app);
 var fs = require('fs');
 
 var args = process.argv.slice(2);
+console.log(args)
 app.listen(args[2]);
 
 function handler (req, res) {
