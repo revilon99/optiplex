@@ -1,9 +1,11 @@
-cd /home/ocass/optiplex/main/
+cd /home/ocass/optiplex/
+
+cd $1
 
 cd hello-world
-(nohup npm run run&)
+(nohup npm run $1&)
 cd ..
 
 cd hello-world-2
-(nohup npm run run&)
+(nohup npm run $1&)
 cd ..
