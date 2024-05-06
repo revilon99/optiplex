@@ -8,7 +8,7 @@ jobs:
     runs-on: self-hosted
     continue-on-error: true
     steps:
-      - run: killall node
+      - run: RUNNER_TRACKING_ID="" && chmod +x /home/ocass/optiplex/main/kill-all-node-projects.sh && /home/ocass/optiplex/main/kill-all-node-projects.sh
 
   fetch-main-branch:
     needs: kill-all-node-processes 
