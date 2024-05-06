@@ -3,7 +3,7 @@ var io = require('socket.io')(app);
 var fs = require('fs');
 
 var args = process.argv.slice(2);
-app.listen(args[2]);
+app.listen(args[0]);
 
 function handler (req, res) {
   fs.readFile(__dirname + '/index.html',
