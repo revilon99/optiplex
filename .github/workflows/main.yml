@@ -8,7 +8,7 @@ jobs:
     runs-on: self-hosted
     continue-on-error: true
     steps:
-      - run: killall -9 "npm run run"
+      - run: killall -9 node
 
   fetch-main-branch:
     needs: kill-all-node-processes 
