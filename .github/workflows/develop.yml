@@ -8,23 +8,24 @@ jobs:
     runs-on: self-hosted
     continue-on-error: true
     steps:
-      - run: kill -9 $(lsof -t -i:3000) && kill -9 $(lsof -t -i:3001)
+      - run: kill -9 $(lsof -t -i:3000) || true
+      - run: kill -9 $(lsof -t -i:3001) || true
 
-  fetch-main-branch:
+  fetch-develop-branch:
     needs: kill-all-node-processes 
     runs-on: self-hosted
     steps:
-      - run: cd /home/ocass/optiplex && rm -r -f main && git clone -b main https://github.com/revilon99/optiplex develop
+      - run: cd /home/ocass/optiplex && rm -r -f develop && git clone -b develop https://github.com/revilon99/optiplex develop
 
   setup-hello-world:
     runs-on: self-hosted
-    needs: [kill-all-node-processes, fetch-main-branch]
+    needs: [kill-all-node-processes, fetch-develop-branch]
     steps:
       - run: cd /home/ocass/optiplex/develop/hello-world && npm install --save
 
   setup-hello-world-2:
     runs-on: self-hosted
-    needs: [kill-all-node-processes, fetch-main-branch]
+    needs: [kill-all-node-processes, fetch-develop-branch]
     steps:
       - run: cd /home/ocass/optiplex/develop/hello-world-2 && npm install --save
   
