@@ -1,0 +1,11 @@
+{
+  "name": "auth",
+  "version": "0.0.1",
+  "description": "oli.casa authentication service",
+  "dependencies": {
+  },
+  "scripts": {
+    "main":    "node app.js 5001",
+    "develop": "node app.js 3001"
+  }
+}

@@ -12,10 +12,10 @@
 		{
 			"type": "npm",
 			"script": "develop",
-			"path": "hello-world-2",
+			"path": "auth",
 			"problemMatcher": [],
-			"label": "hello-world-2",
-			"detail": "node index.js 3001"
+			"label": "auth",
+			"detail": "node app.js 3001"
 		}
 	]
 }
