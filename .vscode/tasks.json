@@ -1,0 +1,21 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "develop",
+			"path": "hello-world",
+			"problemMatcher": [],
+			"label": "hello-world",
+			"detail": "node index.js 3000"
+		},
+		{
+			"type": "npm",
+			"script": "develop",
+			"path": "hello-world-2",
+			"problemMatcher": [],
+			"label": "hello-world-2",
+			"detail": "node index.js 3001"
+		}
+	]
+}
