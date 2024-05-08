@@ -6,6 +6,6 @@ cd hello-world
 (nohup npm run $1&)
 cd ..
 
-cd hello-world-2
+cd auth
 (nohup npm run $1&)
 cd ..

@@ -9,7 +9,7 @@ production ports are setup so that PROJECT_NAME.oli.casa redirect to the product
 Development ports are run from ::3000-::4999 <br>
 Production ports are run from ::5000-::6999
 
-The port of a project can be calculated by adding the project number to the base port
+The port of a project can be calculated by adding the project number to the base port <br>
 e.g. hello-world (0) - Dev Port = 3000 + 0 = 3000
 
 # Projects
