@@ -13,19 +13,18 @@ All Rights Reserved
 */
 
 // External Libraries
-const mongoose = require("mongoose");
-const env = require("dotenv");
+import { connect } from "mongoose";
+import { config } from "dotenv";
 
 // Load .env parameters
-env.config();
+config();
 
 // connect to database
 const dbconnection = async () => {
-  mongoose
-    .connect(process.env.MONGODB_URL)
+  connect(process.env.MONGODB_URL)
     .then(() => console.log("Database connected"))
     .catch((err) => console.error(err));
 };
 
 // return database
-module.exports = dbconnection;
+export default dbconnection;

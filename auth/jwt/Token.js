@@ -11,11 +11,17 @@ Oliver Cass (c) 2024
 All Rights Reserved
 */
 
-require("dotenv").config();
-import { sign } from "jsonwebtoken";
+import { config } from "dotenv"
+import jwt from "jsonwebtoken";
+
+config();
 
 export function createSecretToken(id) {
-  return sign({ id }, process.env.TOKEN_KEY, {
+  return jwt.sign({ id }, process.env.TOKEN_KEY, {
     expiresIn: 24 * 60 * 60, // day long token
   });
+}
+
+export function verifyToken(token){
+  return jwt.verify(token, process.env.TOKEN_KEY)
 }

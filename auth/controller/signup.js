@@ -12,8 +12,8 @@ All Rights Reserved
 */
 
 // Imports
-import User, { findOne } from "../schema/User";
-import { createSecretToken } from "../jwt/Token";
+import User from "../schema/User.js";
+import { createSecretToken } from "../jwt/Token.js";
 import { hash } from "bcrypt";
 
 // Create User Routh
@@ -27,7 +27,7 @@ const createUser = async (req, res) => {
     if (input_is_not_valid) return invalid_input();
 
     // 2) Check if email already exists
-    const oldUser = await findOne({ email: req.body.email });
+    const oldUser = await User.findOne({ email: req.body.email });
     if (oldUser) return res.status(409).send("User Already Exist. Please Login");
 
     // 3) Create a new user
@@ -48,7 +48,7 @@ const createUser = async (req, res) => {
       httpOnly: true, // Cookie cannot be accessed via client-side scripts
       sameSite: "None",
     });
-
+    res.json({message: "Signup Successful"});
   } catch (e) {
     console.log("Server Error: ", e);
   }

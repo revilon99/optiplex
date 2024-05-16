@@ -16,9 +16,9 @@ import { compare } from "bcrypt";
 import { config } from "dotenv";
 
 // Load User Mongoose Schema
-import { findOne } from "../schema/User";
+import User from "../schema/User.js";
 // Load secret token gen function
-import { createSecretToken } from "../jwt/Token";
+import { createSecretToken } from "../jwt/Token.js";
 
 // Load Environment Parameters
 config();
@@ -36,7 +36,7 @@ const login = async (req, res) => {
   if (input_is_not_valid) return invalid_input();
 
   // 3) Find user by email
-  const user = await findOne({ email });
+  const user = await User.findOne({ email });
   if(!user) return invalid_credentials();
 
   // 4) Check if password is correct
@@ -46,7 +46,6 @@ const login = async (req, res) => {
   // 5) If all good - return 1 day token
   const token = createSecretToken(user._id);
   res.cookie("token", token, {
-    domain: process.env.FRONTEND_URL,         // Set your domain here
     path: "/",                                // Cookie is accessible from all paths
     expires: new Date(Date.now() + 86400000), // Cookie expires in 1 day
     secure: true,                             // Cookie will only be sent over HTTPS

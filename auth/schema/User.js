@@ -19,5 +19,5 @@ const userSchema=Schema({
       email:String,
       password:String,
 })
-const user=model("user",userSchema);
-export default user;
+const User=model("user",userSchema);
+export default User;

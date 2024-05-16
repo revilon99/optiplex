@@ -15,5 +15,6 @@
   "scripts": {
     "main": "node app.js 5001",
     "develop": "node app.js 3001"
-  }
+  },
+  "type": "module"
 }

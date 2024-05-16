@@ -1,0 +1,29 @@
+html, body{
+    padding: 0;
+    margin: 0;
+    background-color: antiquewhite;
+    overflow: hidden;
+}
+
+div#container{
+    display: block;
+    width: min(500px, 90vw);
+    height: 100vh;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+form a{
+    display: block;
+    text-align: left;
+    padding: 0px 50px
+}
+
+form input[type="text"], [type="password"]
+{
+    display: block;
+    margin: 5px auto;
+    width: 70%;
+}

@@ -13,14 +13,16 @@ All Rights Reserved
 */
 
 // External Libraries
-const express = require("express");
+import { Router } from "express";
 
 // Controllers
-const login = require("../controller/login");
-const createUser = require("../controller/signup");
+import login from "../controller/login.js";
+import createUser from "../controller/signup.js";
+import { verifyToken } from "../jwt/Token.js";
+import User from "../schema/User.js"
 
 // Define Routes
-const router = express.Router();
+const router = Router();
 router.post("/signup", createUser);
 router.post("/login", login);
 router.get("/logout", (req, res) => {
@@ -28,4 +30,16 @@ router.get("/logout", (req, res) => {
   res.json({ message: "Logged out" });
 });
 
-module.exports = router;
+router.get("/userdata", (req, res) => {
+  try {
+    const token = verifyToken(req.cookies.token)
+    User.findById(token.id).then((user) => {
+      res.json({ email: user.email });
+    });
+  } catch (e) {
+    res.clearCookie("token");
+    res.json({ email: "Not Found" });
+  }
+});
+
+export default router;
