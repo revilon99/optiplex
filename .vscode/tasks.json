@@ -15,7 +15,7 @@
 			"path": "auth",
 			"problemMatcher": [],
 			"label": "auth",
-			"detail": "node app.js 3001"
+			"detail": "npm run develop"
 		}
 	]
 }
