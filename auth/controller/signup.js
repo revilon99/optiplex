@@ -18,8 +18,7 @@ import { hash } from "bcrypt";
 
 // Create User Routh
 const createUser = async (req, res) => {
-  const invalid_input       = ()=>{res.status(400).json({ message: "All input is required" })};
-  const invalid_credentials = ()=>{res.status(404).json({ message: "Invalid credentials" })};
+  const invalid_input = ()=>{res.status(400).json({ message: "All input is required" })};
 
   try {
     // 1) Check input valid
@@ -42,16 +41,17 @@ const createUser = async (req, res) => {
     // 4) return JWT Token
     const token = createSecretToken(user._id);
     res.cookie("token", token, {
-      path: "/", // Cookie is accessible from all paths
-      expires: new Date(Date.now() + 86400000), // Cookie expires in 1 day
-      secure: true, // Cookie will only be sent over HTTPS
-      httpOnly: true, // Cookie cannot be accessed via client-side scripts
-      sameSite: "None",
+      path: "/",        // Cookie is accessible from all paths
+      expires: new Date(Date.now() + 24 * 60 * 60 * 1000), // Cookie expires in 1 day
+      secure: true,     // Cookie will only be sent over HTTPS
+      httpOnly: true,   // Cookie cannot be accessed via client-side scripts
+      sameSite: "None"
     });
-    res.json({message: "Signup Successful"});
   } catch (e) {
     console.log("Server Error: ", e);
   }
+
+  res.redirect("/");
 };
 
 export default createUser;

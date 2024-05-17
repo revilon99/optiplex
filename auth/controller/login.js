@@ -13,7 +13,7 @@ All Rights Reserved
 
 // External Libraries
 import { compare } from "bcrypt";
-import { config } from "dotenv";
+import { config }  from "dotenv";
 
 // Load User Mongoose Schema
 import User from "../schema/User.js";
@@ -52,7 +52,7 @@ const login = async (req, res) => {
     httpOnly: true,                           // Cookie cannot be accessed via client-side scripts
     sameSite: "None",
   });
-  res.json({ token });
+  res.redirect("/")
 };
 
 export default login;

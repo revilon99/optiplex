@@ -12,13 +12,12 @@ Oliver Cass (c) 2024
 All Rights Reserved
 */
 
-// External Libraries
+// Libraries
 import express from "express";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 
-// Interal Libraries
-import Connection from "./database/db.js";
+// Import routes
 import authFrontendRoute from "./routes/frontend.js";
 import authApiRoute from "./routes/api.js";
 
@@ -27,6 +26,7 @@ var args = process.argv.slice(2);
 const PORT = args[0] || 3001;
 
 // Connect to database (defined by .env file)
+import Connection from "./database/db.js";
 Connection();
 
 /* setup Express server */
@@ -34,6 +34,7 @@ const app = express();
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.set('view engine', 'ejs');
 
 app.use((_req, res, next) => {
   // Set CORS headers
@@ -46,10 +47,14 @@ app.use((_req, res, next) => {
   next();
 });
 
+// Define routes
 app.use("/", authFrontendRoute)
 app.use("/api", authApiRoute);
+
+// listen on cli defined port
 app.listen(PORT, () => {
   console.log(`Server is running on PORT ${PORT}`);
 });
-app.use("/js", express.static("public/js"));
-app.use("/css", express.static("public/css"));
+
+// Serve public content
+app.use("/", express.static("public"));

@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Register | oli.casa</title>
 
-        <link rel="stylesheet" href="./css/styles.css">
-    </head>
-    <body>
-        <div id="container">
-            <h1>Register | oli.casa</h1>
-            <form onsubmit="submitForm(); return false" id="loginForm">
-                <a>Email:</a>
-                <input type="text" id="email" placeholder="Email..."/>
+<head>
+    <title>Register | oli.casa</title>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
 
-                <a>Password:</a>
-                <input type="password" id="password" placeholder=""/>
+<body>
+    <div id="container">
+        <h1>Register | oli.casa</h1>
+        <form action="/api/signup" method="post" id="loginForm">
+            <a>Email:</a>
+            <input type="text" id="email" placeholder="Email..." name="email" />
 
-                <input type="submit" value="Login"/>
-            </form>
-        </div>
+            <a>Password:</a>
+            <input type="password" id="password" placeholder="" name="password" />
 
-        <script type="text/javascript" src="./js/register.js"></script>
-    </body>
+            <input type="submit" value="Sign Up" />
+        </form>
+
+        <a href="/">Back to login</a>
+    </div>
+</body>
+
 </html>
