@@ -13,16 +13,16 @@ All Rights Reserved
 */
 
 // Libraries
-import express from "express";
-import bodyParser from "body-parser";
+import express      from "express";
+import bodyParser   from "body-parser";
 import cookieParser from "cookie-parser";
 
 // Import routes
-import authFrontendRoute from "./routes/frontend.js";
-import authApiRoute from "./routes/api.js";
+import frontendRoute from "./routes/frontend.js";
+import apiRoute      from "./routes/api.js";
 
 // Environment setup
-var args = process.argv.slice(2);
+let args = process.argv.slice(2);
 const PORT = args[0] || 3001;
 
 // Connect to database (defined by .env file)
@@ -48,8 +48,8 @@ app.use((_req, res, next) => {
 });
 
 // Define routes
-app.use("/", authFrontendRoute)
-app.use("/api", authApiRoute);
+app.use("/", frontendRoute);
+app.use("/api", apiRoute);
 
 // listen on cli defined port
 app.listen(PORT, () => {

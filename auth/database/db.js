@@ -26,5 +26,4 @@ const dbconnection = async () => {
     .catch((err) => console.error(err));
 };
 
-// return database
 export default dbconnection;

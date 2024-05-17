@@ -18,18 +18,27 @@ import { hash } from "bcrypt";
 
 // Create User Routh
 const createUser = async (req, res) => {
-  const invalid_input = ()=>{res.status(400).json({ message: "All input is required" })};
+  const invalid_input = ()=>{res.redirect("/register?error=INVALID_INPUT");};
+  const user_exists   = ()=>{res.redirect("/register?error=USER_EXISTS");};
+  const bad_email     = ()=>{res.redirect("/register?error=BAD_EMAIL");};
+  const bad_password  = ()=>{res.redirect("/register?error=BAD_PASSWORD");};
+  const bad_match     = ()=>{res.redirect("/register?error=BAD_MATCH");};
 
   try {
-    // 1) Check input valid
-    const input_is_not_valid = !(req.body.email && req.body.password);
-    if (input_is_not_valid) return invalid_input();
+    // 1) Check input exists
+    const input_does_not_exist = !(req.body.email && req.body.password && req.body.passwordConfirm);
+    if (input_does_not_exist) return invalid_input();
 
     // 2) Check if email already exists
     const oldUser = await User.findOne({ email: req.body.email });
-    if (oldUser) return res.status(409).send("User Already Exist. Please Login");
+    if (oldUser) return user_exists();
 
-    // 3) Create a new user
+    // 3) validate input
+    if(!validateEmail(req.body.email)) return bad_email();
+    if(!validatePassword(req.body.password)) return bad_password();
+    if(!(req.body.password === req.body.passwordConfirm)) return bad_match();
+
+    // 4) Create a new user
     const salt = 10;
     const hashedPassword = await hash(req.body.password, salt);
     const newUser = new User({
@@ -38,7 +47,7 @@ const createUser = async (req, res) => {
     });
     const user = await newUser.save();
     
-    // 4) return JWT Token
+    // 5) return JWT Token
     const token = createSecretToken(user._id);
     res.cookie("token", token, {
       path: "/",        // Cookie is accessible from all paths
@@ -55,3 +64,19 @@ const createUser = async (req, res) => {
 };
 
 export default createUser;
+
+const validateEmail = (email) => {
+  return String(email)
+    .toLowerCase()
+    .match(
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+};
+
+const validatePassword = (password) => {
+    return  /[A-Z]/       .test(password) &&
+            /[a-z]/       .test(password) &&
+            /[0-9]/       .test(password) &&
+            /[^A-Za-z0-9]/.test(password) &&
+            password.length > 8;
+}

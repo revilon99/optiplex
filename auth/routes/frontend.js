@@ -11,44 +11,64 @@ Oliver Cass (c) 2024
 All Rights Reserved
 */
 
-// External Libraries
-import { Router, } from "express";
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+// Imports
+import { Router, }     from "express";
 import { verifyToken } from '../jwt/Token.js'
-import User from "../schema/User.js";
+import User            from "../schema/User.js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-// Define Routes
+// Routes
 const login = (req, res) => {
   try {
     const token = verifyToken(req.cookies.token);
-    User.findById(token.id).then(user => res.render("home", {email: user.email}));    
+    User.findById(token.id).then(user => {
+      if(user) res.render("home", {email: user.email})
+      else     res.redirect("/logout");
+    });    
   } catch {
-    res.sendFile("/html/login.html", { root: __dirname });
+    const error = req.query.error || "";
+    res.render("login", {error: prettifyError(error)})
   }
 }
 
 const signup = (req, res) => {
   try {
     verifyToken(req.cookies.token)
-    User.findById(token.id).then(user => res.render("home", {email: user.email}));   
+    res.redirect("/")
   } catch {
-    res.sendFile("/html/register.html", { root: __dirname });
+    const error = req.query.error || "";
+    res.render("register", {error: prettifyError(error)})
   }
 }
 
-
+// Define Routes
 const router = Router();
 router.get("/", login);
 router.get("/login", login)
 router.get("/signup", signup)
 router.get("/register", signup)
-router.get("/logout", (req, res) => {
+router.get("/logout", (_req, res) => {
   res.clearCookie("token");
   res.redirect("/");
 });
+
+// Frontend Utilities
+const prettifyError = (error) => {
+  switch(error){
+    case "":
+      return ""
+    case "INVALID_INPUT":
+      return "Input is not valid. Try again."
+    case "INVALID_CREDENTIALS":
+      return "Username or Password not recognised. Try Again."
+    case "BAD_EMAIL":
+      return "Please input a valid email..."
+    case "BAD_PASSWORD":
+      return "Passwords must contain at least 8 characters, one lowercase, one uppercase and a number"
+    case "BAD_MATCH":
+      return "Passwords must match"
+    default:
+      return "Unknown Error. Please try again later."
+  }
+}
 
 export default router;

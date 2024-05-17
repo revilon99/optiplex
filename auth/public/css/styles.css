@@ -21,6 +21,11 @@ form a{
     padding: 0px 50px
 }
 
+a.warning{
+    text-align: center;
+    color: red;
+}
+
 form input[type="text"], [type="password"]
 {
     display: block;

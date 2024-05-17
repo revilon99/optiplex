@@ -25,8 +25,12 @@ config();
 
 // Login Function:
 const login = async (req, res) => {
-  const invalid_input       = ()=>{res.status(400).json({ message: "All input is required" })};
-  const invalid_credentials = ()=>{res.status(404).json({ message: "Invalid credentials" })};
+  const invalid_input       = ()=>{
+    res.redirect("/login?error=INVALID_INPUT");
+  };
+  const invalid_credentials = ()=>{
+    res.redirect("/login?error=INVALID_CREDENTIALS");
+  };
 
   // 1) get email and password from request body
   const { email, password } = req.body;
@@ -50,7 +54,7 @@ const login = async (req, res) => {
     expires: new Date(Date.now() + 86400000), // Cookie expires in 1 day
     secure: true,                             // Cookie will only be sent over HTTPS
     httpOnly: true,                           // Cookie cannot be accessed via client-side scripts
-    sameSite: "None",
+    sameSite: "None"
   });
   res.redirect("/")
 };
