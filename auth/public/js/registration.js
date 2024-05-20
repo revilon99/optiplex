@@ -52,16 +52,16 @@ confPassInput.addEventListener("input", function(){
 }, false);
 
 const checkSubmit = ()=>{
-    const okayToSubmit = (validateEmail(emailInput.value)   && 
-                          validatePassword(passInput.value) && 
-                          (passInput.value === confPassInput.value));
+    const okayToSubmit = validateEmail(emailInput.value)   && 
+                         validatePassword(passInput.value) && 
+                         passInput.value === confPassInput.value;
 
     if(okayToSubmit) submitButton.disabled = false;
     else             submitButton.disabled = true;
 }
 
 
-const validateEmail = (email) => {
+const validateEmail = (email="") => {
 return String(email)
     .toLowerCase()
     .match(
@@ -69,7 +69,7 @@ return String(email)
     );
 };
 
-const validatePassword = (password) => {
+const validatePassword = (password="") => {
     return  /[A-Z]/       .test(password) &&
             /[a-z]/       .test(password) &&
             /[0-9]/       .test(password) &&
