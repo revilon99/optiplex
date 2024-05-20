@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login | oli.casa</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <div id="container">
+        <h1>Login | oli.casa</h1>
+        <form action="/api/login" method="post" id="loginForm">
+            <a>Email:</a>
+            <input type="text" id="email" placeholder="Email..." name="email" />
+
+            <a>Password:</a>
+            <input type="password" id="password" placeholder="" name="password" />
+
+            <a class="warning"><%- error %></a>
+
+            <input style="display: none" type="text" value="<%- redirect %>" name ="redirect"/>
+
+            <input type="submit" value="Login" />
+        </form>
+        <a <% if(redirect!="") { %> href='/register?redirect=<%- redirect %>' <% }else{ %> href='/register' <% } %> > <button>Register</button></a>
+    </div>
+</body>
+
+</html>

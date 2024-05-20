@@ -23,15 +23,15 @@ jobs:
     steps:
       - run: cd /home/ocass/optiplex/main/hello-world && npm install --save
 
-  setup-hello-world-2:
+  setup-auth:
     runs-on: self-hosted
     needs: [kill-all-node-processes, fetch-main-branch]
     steps:
-      - run: cd /home/ocass/optiplex/main/hello-world-2 && npm install --save
+      - run: cd /home/ocass/optiplex/main/auth && npm install --save
   
   run-all-node-projects:
     runs-on: self-hosted
-    needs: [setup-hello-world, setup-hello-world-2]
+    needs: [setup-hello-world, setup-auth]
     steps:
       - run: RUNNER_TRACKING_ID="" && chmod +x /home/ocass/optiplex/main/run-all-node-projects.sh && /home/ocass/optiplex/main/run-all-node-projects.sh main
   
