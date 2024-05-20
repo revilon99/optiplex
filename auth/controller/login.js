@@ -48,7 +48,7 @@ const login = async (req, res) => {
   if (!password_match) return invalid_credentials();
 
   // 5) If all good - return 1 day token
-  const token = createSecretToken(user._id);
+  const token = createSecretToken(user);
   res.cookie("token", token, {
     path: "/",                                // Cookie is accessible from all paths
     expires: new Date(Date.now() + 86400000), // Cookie expires in 1 day

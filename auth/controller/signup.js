@@ -14,6 +14,7 @@ All Rights Reserved
 // Imports
 import User from "../schema/User.js";
 import { createSecretToken } from "../jwt/Token.js";
+import { RandomString } from "../jwt/KeyHandler.js";
 import { hash } from "bcrypt";
 
 // Create User Routh
@@ -44,11 +45,12 @@ const createUser = async (req, res) => {
     const newUser = new User({
       email: req.body.email,
       password: hashedPassword,
+      key: RandomString()
     });
     const user = await newUser.save();
     
     // 5) return JWT Token
-    const token = createSecretToken(user._id);
+    const token = createSecretToken(user);
     res.cookie("token", token, {
       path: "/",        // Cookie is accessible from all paths
       expires: new Date(Date.now() + 24 * 60 * 60 * 1000), // Cookie expires in 1 day
@@ -66,7 +68,7 @@ const createUser = async (req, res) => {
 
 export default createUser;
 
-const validateEmail = (email) => {
+const validateEmail = (email="") => {
   return String(email)
     .toLowerCase()
     .match(
@@ -74,7 +76,7 @@ const validateEmail = (email) => {
     );
 };
 
-const validatePassword = (password) => {
+const validatePassword = (password="") => {
     return  /[A-Z]/       .test(password) &&
             /[a-z]/       .test(password) &&
             /[0-9]/       .test(password) &&

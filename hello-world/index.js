@@ -15,15 +15,15 @@ All Rights Reserved
 import express      from "express";
 import bodyParser   from "body-parser";
 import cookieParser from "cookie-parser";
+import { config }   from "dotenv"
 
-import { config } from "dotenv"
-import jwt from "jsonwebtoken";
+import { middleware } from "../auth/controller/middleware.js";
 
 // Environment setup
 let args = process.argv.slice(2);
 const PORT = args[0] || 3000;
 
-config();
+config({path: "../.env"});
 
 /* setup Express server */
 const app = express();
@@ -32,19 +32,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.set('view engine', 'ejs');
 
-/* authentication middleware */
+/* middleware */
 app.use((req, res, next) => {
-  try {
-    const token = jwt.verify(req.cookies.token, process.env.TOKEN_KEY);
-    res.locals.id = token.id;
-    next();
-  } catch {
-    res.redirect(process.env.AUTH_URL + "?redirect=" + process.env.HELLOWORLD_URL)
-  }
-})
+  res.locals.url = process.env.HELLOWORLD_URL;
+  next();
+});
 
-app.get("/", (req, res) => {
-  res.render("index", {username: res.locals.id});
+app.get("/", middleware, (req, res) => {
+  res.render("index", {username: res.locals.email});
 });
 
 // listen on cli defined port

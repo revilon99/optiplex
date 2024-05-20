@@ -14,10 +14,16 @@ All Rights Reserved
 import { config } from "dotenv"
 import jwt from "jsonwebtoken";
 
-config();
+config({path: "../.env"});
 
-export function createSecretToken(id) {
-  return jwt.sign({ id }, process.env.TOKEN_KEY, {
+export function createSecretToken(user) {
+  let token_body = {
+    id:    user._id,
+    email: user.email,
+    key:   user.key
+  }
+
+  return jwt.sign(token_body, process.env.TOKEN_KEY, {
     expiresIn: 24 * 60 * 60, // day long token
   });
 }

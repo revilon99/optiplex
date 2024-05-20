@@ -18,6 +18,7 @@ import { Schema, model } from "mongoose";
 const userSchema=Schema({
       email:String,
       password:String,
+      key:String
 })
 const User=model("user",userSchema);
 export default User;
