@@ -1,26 +1,53 @@
-var app = require('http').createServer(handler)
-var io = require('socket.io')(app);
-var fs = require('fs');
+/*
+Filename:
+  optiplex/hello-world/index.js
+Description:
+  A hello world script for the optiplex world
 
-var args = process.argv.slice(2);
-app.listen(args[0]);
+Project:
+  hello-world #0000 (hello-world.oli.casa) 
 
-function handler (req, res) {
-  fs.readFile(__dirname + '/index.html',
-  function (err, data) {
-    if (err) {
-      res.writeHead(500);
-      return res.end('Error loading index.html');
-    }
+Oliver Cass (c) 2024
+All Rights Reserved
+*/
 
-    res.writeHead(200);
-    res.end(data);
-  });
-}
+// Libraries
+import express      from "express";
+import bodyParser   from "body-parser";
+import cookieParser from "cookie-parser";
 
-io.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
+import { config } from "dotenv"
+import jwt from "jsonwebtoken";
+
+// Environment setup
+let args = process.argv.slice(2);
+const PORT = args[0] || 3000;
+
+config();
+
+/* setup Express server */
+const app = express();
+app.use(bodyParser.json({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.set('view engine', 'ejs');
+
+/* authentication middleware */
+app.use((req, res, next) => {
+  try {
+    const token = jwt.verify(req.cookies.token, process.env.TOKEN_KEY);
+    res.locals.id = token.id;
+    next();
+  } catch {
+    res.redirect(process.env.AUTH_URL + "?redirect=" + process.env.HELLOWORLD_URL)
+  }
+})
+
+app.get("/", (req, res) => {
+  res.render("index", {username: res.locals.id});
+});
+
+// listen on cli defined port
+app.listen(PORT, () => {
+  console.log(`Server is running on PORT ${PORT}`);
 });

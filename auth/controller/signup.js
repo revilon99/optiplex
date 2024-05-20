@@ -60,7 +60,8 @@ const createUser = async (req, res) => {
     console.log("Server Error: ", e);
   }
 
-  res.redirect("/");
+  if(req.body.redirect == "") res.redirect("/");
+  else res.redirect(req.body.redirect);
 };
 
 export default createUser;

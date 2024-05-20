@@ -33,7 +33,7 @@ const login = async (req, res) => {
   };
 
   // 1) get email and password from request body
-  const { email, password } = req.body;
+  const { email, password, redirect } = req.body;
 
   // 2) Validate input 
   const input_is_not_valid = !(email && password);
@@ -56,7 +56,9 @@ const login = async (req, res) => {
     httpOnly: true,                           // Cookie cannot be accessed via client-side scripts
     sameSite: "None"
   });
-  res.redirect("/")
+
+  if(redirect == "") res.redirect("/");
+  else res.redirect(redirect);
 };
 
 export default login;

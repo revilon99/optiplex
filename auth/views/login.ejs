@@ -18,9 +18,11 @@
 
             <a class="warning"><%- error %></a>
 
+            <input style="display: none" type="text" value="<%- redirect %>" name ="redirect"/>
+
             <input type="submit" value="Login" />
         </form>
-        <a href="/register"><button href="/register">Register</button></a>
+        <a <% if(redirect!="") { %> href='/register?redirect=<%- redirect %>' <% }else{ %> href='/register' <% } %> > <button>Register</button></a>
     </div>
 </body>
 

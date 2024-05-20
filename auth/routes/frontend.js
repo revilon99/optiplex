@@ -26,7 +26,8 @@ const login = (req, res) => {
     });    
   } catch {
     const error = req.query.error || "";
-    res.render("login", {error: prettifyError(error)})
+    const redirect = req.query.redirect || "";
+    res.render("login", {error: prettifyError(error), redirect: redirect})
   }
 }
 
@@ -36,7 +37,8 @@ const signup = (req, res) => {
     res.redirect("/")
   } catch {
     const error = req.query.error || "";
-    res.render("register", {error: prettifyError(error)})
+    const redirect = req.query.redirect || "";
+    res.render("register", {error: prettifyError(error), redirect: redirect})
   }
 }
 
