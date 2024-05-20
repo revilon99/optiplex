@@ -16,6 +16,12 @@ jobs:
     runs-on: self-hosted
     steps:
       - run: cd /home/ocass/optiplex && rm -r -f develop && git clone -b develop https://github.com/revilon99/optiplex develop
+    
+  copy-environment:
+    needs: fetch-develop-branch
+    runs-on: self-hosted
+    steps:
+      - run: cp /home/ocass/optiplex/config/develop.env /home/ocass/optiplex/develop/.env
 
   setup-hello-world:
     runs-on: self-hosted
