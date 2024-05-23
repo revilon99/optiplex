@@ -17,6 +17,8 @@ import { config } from "dotenv"
 config({path: "../.env"});
 
 export async function middleware(req, res, next) {
+  console.log(req.cookies);
+
     try {
       const token = jwt.verify(req.cookies.token, process.env.TOKEN_KEY);
       res.locals.id = token.id;
