@@ -53,7 +53,7 @@ const createUser = async (req, res) => {
     const token = createSecretToken(user);
     res.cookie("token", token, {
       path: "/",                                // Cookie is accessible from all paths
-      domain: process.env.ROOT,
+      domain: process.env.ROOT_URL,
       expires: new Date(Date.now() + 86400000), // Cookie expires in 1 day
       secure: true,                             // Cookie will only be sent over HTTPS
       httpOnly: true,                           // Cookie cannot be accessed via client-side scripts
