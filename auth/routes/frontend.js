@@ -15,6 +15,9 @@ All Rights Reserved
 import { Router, }     from "express";
 import { verifyToken } from '../jwt/Token.js'
 import User            from "../schema/User.js";
+import { config } from "dotenv"
+
+config({path: "../.env"});
 
 // Routes
 const login = (req, res) => {
@@ -49,7 +52,7 @@ router.get("/login", login)
 router.get("/signup", signup)
 router.get("/register", signup)
 router.get("/logout", (_req, res) => {
-  res.clearCookie("token");
+  res.clearCookie("token", {domain: process.env.ROOT_URL});
   res.redirect("/");
 });
 
