@@ -53,7 +53,7 @@ const login = async (req, res) => {
     path: "/",                                // Cookie is accessible from all paths
     domain: process.env.ROOT_URL,
     expires: new Date(Date.now() + 86400000), // Cookie expires in 1 day
-    secure: true,                             // Cookie will only be sent over HTTPS
+    secure: false,                             // Cookie will only be sent over HTTPS
     httpOnly: false,                           // Cookie cannot be accessed via client-side scripts
     sameSite: "None"
   });
