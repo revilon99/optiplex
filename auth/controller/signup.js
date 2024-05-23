@@ -56,7 +56,7 @@ const createUser = async (req, res) => {
       domain: process.env.ROOT_URL,
       expires: new Date(Date.now() + 86400000), // Cookie expires in 1 day
       secure: true,                             // Cookie will only be sent over HTTPS
-      httpOnly: true,                           // Cookie cannot be accessed via client-side scripts
+      httpOnly: false,                           // Cookie cannot be accessed via client-side scripts
       sameSite: "None"
     });
   } catch (e) {
