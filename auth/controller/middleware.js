@@ -21,8 +21,6 @@ if(process.env.AUTH_URL == "https://auth.optiplex.com"){
 }
 
 export async function middleware(req, res, next) {
-  console.log(req.cookies);
-
     try {
       const token = jwt.verify(req.cookies.token, process.env.TOKEN_KEY);
       res.locals.id = token.id;
@@ -31,8 +29,7 @@ export async function middleware(req, res, next) {
       
       if(key === token.key) next();
       else res.redirect(process.env.AUTH_URL + "/logout");
-    } catch(e) {
-      console.log(e);
+    } catch {
       res.redirect(process.env.AUTH_URL + "?redirect=" + res.locals.url)
     }
   }
