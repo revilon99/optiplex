@@ -27,7 +27,8 @@ export async function middleware(req, res, next) {
       
       if(key === token.key) next();
       else res.redirect(process.env.AUTH_URL + "/logout");
-    } catch {
+    } catch(e) {
+      console.log(e);
       res.redirect(process.env.AUTH_URL + "?redirect=" + res.locals.url)
     }
   }
