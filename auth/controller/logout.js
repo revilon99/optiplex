@@ -14,10 +14,13 @@ All Rights Reserved
 import { RandomString } from "../jwt/KeyHandler.js";
 import { verifyToken } from "../jwt/Token.js";
 import User from "../schema/User.js";
+import { config } from "dotenv"
+
+config({path: "../.env"});
 
 
 export function logout (_req, res) {
-  res.clearCookie("token");
+  res.clearCookie("token", {domain: process.env.ROOT_URL});
   res.redirect("/");
 }
 
@@ -32,6 +35,6 @@ export function logoutHard (req, res) {
     console.log(e)
   }
   res.clearCookie("token");
-  res.redirect("/");
+  res.redirect("/", {domain: process.env.ROOT_URL});
 }
 
