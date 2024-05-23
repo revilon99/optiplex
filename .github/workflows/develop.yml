@@ -25,13 +25,13 @@ jobs:
 
   setup-hello-world:
     runs-on: self-hosted
-    needs: [kill-all-node-processes, fetch-develop-branch]
+    needs: copy-environment
     steps:
       - run: cd /home/ocass/optiplex/develop/hello-world && npm install --save
 
   setup-auth:
     runs-on: self-hosted
-    needs: [kill-all-node-processes, fetch-develop-branch]
+    needs: copy-environment
     steps:
       - run: cd /home/ocass/optiplex/develop/auth && npm install --save
   
