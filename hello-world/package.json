@@ -11,8 +11,8 @@
     "dotenv": "^16.4.5"
   },
   "scripts": {
-    "main": "node index.js 5000 > log.txt 2> err.txt",
-    "develop": "node index.js 3000 > log.txt 2> err.txt"
+    "main": "node index.js 5000 > out.log 2> err.log",
+    "develop": "node index.js 3000 > out.log 2> err.log"
   },
   "type": "module"
 }

@@ -14,8 +14,8 @@
     "mongoose": "^8.3.4"
   },
   "scripts": {
-    "main": "node app.js 5001 > log.txt 2> err.txt",
-    "develop": "node app.js 3001 > log.txt 2> err.txt"
+    "main": "node app.js 5001 > out.log 2> err.log",
+    "develop": "node app.js 3001 > out.log 2> err.log"
   },
   "type": "module"
 }

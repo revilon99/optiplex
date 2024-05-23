@@ -50,7 +50,6 @@ app.use((req, res, next) => {
 
 app.get("/", middleware, (req, res) => {
   res.render("index", {username: res.locals.email});
-  console.log("yay")
 });
 
 // listen on cli defined port
