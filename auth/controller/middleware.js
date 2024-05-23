@@ -16,6 +16,10 @@ import { config } from "dotenv"
 
 config({path: "../.env"});
 
+if(process.env.AUTH_URL == "https://auth.optiplex.com"){
+  process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0
+}
+
 export async function middleware(req, res, next) {
   console.log(req.cookies);
 
