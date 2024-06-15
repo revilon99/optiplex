@@ -17,7 +17,7 @@ import bodyParser   from "body-parser";
 import cookieParser from "cookie-parser";
 import { config }   from "dotenv"
 
-import { middleware } from "../auth/controller/middleware.js";
+import { jwt_middleware as auth } from "../auth/controller/middleware.js";
 
 // Environment setup
 let args = process.argv.slice(2);
@@ -40,15 +40,15 @@ app.use((_req, res, next) => {
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
   res.header("Access-Control-Allow-Credentials", "true");
 
+  // asign project url for auth middleware
+  res.locals.url = process.env.HELLOWORLD_URL;
+
   // Pass to next layer of middleware
   next();
 });
-app.use((req, res, next) => {
-  res.locals.url = process.env.HELLOWORLD_URL;
-  next();
-});
 
-app.get("/", middleware, (req, res) => {
+// Home route
+app.get("/", auth, (req, res) => {
   res.render("index", {username: res.locals.email});
 });
 
