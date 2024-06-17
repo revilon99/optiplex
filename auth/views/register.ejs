@@ -7,19 +7,19 @@
 </head>
 
 <body>
-    <div id="container">
+    <main>
         <h1>Register | oli.casa</h1>
         <form action="/api/signup" method="post" id="loginForm">
             <a>Email:</a>
-            <input type="text" id="email" placeholder="Email..." name="email" />
+            <input autocomplete="email" type="text" id="email" placeholder="Email..." name="email" />
             <a id="emailError" class="warning"></a>
 
             <a>Password:</a>
-            <input type="password" id="password" placeholder="" name="password" />
+            <input autocomplete="new-password" type="password" id="password" placeholder="" name="password" />
             <a id="passError" class="warning"></a>
 
             <a>Confirm Password:</a>
-            <input type="password" id="passwordConfirm" placeholder="" name="passwordConfirm" />
+            <input autocomplete="new-password" type="password" id="passwordConfirm" placeholder="" name="passwordConfirm" />
 
             <a class="warning"><%- error %></a>
             <a id="confPassError" class="warning"></a>
@@ -30,7 +30,7 @@
         </form>
 
         <a href="/">Back to login</a>
-    </div>
+    </main>
 
     <script src="./js/registration.js"></script>
 </body>

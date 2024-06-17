@@ -34,7 +34,7 @@ export function logoutHard (req, res) {
     // do nothing - no user found or token invalid
     console.log(e)
   }
-  res.clearCookie("token");
-  res.redirect("/", {domain: process.env.ROOT_URL});
+  res.clearCookie("token", {domain: process.env.ROOT_URL});
+  res.redirect("/");
 }
 

@@ -21,7 +21,7 @@ import User from "../schema/User.js";
 import { createSecretToken } from "../jwt/Token.js";
 
 // Load Environment Parameters
-config();
+config({path: "../.env"});
 
 // Login Function:
 const login = async (req, res) => {

@@ -56,7 +56,7 @@ const createUser = async (req, res) => {
       domain: process.env.ROOT_URL,
       expires: new Date(Date.now() + 86400000), // Cookie expires in 1 day
       secure: true,                             // Cookie will only be sent over HTTPS
-      httpOnly: false,                           // Cookie cannot be accessed via client-side scripts
+      httpOnly: false,                          // Cookie cannot be accessed via client-side scripts
       sameSite: "None"
     });
   } catch (e) {
@@ -82,5 +82,5 @@ const validatePassword = (password="") => {
             /[a-z]/       .test(password) &&
             /[0-9]/       .test(password) &&
             /[^A-Za-z0-9]/.test(password) &&
-            password.length > 8;
+            password.length >= 8;
 }

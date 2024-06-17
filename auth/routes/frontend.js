@@ -45,9 +45,27 @@ const signup = (req, res) => {
   }
 }
 
+const myAccount = (req, res) => {
+  const error = req.query.error || "";
+  const success = req.query.msg || "";
+  try {
+    const token = verifyToken(req.cookies.token);
+    User.findById(token.id).then(user => {
+      if(user) {
+        let prettySuccess = "";
+        if(success === "SUCCESS") prettySuccess = "Password successfully changed.";
+        res.render("myaccount", {email: user.email, error: prettifyError(error), success: prettySuccess})
+      }else throw error;
+    });    
+  } catch {
+    res.redirect("/logout");
+  }
+}
+
 // Define Routes
 const router = Router();
 router.get("/", login);
+router.get("/myaccount", myAccount);
 router.get("/login", login)
 router.get("/signup", signup)
 router.get("/register", signup)
@@ -68,7 +86,7 @@ const prettifyError = (error) => {
     case "BAD_EMAIL":
       return "Please input a valid email..."
     case "BAD_PASSWORD":
-      return "Passwords must contain at least 8 characters, one lowercase, one uppercase and a number"
+      return "Passwords must contain at least 8 characters, one lowercase, one uppercase, a number and a special character"
     case "BAD_MATCH":
       return "Passwords must match"
     default:
