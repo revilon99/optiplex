@@ -50,11 +50,22 @@ export function myAccount(req, res){
         if(user) {
             let prettySuccess = "";
             if(success === "SUCCESS") prettySuccess = "Password successfully changed.";
-            res.render("pages/myaccount", {email: user.email, error: prettifyError(error), success: prettySuccess})
+            res.render("pages/my_account", {email: user.email, error: prettifyError(error), success: prettySuccess})
         }else throw error;
         });    
     } catch {
         res.redirect("/logout");
+    }
+}
+
+// reset Password Page
+export function resetPassword(req, res){
+    try {
+        // if there is a valid token - the password isn't forgotten - go to home
+        verifyToken(req.cookies.token)
+        res.redirect("/")
+    } catch {
+        res.render("pages/reset_password")
     }
 }
 

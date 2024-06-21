@@ -16,6 +16,7 @@ import User from "../schema/User.js";
 import { createSecretToken } from "../jwt/Token.js";
 import { RandomString } from "../jwt/KeyHandler.js";
 import { hash } from "bcrypt";
+import { send as sendEmail } from "../mail/mail.js"
 
 // Create User Routh
 const createUser = async (req, res) => {
@@ -59,6 +60,18 @@ const createUser = async (req, res) => {
       httpOnly: false,                          // Cookie cannot be accessed via client-side scripts
       sameSite: "None"
     });
+
+    sendEmail("noreply@oli.casa", [user.email], "Welcome to oli.casa", "Welcome to oli.casa", `
+      <h1>Welcome to oli.casa, ${user.email}!</h1>
+      <p>
+        We are so glad that you have joined.
+      </p>
+
+      <p>
+        if you have any questions, please reach out to <a href="mailto:info@oli.casa">info@oli.casa</a>
+      </p>
+      `);
+      
   } catch (e) {
     console.log("Server Error: ", e);
   }

@@ -22,7 +22,7 @@
             <a class="warning"><%- error %></a>
 
             <input style="display: none" type="text" value="<%- redirect %>" name ="redirect"/>
-            <a class="link" href="/forgottenpassword">Forgotten Password</a>
+            <a class="link" href="/resetpassword">Forgotten Password</a>
             <input type="submit" value="Login" />
         </form>
         <button><a <% if(redirect!="") { %> href='/register?redirect=<%- redirect %>' <% }else{ %> href='/register' <% } %>>Register</a></button>
