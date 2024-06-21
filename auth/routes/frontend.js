@@ -24,13 +24,13 @@ const login = (req, res) => {
   try {
     const token = verifyToken(req.cookies.token);
     User.findById(token.id).then(user => {
-      if(user) res.render("home", {email: user.email})
+      if(user) res.render("pages/home", {email: user.email})
       else     res.redirect("/logout");
     });    
   } catch {
     const error = req.query.error || "";
     const redirect = req.query.redirect || "";
-    res.render("login", {error: prettifyError(error), redirect: redirect})
+    res.render("pages/login", {error: prettifyError(error), redirect: redirect})
   }
 }
 
@@ -41,20 +41,20 @@ const signup = (req, res) => {
   } catch {
     const error = req.query.error || "";
     const redirect = req.query.redirect || "";
-    res.render("register", {error: prettifyError(error), redirect: redirect})
+    res.render("pages/register", {error: prettifyError(error), redirect: redirect})
   }
 }
 
 const myAccount = (req, res) => {
-  const error = req.query.error || "";
-  const success = req.query.msg || "";
+  const error   = req.query.error || "";
+  const success = req.query.msg   || "";
   try {
     const token = verifyToken(req.cookies.token);
     User.findById(token.id).then(user => {
       if(user) {
         let prettySuccess = "";
         if(success === "SUCCESS") prettySuccess = "Password successfully changed.";
-        res.render("myaccount", {email: user.email, error: prettifyError(error), success: prettySuccess})
+        res.render("pages/myaccount", {email: user.email, error: prettifyError(error), success: prettySuccess})
       }else throw error;
     });    
   } catch {

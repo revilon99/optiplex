@@ -18,7 +18,6 @@ import { config } from "dotenv"
 
 config({path: "../.env"});
 
-
 export function logout (_req, res) {
   res.clearCookie("token", {domain: process.env.ROOT_URL});
   res.redirect("/");

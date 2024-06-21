@@ -2,13 +2,16 @@
 <html>
 
 <head>
-    <title>My Account | oli.casa</title>
-    <link rel="stylesheet" href="./css/styles.css">
+    <title>My Account - oli.casa</title>
+    <%- include('../partials/head'); %>
 </head>
 
 <body>
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
     <main>
-        <h1>My Account | oli.casa</h1>
+        <h1>My Account</h1>
         <p>Welcome, <%- email %></p>
         <div id="updatePassword" class="form">
             <h3>Update Password</h3>
@@ -35,7 +38,10 @@
         <a href="/logout">Log Out</a>
     </main>
 
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
     <script src="./js/myaccount.js"></script>
 </body>
-
 </html>

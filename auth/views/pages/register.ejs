@@ -2,24 +2,27 @@
 <html>
 
 <head>
-    <title>Register | oli.casa</title>
-    <link rel="stylesheet" href="./css/styles.css">
+    <title>Register - oli.casa</title>
+    <%- include('../partials/head'); %>
 </head>
 
 <body>
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
     <main>
-        <h1>Register | oli.casa</h1>
+        <h1>Register</h1>
         <form action="/api/signup" method="post" id="loginForm">
             <a>Email:</a>
-            <input autocomplete="email" type="text" id="email" placeholder="Email..." name="email" />
+            <input autocomplete="email" type="text" id="email"name="email" />
             <a id="emailError" class="warning"></a>
 
             <a>Password:</a>
-            <input autocomplete="new-password" type="password" id="password" placeholder="" name="password" />
+            <input autocomplete="new-password" type="password" id="password" name="password" />
             <a id="passError" class="warning"></a>
 
             <a>Confirm Password:</a>
-            <input autocomplete="new-password" type="password" id="passwordConfirm" placeholder="" name="passwordConfirm" />
+            <input autocomplete="new-password" type="password" id="passwordConfirm" name="passwordConfirm" />
 
             <a class="warning"><%- error %></a>
             <a id="confPassError" class="warning"></a>
@@ -32,7 +35,10 @@
         <a href="/">Back to login</a>
     </main>
 
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
     <script src="./js/registration.js"></script>
 </body>
-
 </html>

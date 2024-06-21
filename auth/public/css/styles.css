@@ -1,28 +1,53 @@
 html, body{
     padding: 0;
-    margin: 0;
-    background-color: antiquewhite;
+    background-color: #ffffff;
     overflow: hidden;
     font-family: Arial, Helvetica, sans-serif;
-}
-
-div#container, main{
-    display: block;
-    width: min(500px, 90vw);
     height: 100vh;
     margin: 0 auto;
-    background-color: white;
-    padding: 20px;
-    text-align: center;
-}
-a{
-    display: block;
-}
-form a{
-    text-align: left;
-    padding: 0px 50px
 }
 
+header{
+    background-color: #ffffff;
+    padding: 10px;
+    padding-left: 30px;
+    border-bottom: 1px solid #000000;
+}
+header h1{
+    padding-top: 7px;
+}
+
+h1, h2, h3{
+    padding: 0;
+    margin: 0;
+}
+main{
+    background-color: #ffffff;
+    height: min(80vh);
+    width: min(350px, 90vw);
+    margin: auto;
+    padding-top: 22px;
+    text-align: center;
+}
+
+main h1{
+    padding-bottom: 20px;
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    padding: 10px;
+}
+
+a{
+    display: block;
+    text-align: left;
+}
+a.link{
+    text-align: right;
+    padding-bottom: 2px;
+}
 a.warning{
     text-align: center;
     color: red;
@@ -32,8 +57,44 @@ a.success{
     color: black;
 }
 
+button a{
+    text-align: unset;
+    text-decoration: none;
+    color: unset;
+}
+
 form input[type="text"], [type="password"]
 {
-    margin: 5px auto;
-    width: 70%;
+    margin: 8px 10px;
+    width: -webkit-fill-available;
+    height: 32px;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size:  1em;
+}
+
+input[type="submit"], button{
+    min-width: 40%;
+    margin: 5px;
+    height: 2em;
+    font-size: 1.2em;
+    background-color: white;
+    border-radius: 5px;
+}
+
+input[type="submit"]:hover, button:hover{
+    background-color: rgb(240, 240, 240);
+    cursor: pointer;
+}
+
+input[type="submit"][disabled]:hover{
+    cursor:default;
+}
+
+svg.icon{
+    width: auto;
+    height: 50px;
+    float: left;
+    filter: brightness(0);
 }
