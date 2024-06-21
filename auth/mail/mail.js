@@ -16,7 +16,7 @@ import Mailgun from "mailgun.js";
 const mailgun = new Mailgun(FormData);
 const mg = mailgun.client({username: 'api', key: process.env.MAILGUN_API_KEY, url: 'https://api.eu.mailgun.net'});
 
-export function send(from="oli.casa <noreply@oli.casa>", to=[], subject="", text="", html=""){
+export function send(to=[], subject="", text="", html="", from="oli.casa <noreply@oli.casa>"){
     mg.messages.create('mg.oli.casa', {
         from: from,
         to: to,

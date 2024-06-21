@@ -18,14 +18,14 @@
             <form action="/api/updatePassword" method="post" id="updatePasswordForm">
                 <input autocomplete="email" type="text" id="email" placeholder="Email..." name="email" hidden/>    
 
-                <a>Current Password:</a>
+                <label>Current Password:</label>
                 <input autocomplete="current-password" type="password" id="current-password" placeholder="" name="password" />
 
-                <a>New Password:</a>
+                <label>New Password:</label>
                 <input autocomplete="new-password" type="password" id="password" placeholder="" name="new_password" />
                 <a id="passError" class="warning"></a>
     
-                <a>Confirm New Password:</a>
+                <label>Confirm New Password:</label>
                 <input autocomplete="new-password" type="password" id="passwordConfirm" placeholder="" name="new_password_confirm" />
                 <a id="confPassError" class="warning"></a>
         

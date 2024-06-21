@@ -13,15 +13,15 @@
     <main>
         <h1>Register</h1>
         <form action="/api/signup" method="post" id="loginForm">
-            <a>Email:</a>
+            <label>Email:</label>
             <input autocomplete="email" type="text" id="email"name="email" />
             <a id="emailError" class="warning"></a>
 
-            <a>Password:</a>
+            <label>Password:</label>
             <input autocomplete="new-password" type="password" id="password" name="password" />
             <a id="passError" class="warning"></a>
 
-            <a>Confirm Password:</a>
+            <label>Confirm Password:</label>
             <input autocomplete="new-password" type="password" id="passwordConfirm" name="passwordConfirm" />
 
             <a class="warning"><%- error %></a>

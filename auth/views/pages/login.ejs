@@ -13,16 +13,16 @@
     <main>
         <h1>Login</h1>
         <form action="/api/login" method="post" id="loginForm">
-            <a>Email:</a>
+            <label>Email:</label>
             <input autocomplete="email" type="text" id="email" name="email" />
 
-            <a>Password:</a>
+            <label>Password:</label>
             <input autocomplete="current-password" type="password" id="password" name="password" />
 
             <a class="warning"><%- error %></a>
 
             <input style="display: none" type="text" value="<%- redirect %>" name ="redirect"/>
-            <a class="link" href="/resetpassword">Forgotten Password</a>
+            <a class="link" href="/resetpassword">Forgot Password</a>
             <input type="submit" value="Login" />
         </form>
         <button><a <% if(redirect!="") { %> href='/register?redirect=<%- redirect %>' <% }else{ %> href='/register' <% } %>>Register</a></button>

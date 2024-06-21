@@ -54,7 +54,7 @@ export async function updatePassword (req, res) {
 
   // 6) Change the password
   const salt = 10;
-  const hashedPassword = await hash(req.body.password, salt);
+  const hashedPassword = await hash(new_password, salt);
   user.password = hashedPassword;
   await user.save();
 

@@ -14,7 +14,7 @@ All Rights Reserved
 // Imports
 import { Router, }     from "express";
 import { config } from "dotenv"
-import { login, myAccount, signup, resetPassword } from "./frontend/pages.js"
+import { login, myAccount, signup, resetPasswordReq, resetPasswordReqed, resetPassword, resetPasswordSuccess} from "./frontend/pages.js"
 
 config({path: "../.env"});
 
@@ -22,7 +22,10 @@ config({path: "../.env"});
 const router = Router();
 router.get("/", login);
 router.get("/myaccount", myAccount);
-router.get("/resetpassword", resetPassword);
+router.get("/resetpassword", resetPasswordReq);
+router.get("/passwordreset", resetPassword);
+router.get("/passwordresetrequested", resetPasswordReqed);
+router.get("/passwordresetsuccessful", resetPasswordSuccess);
 router.get("/login", login)
 router.get("/signup", signup)
 router.get("/register", signup)

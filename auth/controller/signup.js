@@ -13,8 +13,7 @@ All Rights Reserved
 
 // Imports
 import User from "../schema/User.js";
-import { createSecretToken } from "../jwt/Token.js";
-import { RandomString } from "../jwt/KeyHandler.js";
+import { verifyToken, RandomString } from "../jwt/Token.js";
 import { hash } from "bcrypt";
 import { send as sendEmail } from "../mail/mail.js"
 
@@ -61,7 +60,7 @@ const createUser = async (req, res) => {
       sameSite: "None"
     });
 
-    sendEmail("noreply@oli.casa", [user.email], "Welcome to oli.casa", "Welcome to oli.casa", `
+    sendEmail([user.email], "Welcome to oli.casa", "Welcome to oli.casa", `
       <h1>Welcome to oli.casa, ${user.email}!</h1>
       <p>
         We are so glad that you have joined.
@@ -71,7 +70,7 @@ const createUser = async (req, res) => {
         if you have any questions, please reach out to <a href="mailto:info@oli.casa">info@oli.casa</a>
       </p>
       `);
-      
+
   } catch (e) {
     console.log("Server Error: ", e);
   }

@@ -10,6 +10,7 @@ Project:
 Oliver Cass (c) 2024
 All Rights Reserved
 */
+import { validatePasswordChangeRequest } from '../../controller/resetpassword.js';
 import { verifyToken } from '../../jwt/Token.js'
 import User            from "../../schema/User.js";
 
@@ -59,13 +60,40 @@ export function myAccount(req, res){
 }
 
 // reset Password Page
-export function resetPassword(req, res){
+export function resetPasswordReq(req, res){
+    const error   = req.query.error || "";
     try {
         // if there is a valid token - the password isn't forgotten - go to home
         verifyToken(req.cookies.token)
         res.redirect("/")
     } catch {
-        res.render("pages/reset_password")
+        res.render("pages/reset_password", {error: prettifyError(error)})
+    }
+}
+export function resetPasswordReqed(req, res){
+    res.render("pages/password_reset_requested");
+}
+export function resetPasswordSuccess(req, res){
+    res.render("pages/password_reset_success");
+}
+export function resetPassword(req, res){
+    const activeRequest = validatePasswordChangeRequest(req.query.email, req.query.key);
+    const success = req.query.msg   || "";
+    const email = req.query.email   || "";
+    const key = req.query.key   || "";
+    const error   = req.query.error || "";
+    if(!activeRequest){
+        res.redirect("/");
+        return;
+    }
+    try {
+        // if there is a valid token - the password isn't forgotten - go to home
+        verifyToken(req.cookies.token)
+        res.redirect("/")
+    } catch {
+        let prettySuccess = "";
+        if(success === "SUCCESS") prettySuccess = "Password successfully changed.";
+        res.render("pages/password_reset", {email: email, key: key, msg: prettySuccess, error: prettifyError(error)})
     }
 }
 
@@ -78,6 +106,10 @@ const prettifyError = (error) => {
         return "Input is not valid. Try again."
       case "INVALID_CREDENTIALS":
         return "Username or Password not recognised. Try Again."
+      case "USER_EXISTS":
+        return "Username is taken."
+      case "USER_NOT_EXIST":
+        return "Username is not recognised."
       case "BAD_EMAIL":
         return "Please input a valid email..."
       case "BAD_PASSWORD":
