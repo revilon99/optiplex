@@ -20,6 +20,9 @@ import User from "../schema/User.js";
 // Load Environment Parameters
 config();
 
+// TODO: consider keeping keys recently accessed in an array
+// or transitioning to a session style system, to minimise db requests
+// see how it goes
 const key = async (req, res) => {
     const id = req.params.id;
     User.findById(id).then((user) => {
