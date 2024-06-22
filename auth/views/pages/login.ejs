@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login - oli.casa</title>
+    <%- include('../partials/head'); %>
+</head>
+
+<body>
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+    <main>
+        <h1>Login</h1>
+        <form action="/api/login" method="post" id="loginForm">
+            <label>Email:</label>
+            <input autocomplete="email" type="text" id="email" name="email" />
+
+            <label>Password:</label>
+            <input autocomplete="current-password" type="password" id="password" name="password" />
+
+            <a class="warning"><%- error %></a>
+
+            <input style="display: none" type="text" value="<%- redirect %>" name ="redirect"/>
+            <a class="link" href="/resetpassword">Forgot Password</a>
+            <input type="submit" value="Login" />
+        </form>
+        <button><a <% if(redirect!="") { %> href='/register?redirect=<%- redirect %>' <% }else{ %> href='/register' <% } %>>Register</a></button>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+</body>
+</html>

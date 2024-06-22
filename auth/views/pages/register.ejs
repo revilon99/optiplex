@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Register - oli.casa</title>
+    <%- include('../partials/head'); %>
+</head>
+
+<body>
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+    <main>
+        <h1>Register</h1>
+        <form action="/api/signup" method="post" id="loginForm">
+            <label>Email:</label>
+            <input autocomplete="email" type="text" id="email"name="email" />
+            <a id="emailError" class="warning"></a>
+
+            <label>Password:</label>
+            <input autocomplete="new-password" type="password" id="password" name="password" />
+            <a id="passError" class="warning"></a>
+
+            <label>Confirm Password:</label>
+            <input autocomplete="new-password" type="password" id="passwordConfirm" name="passwordConfirm" />
+
+            <a class="warning"><%- error %></a>
+            <a id="confPassError" class="warning"></a>
+
+            <input style="display: none" type="text" value="<%- redirect %>" name ="redirect"/>
+
+            <input id="submitButton" type="submit" value="Sign Up" />
+        </form>
+
+        <a href="/">Back to login</a>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
+    <script src="./js/registration.js"></script>
+</body>
+</html>

@@ -11,13 +11,11 @@ Oliver Cass (c) 2024
 All Rights Reserved
 */
 
-import { RandomString } from "../jwt/KeyHandler.js";
-import { verifyToken } from "../jwt/Token.js";
+import { verifyToken, RandomString } from "../jwt/Token.js";
 import User from "../schema/User.js";
 import { config } from "dotenv"
 
 config({path: "../.env"});
-
 
 export function logout (_req, res) {
   res.clearCookie("token", {domain: process.env.ROOT_URL});
@@ -34,7 +32,7 @@ export function logoutHard (req, res) {
     // do nothing - no user found or token invalid
     console.log(e)
   }
-  res.clearCookie("token");
-  res.redirect("/", {domain: process.env.ROOT_URL});
+  res.clearCookie("token", {domain: process.env.ROOT_URL});
+  res.redirect("/");
 }
 

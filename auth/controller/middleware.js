@@ -20,7 +20,7 @@ if(process.env.AUTH_URL == "https://auth.optiplex.com"){
   process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0
 }
 
-export async function middleware(req, res, next) {
+export async function jwt_middleware(req, res, next) {
     try {
       const token = jwt.verify(req.cookies.token, process.env.TOKEN_KEY);
       res.locals.id = token.id;
