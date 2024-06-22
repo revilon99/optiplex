@@ -31,6 +31,7 @@ Connection();
 
 /* setup Express server */
 const app = express();
+app.set('trust proxy', 1);
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
