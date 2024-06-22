@@ -16,9 +16,9 @@ import { compare } from "bcrypt";
 import { config }  from "dotenv";
 
 // Load User Mongoose Schema
-import User from "../schema/User.js";
+import User from "../../schema/User.js";
 // Load secret token gen function
-import { createSecretToken } from "../jwt/Token.js";
+import { createSecretToken } from "../../jwt/Token.js";
 
 // Load Environment Parameters
 config({path: "../.env"});

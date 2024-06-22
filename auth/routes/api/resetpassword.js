@@ -11,10 +11,10 @@ Oliver Cass (c) 2024
 All Rights Reserved
 */
 
-import { RandomString } from "../jwt/Token.js";
+import { RandomString } from "../../jwt/Token.js";
 import { hash } from "bcrypt";
-import { send as sendEmail } from "../mail/mail.js"
-import User from "../schema/User.js";
+import { send as sendEmail } from "../../mail/mail.js"
+import User from "../../schema/User.js";
 
 // this is a bad practice if hoping to scale project
 let activePasswordChangeRequests = [];
