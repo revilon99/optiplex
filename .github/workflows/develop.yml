@@ -16,22 +16,28 @@ jobs:
     runs-on: self-hosted
     steps:
       - run: cd /home/ocass/optiplex && rm -r -f develop && git clone -b develop https://github.com/revilon99/optiplex develop
+    
+  copy-environment:
+    needs: fetch-develop-branch
+    runs-on: self-hosted
+    steps:
+      - run: cp /home/ocass/optiplex/config/develop.env /home/ocass/optiplex/develop/.env
 
   setup-hello-world:
     runs-on: self-hosted
-    needs: [kill-all-node-processes, fetch-develop-branch]
+    needs: copy-environment
     steps:
       - run: cd /home/ocass/optiplex/develop/hello-world && npm install --save
 
-  setup-hello-world-2:
+  setup-auth:
     runs-on: self-hosted
-    needs: [kill-all-node-processes, fetch-develop-branch]
+    needs: copy-environment
     steps:
-      - run: cd /home/ocass/optiplex/develop/hello-world-2 && npm install --save
+      - run: cd /home/ocass/optiplex/develop/auth && npm install --save
   
   run-all-node-projects:
     runs-on: self-hosted
-    needs: [setup-hello-world, setup-hello-world-2]
+    needs: [setup-hello-world, setup-auth]
     steps:
       - run: RUNNER_TRACKING_ID="" && chmod +x /home/ocass/optiplex/develop/run-all-node-projects.sh && /home/ocass/optiplex/develop/run-all-node-projects.sh develop
   
