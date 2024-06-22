@@ -31,6 +31,7 @@ Connection();
 
 /* setup Express server */
 const app = express();
+app.set('trust proxy', 1);
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -38,7 +39,7 @@ app.set('view engine', 'ejs');
 
 app.use((_req, res, next) => {
   // Set CORS headers
-  //res.header("Access-Control-Allow-Origin", process.env.AUTH_URL);
+  res.header("Access-Control-Allow-Origin", process.env.AUTH_URL);
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
   res.header("Access-Control-Allow-Credentials", "true");
