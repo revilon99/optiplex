@@ -1,11 +1,12 @@
 /*
 Filename:
-  optiplex/hello-world/index.js
+  optiplex/portal/app.js
 Description:
-  A hello world script for the optiplex project
+  A portal which can manage oli.casa optiplex project remotely.
+  Potentially in future it will serve other personal content.
 
 Project:
-  hello-world #0000 (hello-world.oli.casa) 
+  portal #0000 (portal.oli.casa) 
 
 Oliver Cass (c) 2024
 All Rights Reserved

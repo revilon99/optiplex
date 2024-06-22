@@ -10,20 +10,24 @@ Development ports are run from ::3000-::4999 <br>
 Production ports are run from ::5000-::6999
 
 The port of a project can be calculated by adding the project number to the base port <br>
-e.g. hello-world (0) - Dev Port = 3000 + 0 = 3000
+e.g. portal (0) - Dev Port = 3000 + 0 = 3000
 
 ## .env file schema
-TOKEN_KEY= your key here <br>
-HELLOWORLD_URL= url of hello-world program (e.g. https://hello-world.oli.casa/) <br>
-AUTH_URL= url of authentication program (e.g. https://auth.oli.casa/) <br>
-MONGODB_URL= root url of db. each program appends its own table as hard-coded string. <br>
-ROOT_URL= root url of environment (e.g. .oli.casa) this is for the cookie domain parameter <br>
-MAILGUN_API_KEY= Mailgun API key. You will need to set up your own Mailgun account to copy this. Up to 100 emails/day free as of 22/06/2024, so not bad for scope of project.<br>
+<a>Notes:</a> All urls must end in /
+
+
+> TOKEN_KEY= your key here <br>
+> PORTAL_URL= url of portal program (e.g. https://portal.oli.casa/) <br>
+> AUTH_URL= url of authentication program (e.g. https://auth.oli.casa/) <br>
+> MONGODB_URL= root url of db. each program appends its own table as hard-coded string. <br>
+> ROOT_URL= root url of environment (e.g. .oli.casa) this is for the cookie domain parameter <br>
+> MAILGUN_API_KEY= Mailgun API key. You will need to set up your own Mailgun account to copy this. Up to 100 emails/day free as of 22/06/2024, so not bad  for scope of project.<br>
 
 
 # Projects
-## 0 - hello-world
-A simple test program to ensure environment works
+## 0 - portal
+A portal which can manage oli.casa optiplex project remotely.
+  Potentially in future it will serve other personal content.
 
 ## 1 - auth
 The oli.casa authentication service. <br>

@@ -2,7 +2,7 @@ cd /home/ocass/optiplex/
 
 cd $1
 
-cd hello-world
+cd portal
 nohup npm run $1 &
 cd ..
 
