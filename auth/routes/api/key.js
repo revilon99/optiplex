@@ -15,7 +15,7 @@ All Rights Reserved
 import { config }  from "dotenv";
 
 // Load User Mongoose Schema
-import User from "../schema/User.js";
+import User from "../../schema/User.js";
 
 // Load Environment Parameters
 config();

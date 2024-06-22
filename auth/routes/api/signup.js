@@ -12,10 +12,10 @@ All Rights Reserved
 */
 
 // Imports
-import User from "../schema/User.js";
-import { verifyToken, RandomString } from "../jwt/Token.js";
+import User from "../../schema/User.js";
+import { verifyToken, RandomString } from "../../jwt/Token.js";
 import { hash } from "bcrypt";
-import { send as sendEmail } from "../mail/mail.js"
+import { send as sendEmail } from "../../mail/mail.js"
 
 // Create User Routh
 const createUser = async (req, res) => {

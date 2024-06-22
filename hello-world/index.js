@@ -17,7 +17,7 @@ import bodyParser   from "body-parser";
 import cookieParser from "cookie-parser";
 import { config }   from "dotenv"
 
-import { jwt_middleware as auth } from "../auth/controller/middleware.js";
+import { jwt_middleware as auth } from "../auth/library/middleware.js";
 
 // Environment setup
 let args = process.argv.slice(2);
