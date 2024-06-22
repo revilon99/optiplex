@@ -16,16 +16,22 @@ jobs:
     runs-on: self-hosted
     steps:
       - run: cd /home/ocass/optiplex && rm -r -f main && git clone -b main https://github.com/revilon99/optiplex main
+    
+  copy-environment:
+    needs: fetch-main-branch
+    runs-on: self-hosted
+    steps:
+      - run: cp /home/ocass/optiplex/config/main.env /home/ocass/optiplex/main/.env
 
   setup-hello-world:
     runs-on: self-hosted
-    needs: [kill-all-node-processes, fetch-main-branch]
+    needs: copy-environment
     steps:
       - run: cd /home/ocass/optiplex/main/hello-world && npm install --save
 
   setup-auth:
     runs-on: self-hosted
-    needs: [kill-all-node-processes, fetch-main-branch]
+    needs: copy-environment
     steps:
       - run: cd /home/ocass/optiplex/main/auth && npm install --save
   
