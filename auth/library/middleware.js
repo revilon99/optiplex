@@ -25,10 +25,10 @@ export async function jwt_middleware(req, res, next) {
       const token = jwt.verify(req.cookies.token, process.env.TOKEN_KEY);
       res.locals.id = token.id;
       res.locals.email = token.email;
-      let key = await (await fetch(process.env.AUTH_URL + "/api/key/" + res.locals.id)).text(); // this is done for every request - (slow but allows for jwt revocations?)
+      let key = await (await fetch(process.env.AUTH_URL + "api/key/" + res.locals.id)).text(); // this is done for every request - (slow but allows for jwt revocations?)
       
       if(key === token.key) next();
-      else res.redirect(process.env.AUTH_URL + "/logout");
+      else res.redirect(process.env.AUTH_URL + "logout");
     } catch {
       res.redirect(process.env.AUTH_URL + "?redirect=" + res.locals.url)
     }

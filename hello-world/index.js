@@ -2,7 +2,7 @@
 Filename:
   optiplex/hello-world/index.js
 Description:
-  A hello world script for the optiplex world
+  A hello world script for the optiplex project
 
 Project:
   hello-world #0000 (hello-world.oli.casa) 
@@ -35,7 +35,7 @@ app.set('view engine', 'ejs');
 /* middleware */
 app.use((_req, res, next) => {
   // Set CORS headers
-  //res.header("Access-Control-Allow-Origin", process.env.AUTH_URL);
+  res.header("Access-Control-Allow-Origin", process.env.HELLOWORLD_URL);
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
   res.header("Access-Control-Allow-Credentials", "true");
