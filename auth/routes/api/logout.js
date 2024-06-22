@@ -11,8 +11,8 @@ Oliver Cass (c) 2024
 All Rights Reserved
 */
 
-import { verifyToken, RandomString } from "../jwt/Token.js";
-import User from "../schema/User.js";
+import { verifyToken, RandomString } from "../../jwt/Token.js";
+import User from "../../schema/User.js";
 import { config } from "dotenv"
 
 config({path: "../.env"});

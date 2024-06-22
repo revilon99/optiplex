@@ -10,7 +10,7 @@ Project:
 Oliver Cass (c) 2024
 All Rights Reserved
 */
-import { validatePasswordChangeRequest } from '../../controller/resetpassword.js';
+import { validatePasswordChangeRequest } from '../api/resetpassword.js';
 import { verifyToken } from '../../jwt/Token.js'
 import User            from "../../schema/User.js";
 

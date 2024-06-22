@@ -16,12 +16,12 @@ All Rights Reserved
 import { Router } from "express";
 
 // Controllers
-import login from "../controller/login.js";
-import createUser from "../controller/signup.js";
-import { logout, logoutHard } from "../controller/logout.js";
-import key from "../controller/key.js";
-import { updatePassword } from "../controller/update.js";
-import {resetpassword, resetpasswordrequest} from "../controller/resetpassword.js";
+import login from "./api/login.js";
+import createUser from "./api/signup.js";
+import { logout, logoutHard } from "./api/logout.js";
+import key from "./api/key.js";
+import { updatePassword } from "./api/update.js";
+import {resetpassword, resetpasswordrequest} from "./api/resetpassword.js";
 
 // Define Routes
 const router = Router();

@@ -21,7 +21,7 @@ import { config }  from "dotenv";
 config({path: "../.env"});
 
 // Load User Mongoose Schema
-import User from "../schema/User.js";
+import User from "../../schema/User.js";
 
 export async function updatePassword (req, res) {
   const invalid_credentials = ()=>{res.redirect("/myaccount?error=INVALID_CREDENTIALS");};
