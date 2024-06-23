@@ -4,10 +4,10 @@
 		{
 			"type": "npm",
 			"script": "develop",
-			"path": "hello-world",
+			"path": "portal",
 			"problemMatcher": [],
-			"label": "hello-world",
-			"detail": "node index.js 3000"
+			"label": "portal",
+			"detail": "npm run develop"
 		},
 		{
 			"type": "npm",
