@@ -18,11 +18,12 @@ All urls must end in /
 
 
 > TOKEN_KEY= your key here <br>
-> PORTAL_URL= url of portal program (e.g. https://portal.oli.casa/) <br>
-> AUTH_URL= url of authentication program (e.g. https://auth.oli.casa/) <br>
 > MONGODB_URL= root url of db. each program appends its own table as hard-coded string. <br>
 > ROOT_URL= root url of environment (e.g. .oli.casa) this is for the cookie domain parameter <br>
 > MAILGUN_API_KEY= Mailgun API key
+> PORTAL_URL= url of portal program (e.g. https://portal.oli.casa/) <br>
+> AUTH_URL= url of authentication program (e.g. https://auth.oli.casa/) <br>
+> SYSTEM_URL= url of The System (e.g. https://system.oli.casa/) <br>
 
 
 # Projects
@@ -34,3 +35,5 @@ A portal which can manage oli.casa optiplex project remotely.
 The oli.casa authentication service. <br>
 This will support all projects run from the optiplex server, ensuring safe connection and access.
 
+## 2 - system
+The System is a communal food-sharing application for house/flat shares.
