@@ -13,11 +13,10 @@ All Rights Reserved
 
 // Libraries
 import express      from "express";
+import compression  from "compression";
 import bodyParser   from "body-parser";
 import cookieParser from "cookie-parser";
 import { config }   from "dotenv"
-
-import { jwt_middleware as auth } from "../auth/library/middleware.js";
 
 // Environment setup
 let args = process.argv.slice(2);
@@ -30,6 +29,7 @@ const app = express();
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(compression());
 app.set('view engine', 'ejs');
 
 /* middleware */
@@ -47,15 +47,18 @@ app.use((_req, res, next) => {
   next();
 });
 
-// Home route
-app.get("/", auth, async (req, res) => {
-    res.render("index", {username: res.locals.email});
-});
+// Define routes
+import frontendRoute from "./routes/frontend.js";
+import apiRoute from "./routes/api.js";
+app.use("/", frontendRoute);
+app.use("/api", apiRoute);
+
+// Serve public content
+app.use("/", express.static("public"));
 
 // listen on cli defined port
 app.listen(PORT, () => {
   console.log(`Server is running on PORT ${PORT}`);
 });
 
-// Serve public content
-app.use("/", express.static("public"));
+if(process.env.ENVIRONMENT === "local") app.use("/", express.static("web"));

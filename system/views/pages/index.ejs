@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Home - The System</title>
+  <%- include('../partials/head'); %>
+    <%- index_css %>
+</head>
+
+<body>
+  <header>
+    <%- include('../partials/header'); %>
+  </header>
+  <main id="home" class="active"></main>
+  <main id="add">
+    <h1>Add Meal</h1>
+  </main>
+  <main id="system">
+    <h1>Systems</h1>
+  </main>
+  <main id="account">
+    <h1>Manage Account</h1>
+
+    <button><a href="<%- auth_url %>myaccount">Manage Password</a></button>
+    <button><a href="<%- auth_url %>logout">Logout</a></button>
+
+    <h2>Update Name</h2>
+    <form id="form-update-name" action="/api/user/update-name" method="post">
+      <label>Name: </label>
+      <input type="text" name="name" autocomplete="off" placeholder="Oli Cass" />
+      <input type="submit" value="Change Name" />
+    </form>
+
+    <h2>Change Profile Picture</h2>
+    <div>
+      <p>change profile picture settings here</p>
+    </div>
+
+
+  </main>
+  <footer>
+    <%- include('../partials/footer'); %>
+  </footer>
+
+  <%- index_js %>
+
+    <div id="svg-res">
+      <%- include('../svgs/plate-egg'); %>
+        <%- include('../svgs/button-like'); %>
+          <%- include('../svgs/button-dislike'); %>
+            <%- include('../svgs/button-comment'); %>
+              <%- include('../svgs/button-share'); %>
+    </div>
+</body>
+
+</html>
