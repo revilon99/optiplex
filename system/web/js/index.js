@@ -11,42 +11,65 @@ Oliver Cass (c) 2024
 All Rights Reserved
 */
 
-const PAGES = [
-    "home", "add", "system", "account"
-];
+const PAGES = ["home", "add", "system", "account"];
 let current_page = 0;
 
 window.onload = () => {
     add_event_listeners();
-
-    load_feed();
+    load("home", "/api/feed", Post);
+    load("my-systems", "/api/system/overview", SystemOverview, (res) => {
+        const select = $("form-add-a-meal-system-select");
+        select.innerHTML = '<option value="" disabled selected>Select a system...</option>';
+        for(const r of res) select.innerHTML += `<option value='${r.id}'>${r.name}</option>`
+    });
     switch_to_page(0);
 }
 
 const add_event_listeners = () => {
-    for (let i = 0; i < PAGES.length; i++) {
-        document.getElementById(PAGES[i] + "-button").addEventListener("click", () => {
-            switch_to_page(i);
-        }, false);
-    }
+    for (let i = 0; i < PAGES.length; i++) 
+        $(PAGES[i] + "-button").addEventListener("click", () => switch_to_page(i), false);
+
+    $("add-button").addEventListener("click", () => {
+        tags_shown = false;
+        $("form-add-a-meal-who-ate").classList.remove("visible");
+        $("form-add-a-meal-tags").classList.remove("visible");
+    }, false);
+
+    $("form-add-a-meal-system-select").addEventListener("change", async (e)=>{
+        const system_id = e.target.value;
+        const response = await (await fetch(`/api/system/${system_id}/others`)).json();
+
+        $("form-add-a-meal-who-ate").innerHTML = "<label>Who Ate?</label>";
+        for(const r of response) $("form-add-a-meal-who-ate").innerHTML += `
+        <div>
+          <input type="checkbox" id="form-add-a-meal-who-ate-${r.id}" name="whoate[]" value="${r.id}" onchange="show_tags()">
+          <label for="form-add-a-meal-who-ate-${r.id}">${r.name}</label>
+        </div>`;
+
+        $("form-add-a-meal-who-ate").classList.add("visible")
+    }, false);
 }
 
-const load_feed = async () => {
-    const feed = document.getElementById("home");
-
-    // get request to feed api
-    const posts = await (await fetch("/api/feed")).json(); // simulate response for wireframe
-
-    feed.innerHTML = "";
-    for (const p of posts) feed.appendChild(new Post(p));
+const load = async (container_id, url, content_type, follow_up=(res)=>{}) => {
+    const container = $(container_id);
+    const response = await (await fetch(url)).json();
+    container.innerHTML = "";
+    for(const r of response) container.appendChild(new content_type(r));
+    follow_up(response);
 }
 
 const switch_to_page = (page) => {
-    document.getElementById(PAGES[current_page]).className = "";
-    document.getElementById(PAGES[current_page] + "-button").classList.remove("active");
+    $(PAGES[current_page]).className = "";
+    $(PAGES[current_page] + "-button").classList.remove("active");
     current_page = page;
-    document.getElementById(PAGES[current_page]).className = "active";
-    document.getElementById(PAGES[current_page] + "-button").classList.add("active");
+    $(PAGES[current_page]).className = "active";
+    $(PAGES[current_page] + "-button").classList.add("active");
+}
+
+let tags_shown = false;
+const show_tags = () => {
+    if(tags_shown) return;
+    $("form-add-a-meal-tags").classList.add("visible");
 }
 
 class Div {
@@ -57,6 +80,13 @@ class Div {
 
     appendChild(e) {
         this.element.appendChild(e);
+    }
+
+    /**
+     * @param {string} html
+     */
+    set innerHTML(html){
+        this.element.innerHTML = html;
     }
 }
 
@@ -149,9 +179,24 @@ class Post extends Div {
     }
 }
 
+class SystemOverview extends Div{
+    constructor(data){
+        super("system-overview");
+        this.innerHTML = `
+            <a title="${data.name}" class="system-overview-name" href="/system?ID=${data.id}"><div style="background-image:url('/svg/system/${data.pp}.svg')" class="system-overview-pp"></div>${data.name}</a>
+            <p class="system-overview-score">${data.score}</p>
+        `;
+        return this.element;
+    }
+}
+
 Object.defineProperty(String.prototype, 'capitalize', {
     value: function () {
         return this.charAt(0).toUpperCase() + this.slice(1);
     },
     enumerable: false
 });
+
+const $ = (id) => {
+    return document.getElementById(id);
+}

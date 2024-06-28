@@ -10,7 +10,7 @@ Project:
 Oliver Cass (c) 2024
 All Rights Reserved
 */
-
+/*#region Globals*/
 body {
     padding: 0;
     background-color: #ffffff;
@@ -21,7 +21,7 @@ body {
 
 ::-webkit-scrollbar {
     width: 0px;
-  }
+}
 
 header {
     background-color: #ffffff;
@@ -35,18 +35,11 @@ header {
 
 header h1 {
     padding-top: 17px;
-    margin-left: 90px;
     width: 200px;
+    margin: 0px 0px 0px 90px;
 }
 
-h1,
-h2,
-h3 {
-    padding: 0;
-    margin: 0;
-}
-
-div#svg-res{
+div#svg-res {
     display: none;
 }
 
@@ -59,14 +52,22 @@ main {
     text-align: center;
     display: none;
 }
-main.active{
+
+main.active {
     display: block;
 }
 
 main h1 {
     padding: 15px 0px;
+    margin: 0;
 }
-footer p{
+
+main h2 {
+    text-align: left;
+    margin: 10px 0px;
+}
+
+footer p {
     padding: 5px;
     margin: 5px;
 }
@@ -135,6 +136,52 @@ input[type="submit"][disabled]:hover {
     cursor: default;
 }
 
+input[type="date"] {
+    font-size: 1.2em;
+    min-width: 60%;
+    padding: 5px 10px;
+    margin: 5px 0px;
+}
+
+select {
+    width: 100%;
+    font-size: 1.2em;
+    border-radius: 6px;
+    padding: 7px 5px;
+    cursor: pointer;
+    margin: 8px 0px;
+}
+
+
+div.checkbox-group div {
+    width: 80%;
+    text-align: left;
+    margin: 5px auto;
+    user-select: none;
+}
+
+div.checkbox-group div label {
+    display: inline-block;
+    font-size: 1.2em;
+    cursor: pointer;
+    max-width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+div.checkbox-group input[type="checkbox"] {
+    height: 24px;
+    width: 24px;
+}
+
+div.checkbox-group {
+    margin-top: 5px;
+}
+
+/*#endregion Globals*/
+
+/*#region NavBar*/
 svg.icon {
     width: auto;
     height: 50px;
@@ -184,12 +231,19 @@ div.nav-bar-tab.active svg {
     color: #fff;
 }
 
+/*#endregion NavBar*/
+
+/*#region Post*/
 div.post {
     min-width: 250px;
     border: 2px solid black;
     border-radius: 10px;
     padding: 10px 22px;
     margin: 10px 0px;
+}
+
+div.post h2 {
+    text-align: center;
 }
 
 div.post-header {
@@ -201,14 +255,17 @@ div.post-header-pp {
     float: left;
     width: 40px;
 }
+
 div.post-header-pp:hover {
     cursor: pointer;
 }
+
 a.post-header-user {
     float: left;
     font-size: 1.4em;
     padding-left: 10px;
 }
+
 a.post-header-user:hover {
     cursor: pointer;
     text-decoration: underline;
@@ -227,6 +284,7 @@ a.post-header-system {
     font-family: system-ui;
     padding-bottom: 3px;
 }
+
 a.post-header-system:hover {
     cursor: pointer;
     text-decoration: underline;
@@ -235,13 +293,16 @@ a.post-header-system:hover {
 div.post-content {
     border-bottom: 1px solid;
 }
-div.post-image{
+
+div.post-image {
     margin-top: 10px;
     height: 200px;
 }
-div.post-image svg{
+
+div.post-image svg {
     height: 100%;
 }
+
 div.post-content p {
     margin: 10px 0px;
 }
@@ -260,6 +321,7 @@ div.post-footer div.button {
     padding: 5px;
     color: black;
 }
+
 div.post-footer div.button:hover {
     cursor: pointer;
     background-color: #ededed;
@@ -274,50 +336,126 @@ div.post-footer div.button.active:hover {
     background-color: #585858;
 }
 
-div.post-footer div.button svg{
+div.post-footer div.button svg {
     width: 100%;
     height: 100%;
 }
-div.post-footer div.button svg use{
+
+div.post-footer div.button svg use {
     scale: 0.9;
 }
 
-div.post-stats{
+div.post-stats {
     min-height: 19px;
 }
-div.post-stats p{
+
+div.post-stats p {
     margin: 0px;
     display: inline-block;
 }
-div.post-stats svg{
-    width:auto;
+
+div.post-stats svg {
+    width: auto;
     height: -webkit-fill-available;
     margin-left: 3px;
 }
-div.post-stats svg use{
+
+div.post-stats svg use {
     scale: 0.4
 }
-div.post-stats div{
+
+div.post-stats div {
     display: initial;
     float: right;
     margin: 0px 5px;
     height: 16px;
     font-size: 16px;
 }
-div.post-stats div.likes{float: left;}
+
+div.post-stats div.likes {
+    float: left;
+}
+
+/*#endregion Post*/
+
+/*#region FormDesign*/
+form.quick-form {
+    height: fit-content;
+    text-align: right;
+}
+
+form.quick-form input[type="submit"] {
+    width: 40%;
+    text-wrap: balance;
+    height: fit-content;
+}
+
+/*#endregion FormDesign*/
+
+/*#region SystemBrowser*/
+div.system-overview {
+    text-align: left;
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 40px;
+    margin: 10px;
+}
+
+div.system-overview .system-overview-pp {
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    float: left;
+    margin-top: -9px;
+}
+
+div.system-overview .system-overview-name {
+    font-size: 1.4em;
+    text-align: left;
+    padding-top: 9px;
+    padding-left: 3px;
+    float: left;
+    width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+div.system-overview .system-overview-score {
+    margin: 0px;
+    float: right;
+    padding: 7px 6px 0px 0px;
+    font-size: 1.4em;
+}
+
+/*#endregion SystemBrowser*/
+
+/*#region AddMeal */
+form#form-add-a-meal div.section {
+    display: none;
+}
+form#form-add-a-meal div.section.visible {
+    display: initial;
+}
+
+
+
+
+/*#endregion AddMeal */
 
 @media (max-width:800px) {
     nav {
         position: initial;
         padding-top: 6px;
     }
+
     main {
         padding-top: 112px;
     }
 }
 
 @media (max-width:400px) {
-    div.post-footer div.button{
+    div.post-footer div.button {
         margin: 5px 5px -5px;
     }
 }

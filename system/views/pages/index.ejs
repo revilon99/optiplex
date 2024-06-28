@@ -14,9 +14,41 @@
   <main id="home" class="active"></main>
   <main id="add">
     <h1>Add Meal</h1>
+    <form id="form-add-a-meal" action="/api/meal/add" method="post">
+      <div class="section visible">
+        <label>Date:</label>
+        <input type="date" id="form-add-a-meal-date-cooked" name="date-cooked" required />
+      </div>
+      <div class="section visible">
+        <label>System:</label>
+        <select name="system" id="form-add-a-meal-system-select" required></select>
+      </div>
+      <div id="form-add-a-meal-who-ate" class="checkbox-group section">
+      </div>
+
+      <div id="form-add-a-meal-tags"  class="section">
+        <label>Your Meal:</label>
+        <input type="text" name="name" placeholder="Meal Name..." autocomplete="off" required/>
+        <input type="text" name="description" placeholder="Meal Description..." autocomplete="off" required/>
+        <label>Photo:</label>
+        <p>
+          Add photo functionality here
+        </p>
+      </div>
+
+
+      <input type="submit" value="Add Meal" />
+    </form>
   </main>
   <main id="system">
-    <h1>Systems</h1>
+    <form class="quick-form" id="form-join-a-system" action="/api/system/join" method="get">
+      <h2>Join a System</h2>
+      <input type="text" name="id" autocomplete="off" placeholder="System Join Code" />
+      <input type="submit" value="Request to Join System" />
+    </form>
+
+    <h2>My Systems</h2>
+    <div id="my-systems"></div>
   </main>
   <main id="account">
     <h1>Manage Account</h1>

@@ -17,10 +17,12 @@ import { jwt_middleware as auth } from "../../auth/library/middleware.js";
 
 // endpoints
 import feed from "./api/feed.js"
+import system from "./api/system.js"
 
 // Define Routes
 const router = Router();
 
 router.get("/feed", auth, feed);
+router.use("/system", auth, system);
 
 export default router;

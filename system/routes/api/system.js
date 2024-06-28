@@ -1,6 +1,6 @@
 /*
 Filename:
-  optiplex/system/routes/frontend.js
+  optiplex/system/routes/api/system.js
 Description:
   
 
@@ -13,14 +13,15 @@ All Rights Reserved
 
 // External Libraries
 import { Router } from "express";
-import { jwt_middleware as auth } from "../../auth/library/middleware.js";
 
-// pages
-import home from "./frontend/home.js"
+// endpoints
+import overview from "./system/overview.js"
+import others from "./system/others.js"
 
 // Define Routes
 const router = Router();
 
-router.get("/", auth, home);
+router.get("/overview", overview);
+router.get("/:id/others", others);
 
 export default router;

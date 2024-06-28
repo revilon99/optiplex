@@ -11,7 +11,6 @@ Oliver Cass (c) 2024
 All Rights Reserved
 */
 
-
 export default function(req, res) {
     res.json(FEED_API_RESPONSE);
 }
