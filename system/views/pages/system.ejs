@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title><%- system_name %> - The System</title>
+  <%- include('../partials/head'); %>
+    <%- css %>
+</head>
+
+<body>
+  <header>
+    <%- include('../partials/header'); %>
+  </header>
+  <main class="active">
+    <h1><%- system_name %></h1>
+    <div id="leaderboard">
+      <div class="user">
+        <a title="Oli Cass" href="/user/asdkalsdka">
+          <div class="user-pp" style="background-image:url('/svg/user/chef-male.svg')"></div>
+        </a>
+        <a title="Oli Cass" class="user-name" href="/user/asdkalsdka">Oli Cass</a>
+        <p class="user-score">-2</p>
+      </div>
+      <div class="user">
+        <a title="Oli Cass" href="/user/asdkalsdka">
+          <div class="user-pp" style="background-image:url('/svg/user/chef-male.svg')"></div>
+        </a>
+        <a title="Oli Cass" class="user-name" href="/user/asdkalsdka">Oli Cass</a>
+        <p class="user-score">-2</p>
+      </div>
+      <div class="user">
+        <a title="Oli Cass" href="/user/asdkalsdka">
+          <div class="user-pp" style="background-image:url('/svg/user/chef-male.svg')"></div>
+        </a>
+        <a title="Oli Cass" class="user-name" href="/user/asdkalsdka">Oli Cass</a>
+        <p class="user-score">-2</p>
+      </div>
+      <div class="user">
+        <a title="Oli Cass" href="/user/asdkalsdka">
+          <div class="user-pp" style="background-image:url('/svg/user/chef-male.svg')"></div>
+        </a>
+        <a title="Oli Cass" class="user-name" href="/user/asdkalsdka">Oli Cass</a>
+        <p class="user-score">-2</p>
+      </div>
+    </div>
+    <h2>Meals</h2>
+    <div id="meals"></div>
+  </main>
+  <footer>
+    <%- include('../partials/footer'); %>
+  </footer>
+  </div>
+
+
+  <div id="svg-res">
+    <%- include('../svgs/button-like'); %>
+      <%- include('../svgs/button-dislike'); %>
+        <%- include('../svgs/button-comment'); %>
+          <%- include('../svgs/button-share'); %>
+  </div>
+
+  <%- js %>
+</body>
+
+</html>

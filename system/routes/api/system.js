@@ -16,12 +16,14 @@ import { Router } from "express";
 
 // endpoints
 import overview from "./system/overview.js"
+import meals from "./system/meals.js"
 import others from "./system/others.js"
 
 // Define Routes
 const router = Router();
 
 router.get("/overview", overview);
+router.get("/:id/meals", meals);
 router.get("/:id/others", others);
 
 export default router;

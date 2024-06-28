@@ -1,6 +1,6 @@
 /*
 Filename:
-  optiplex/system/routes/frontend/home.js
+  optiplex/system/routes/frontend/user.js
 Description:
   
 
@@ -37,5 +37,5 @@ if (process.env.ENVIRONMENT === "local") {
 
 export default function (req, res) {
   console.log(res.locals.id);
-  res.render("pages/home", { index_js, index_css, auth_url: process.env.AUTH_URL });
+  res.render("pages/index", { index_js, index_css, auth_url: process.env.AUTH_URL });
 }

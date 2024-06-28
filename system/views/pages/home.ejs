@@ -7,9 +7,10 @@
     <%- index_css %>
 </head>
 
-<body>
+<body class="with-navbar">
   <header>
     <%- include('../partials/header'); %>
+      <%- include('../partials/navbar'); %>
   </header>
   <main id="home" class="active"></main>
   <main id="add">
@@ -26,10 +27,10 @@
       <div id="form-add-a-meal-who-ate" class="checkbox-group section">
       </div>
 
-      <div id="form-add-a-meal-tags"  class="section">
+      <div id="form-add-a-meal-tags" class="section">
         <label>Your Meal:</label>
-        <input type="text" name="name" placeholder="Meal Name..." autocomplete="off" required/>
-        <input type="text" name="description" placeholder="Meal Description..." autocomplete="off" required/>
+        <input type="text" name="name" placeholder="Meal Name..." autocomplete="off" required />
+        <input type="text" name="description" placeholder="Meal Description..." autocomplete="off" required />
         <label>Photo:</label>
         <p>
           Add photo functionality here

@@ -247,13 +247,14 @@ div.post h2 {
 }
 
 div.post-header {
-    padding-left: 20px;
+    padding-left: 0px;
     border-bottom: 1px solid;
 }
 
 div.post-header-pp {
     float: left;
     width: 40px;
+    height: 40px;
 }
 
 div.post-header-pp:hover {
@@ -449,7 +450,7 @@ form#form-add-a-meal div.section.visible {
         padding-top: 6px;
     }
 
-    main {
+    body.with-navbar main {
         padding-top: 112px;
     }
 }
