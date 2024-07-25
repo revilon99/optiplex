@@ -439,9 +439,6 @@ form#form-add-a-meal div.section.visible {
     display: initial;
 }
 
-
-
-
 /*#endregion AddMeal */
 
 @media (max-width:800px) {
@@ -450,7 +447,7 @@ form#form-add-a-meal div.section.visible {
         padding-top: 6px;
     }
 
-    body.with-navbar main {
+    body main {
         padding-top: 112px;
     }
 }

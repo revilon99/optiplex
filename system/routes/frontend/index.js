@@ -1,6 +1,6 @@
 /*
 Filename:
-  optiplex/system/routes/frontend/system.js
+  optiplex/system/routes/frontend/home.js
 Description:
   
 
@@ -17,13 +17,13 @@ import { config } from "dotenv";
 config({ path: "../.env" });
 
 // minify js & css if not in the local dev environment
-let js = "";
-let css = "";
+let index_js = "";
+let index_css = "";
 if (process.env.ENVIRONMENT === "local") {
-  js = `<script src="/js/system.js"></script>`;
-  css = `<link rel="stylesheet" href="/css/styles.css"><link rel="stylesheet" href="/css/system.css">`;
+  index_js = `<script src="/js/index.js"></script>`;
+  index_css = `<link rel="stylesheet" href="/css/styles.css">`;
 } else {
-  js = "<script> " + await minify("../system/web/js/system.js", {
+  index_js = "<script> " + await minify("../system/web/js/index.js", {
     "js": {
       "mangle": true,
       "mangleClassNames": true,
@@ -32,13 +32,9 @@ if (process.env.ENVIRONMENT === "local") {
       "removeUselessSpread": true
     }
   }) + " </script>";
-  css = "<style> " + await minify("../system/web/css/styles.css") + " </style>";
+  index_css = "<style> " + await minify("../system/web/css/styles.css") + " </style>";
 }
 
 export default function (req, res) {
-  res.render("pages/system", { css, js, system_name: get_system(req.params.id) });
-}
-
-function get_system(id){
-    return "14 Grange Drive";
+  res.render("pages/index", { index_js, index_css, auth_url: process.env.AUTH_URL });
 }

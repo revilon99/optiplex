@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Home - The System</title>
+  <%- include('../partials/head'); %>
+  <%- index_css %>
+</head>
+
+<body>
+  
+  <%- include('../partials/header'); %>
+
+  <!-- Mains -->
+  <%- include('./mains/home'); %>
+  <%- include('./mains/add'); %>
+  <%- include('./mains/system'); %>
+  <%- include('./mains/account'); %>
+  <%- include('./mains/system-overview'); %>
+  <!-- End Mains -->
+
+  <%- index_js %>
+
+  <div id="svg-res">
+    <%- include('../svgs/plate-egg'); %>
+    <%- include('../svgs/button-like'); %>
+    <%- include('../svgs/button-dislike'); %>
+    <%- include('../svgs/button-comment'); %>
+    <%- include('../svgs/button-share'); %>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<main id="add">
+    <h1>Add Meal</h1>
+    <form id="form-add-a-meal" action="/api/meal/add" method="post">
+        <div class="section visible">
+            <label>Date:</label>
+            <input type="date" id="form-add-a-meal-date-cooked" name="date-cooked" required />
+        </div>
+        <div class="section visible">
+            <label>System:</label>
+            <select name="system" id="form-add-a-meal-system-select" required></select>
+        </div>
+        <div id="form-add-a-meal-who-ate" class="checkbox-group section">
+        </div>
+
+        <div id="form-add-a-meal-tags" class="section">
+            <label>Your Meal:</label>
+            <input type="text" name="name" placeholder="Meal Name..." autocomplete="off" required />
+            <input type="text" name="description" placeholder="Meal Description..." autocomplete="off" required />
+            <label>Photo:</label>
+            <p>
+                Add photo functionality here
+            </p>
+        </div>
+
+
+        <input type="submit" value="Add Meal" />
+    </form>
+</main>
