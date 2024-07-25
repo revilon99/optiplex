@@ -1,3 +1,5 @@
+import Div from './Div.js'
+
 class Meal extends Div {
     constructor(data) {
         super("post")
@@ -93,3 +95,5 @@ class Meal extends Div {
         return this.element;
     }
 }
+
+export default Meal;

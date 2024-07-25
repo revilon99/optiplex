@@ -1,3 +1,5 @@
+import Div from './Div.js'
+
 class Post extends Div {
     constructor(data) {
         super("post");
@@ -85,3 +87,5 @@ class Post extends Div {
         return this.element;
     }
 }
+
+export default Post;

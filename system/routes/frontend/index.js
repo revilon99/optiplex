@@ -56,24 +56,19 @@ console.log(JS_files);
 console.log(CSS_files);
 
 // minify js & css if not in the local dev environment
-let all_js = "";
-for (let file of JS_files) {
-  all_js += await fs.readFile(`../system/web/js/${file}`);
-}
 
 let index_js = "";
 let index_css = "";
+
+index_js = "<script type='module' src='/js/index.js'></script>";
+
 if (process.env.ENVIRONMENT === "local") {
-  index_js = "<script> " + all_js + " </script>";
   for (let file of CSS_files) index_css += `<link rel="stylesheet" href="/css/${file}">`;
 } else {
-  let min_js = UglifyJs.minify(all_js);
-
-  index_js = "<script> " + min_js.code + " </script>";
 
   index_css += "<style>";
   for (let file of CSS_files) index_css += await minify(`../system/web/css/${file}`);
-  index_css += "<style>";
+  index_css += "</style>";
 }
 
 // render the single-page application (JIT)

@@ -54,7 +54,7 @@ app.use("/api", apiRoute);
 
 // Serve public content
 app.use("/", express.static("public"));
-if(process.env.ENVIRONMENT === "local") app.use("/", express.static("web"));
+app.use("/", express.static("web"));
 
 // listen on cli defined port
 app.listen(PORT, () => {

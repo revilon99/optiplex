@@ -11,6 +11,11 @@ Oliver Cass (c) 2024
 All Rights Reserved
 */
 
+import Post from './Templates/Post.js'
+import Meal from './Templates/Meal.js'
+import LeaderboardUser from './Templates/LeaderboardUser.js'
+import SystemOverview from './Templates/SystemOverview.js'
+
 const PAGES = ["home", "add", "system", "account", "system-overview"];
 let current_page = 0;
 
@@ -70,4 +75,19 @@ let tags_shown = false;
 const show_tags = () => {
     if(tags_shown) return;
     $("form-add-a-meal-tags").classList.add("visible");
+}
+
+const load_system = function(system_id){
+    console.log(system_id);
+}
+
+Object.defineProperty(String.prototype, 'capitalize', {
+    value: function () {
+        return this.charAt(0).toUpperCase() + this.slice(1);
+    },
+    enumerable: false
+});
+
+const $ = (id) => {
+    return document.getElementById(id);
 }

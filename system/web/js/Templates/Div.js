@@ -16,3 +16,4 @@ class Div {
     }
 }
 
+export default Div;
