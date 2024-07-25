@@ -11,8 +11,7 @@
         "express": "latest",
         "jsonwebtoken": "^9.0.2",
         "minify": "^11.2.1",
-        "mongoose": "^8.4.3",
-        "uglify-js": "^3.19.0"
+        "mongoose": "^8.4.3"
     },
     "scripts": {
         "main": "node app.js 5002 > out.log 2> err.log",

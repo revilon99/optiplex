@@ -48,14 +48,18 @@ div.nav-bar-tab.active:hover {
     background-color: #585858;
 }
 
-div.nav-bar-tab svg {
+div.nav-bar-tab a {
     width: auto;
-    height: calc(100% - 8px);
-    margin-left: 4px;
-    margin-top: 1.5px;
+    height: calc(100% - 4px);
+    margin-left: 0px;
+    margin-top: 0.5px;
     color: black;
 }
 
-div.nav-bar-tab.active svg {
+div.nav-bar-tab a svg{
+    height: 90%;
+}
+
+div.nav-bar-tab.active a {
     color: #fff;
 }

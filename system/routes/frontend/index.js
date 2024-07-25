@@ -11,9 +11,7 @@ Oliver Cass (c) 2024
 All Rights Reserved
 */
 
-
 import { minify } from "minify";
-import UglifyJs from 'uglify-js'
 import { config } from "dotenv";
 import ejs from 'ejs';
 
@@ -39,33 +37,21 @@ async function walk(directoryName, action, root = "") {
 
 config({ path: "../.env" });
 
-let JS_files = [];
-await walk(__dirname.split("system")[0] + "/system/web/js/", function (file) {
-  JS_files.push(file);
-});
-JS_files.reverse();
-
-let CSS_files = [
-]
+let CSS_files = [];
 await walk(__dirname.split("system")[0] + "/system/web/css/", function (file) {
   CSS_files.push(file);
 });
 
 // print web files
-console.log(JS_files);
 console.log(CSS_files);
 
-// minify js & css if not in the local dev environment
+// minify css if not in the local dev environment
 
-let index_js = "";
+let index_js = "<script type='module' src='/js/index.js'></script>";
 let index_css = "";
 
-index_js = "<script type='module' src='/js/index.js'></script>";
-
-if (process.env.ENVIRONMENT === "local") {
-  for (let file of CSS_files) index_css += `<link rel="stylesheet" href="/css/${file}">`;
-} else {
-
+if (process.env.ENVIRONMENT === "local")  for (let file of CSS_files) index_css += `<link rel="stylesheet" href="/css/${file}">`;
+else {
   index_css += "<style>";
   for (let file of CSS_files) index_css += await minify(`../system/web/css/${file}`);
   index_css += "</style>";
