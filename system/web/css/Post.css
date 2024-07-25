@@ -1,0 +1,155 @@
+/*
+Filename:
+  optiplex/system/web/css/Post.css
+Description:
+  
+
+Project:
+  system #0002 (system.oli.casa) 
+
+Oliver Cass (c) 2024
+All Rights Reserved
+*/
+
+div.post {
+    min-width: 250px;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px 22px;
+    margin: 10px 0px;
+}
+
+div.post h2 {
+    text-align: center;
+}
+
+div.post-header {
+    padding-left: 0px;
+    border-bottom: 1px solid;
+}
+
+div.post-header-pp {
+    float: left;
+    width: 40px;
+    height: 40px;
+}
+
+div.post-header-pp:hover {
+    cursor: pointer;
+}
+
+a.post-header-user {
+    float: left;
+    font-size: 1.4em;
+    padding-left: 10px;
+}
+
+a.post-header-user:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+p.post-header-date {
+    padding-top: 26px;
+    padding-left: 52px;
+    text-align: left;
+    margin: 0px;
+}
+
+a.post-header-system {
+    text-align: left;
+    font-size: 1.2em;
+    font-family: system-ui;
+    padding-bottom: 3px;
+}
+
+a.post-header-system:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+div.post-content {
+    border-bottom: 1px solid;
+}
+
+div.post-image {
+    margin-top: 10px;
+    height: 200px;
+}
+
+div.post-image svg {
+    height: 100%;
+}
+
+div.post-content p {
+    margin: 10px 0px;
+}
+
+div.post-footer {
+    display: flex;
+    justify-content: center;
+}
+
+div.post-footer div.button {
+    margin: 5px 18px -5px;
+    border-radius: 10px;
+    width: 35px;
+    height: 35px;
+    background-color: #ffffff;
+    padding: 5px;
+    color: black;
+}
+
+div.post-footer div.button:hover {
+    cursor: pointer;
+    background-color: #ededed;
+}
+
+div.post-footer div.button.active {
+    background-color: #000000;
+    color: #fff;
+}
+
+div.post-footer div.button.active:hover {
+    background-color: #585858;
+}
+
+div.post-footer div.button svg {
+    width: 100%;
+    height: 100%;
+}
+
+div.post-footer div.button svg use {
+    scale: 0.9;
+}
+
+div.post-stats {
+    min-height: 19px;
+}
+
+div.post-stats p {
+    margin: 0px;
+    display: inline-block;
+}
+
+div.post-stats svg {
+    width: auto;
+    height: -webkit-fill-available;
+    margin-left: 3px;
+}
+
+div.post-stats svg use {
+    scale: 0.4
+}
+
+div.post-stats div {
+    display: initial;
+    float: right;
+    margin: 0px 5px;
+    height: 16px;
+    font-size: 16px;
+}
+
+div.post-stats div.likes {
+    float: left;
+}

@@ -30,7 +30,6 @@ app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(compression());
-app.set('view engine', 'ejs');
 
 /* middleware */
 app.use((_req, res, next) => {
@@ -55,10 +54,9 @@ app.use("/api", apiRoute);
 
 // Serve public content
 app.use("/", express.static("public"));
+if(process.env.ENVIRONMENT === "local") app.use("/", express.static("web"));
 
 // listen on cli defined port
 app.listen(PORT, () => {
   console.log(`Server is running on PORT ${PORT}`);
 });
-
-if(process.env.ENVIRONMENT === "local") app.use("/", express.static("web"));

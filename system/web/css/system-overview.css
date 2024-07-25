@@ -1,6 +1,6 @@
 /*
 Filename:
-  optiplex/system/web/css/system.css
+  optiplex/system/web/css/system-overview.css
 Description:
   
 
@@ -10,6 +10,41 @@ Project:
 Oliver Cass (c) 2024
 All Rights Reserved
 */
+
+div.system-overview {
+    text-align: left;
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 40px;
+    margin: 10px;
+}
+
+div.system-overview .system-overview-pp {
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    float: left;
+    margin-top: -9px;
+}
+
+div.system-overview .system-overview-name {
+    font-size: 1.4em;
+    text-align: left;
+    padding-top: 9px;
+    padding-left: 3px;
+    float: left;
+    width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+div.system-overview .system-overview-score {
+    margin: 0px;
+    float: right;
+    padding: 7px 6px 0px 0px;
+    font-size: 1.4em;
+}
 
 div.user{
     border: 1px solid black;
@@ -41,10 +76,6 @@ p.user-score{
     margin: 0px;
     margin-top: 13px;
     margin-right: 20px;
-}
-
-h2{
-    text-align:center !important;
 }
 
 div.meal-image{
@@ -81,3 +112,4 @@ div.meal-eaters-pp{
     top: 11px;
     margin-right: 5px;
 }
+

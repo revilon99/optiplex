@@ -1,0 +1,61 @@
+/*
+Filename:
+  optiplex/system/web/css/navbar.css
+Description:
+  
+
+Project:
+  system #0002 (system.oli.casa) 
+
+Oliver Cass (c) 2024
+All Rights Reserved
+*/
+
+svg.icon {
+    width: auto;
+    height: 50px;
+    float: left;
+    padding-left: 30px;
+    color: black;
+}
+
+nav {
+    display: flex;
+    position: absolute;
+    top: 12px;
+    justify-content: center;
+    width: 100%;
+}
+
+div.nav-bar-tab {
+    border-radius: 10px;
+    width: 40px;
+    height: 40px;
+    margin: 0px 20px;
+    background-color: #ffffff;
+}
+
+div.nav-bar-tab:hover {
+    cursor: pointer;
+    background-color: #ededed;
+}
+
+div.nav-bar-tab.active {
+    background-color: #000000;
+}
+
+div.nav-bar-tab.active:hover {
+    background-color: #585858;
+}
+
+div.nav-bar-tab svg {
+    width: auto;
+    height: calc(100% - 8px);
+    margin-left: 4px;
+    margin-top: 1.5px;
+    color: black;
+}
+
+div.nav-bar-tab.active svg {
+    color: #fff;
+}
