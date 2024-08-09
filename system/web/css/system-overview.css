@@ -25,6 +25,24 @@ div.system-overview .system-overview-pp {
     background-size: contain;
     float: left;
     margin-top: -9px;
+    position: initial;
+    margin-right: 3px;
+}
+
+h1.system-overview{
+    padding: 0px 45px;
+    overflow: hidden;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+    margin-top: 10px;
+}
+div.system-overview-pp {
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    margin-top: 6px;
+    position: absolute;
+    margin-left: 5px;
 }
 
 div.system-overview .system-overview-name {
@@ -39,6 +57,10 @@ div.system-overview .system-overview-name {
     text-overflow: ellipsis;
 }
 
+div.system-overview .system-overview-name:hover{
+    text-decoration: underline;
+}
+
 div.system-overview .system-overview-score {
     margin: 0px;
     float: right;
@@ -46,14 +68,15 @@ div.system-overview .system-overview-score {
     font-size: 1.4em;
 }
 
-div.user{
+div.leaderboard-user {
     border: 1px solid black;
     height: 50px;
     border-radius: 10px;
     font-size: 1.4em;
     margin: 10px 5px;
 }
-div.user .user-name{
+
+div.leaderboard-user .user-name {
     margin-top: 12px;
     text-align: left;
     float: left;
@@ -62,7 +85,12 @@ div.user .user-name{
     overflow: hidden;
     text-overflow: ellipsis;
 }
-div.user .user-pp {
+
+div.leaderboard-user .user-name:hover {
+    text-decoration: underline;
+}
+
+div.leaderboard-user .user-pp {
     margin: 5px 10px;
     width: 40px;
     height: 40px;
@@ -71,14 +99,14 @@ div.user .user-pp {
     overflow: initial;
 }
 
-p.user-score{
+p.user-score {
     float: right;
     margin: 0px;
     margin-top: 13px;
     margin-right: 20px;
 }
 
-div.meal-image{
+div.meal-image {
     margin: 10px;
     height: 200px;
     background-size: contain;
@@ -86,30 +114,38 @@ div.meal-image{
     background-position: center;
 }
 
-div.meal-eaters{
+div.meal-eaters {
     border-top: 1px solid black;
     padding-bottom: 8px;
 }
 
 
-div.meal-eaters a{
+div.meal-eaters a {
     font-size: 1.1em;
-    text-align: center;
+    text-align: left;
     margin: 2px auto;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    padding: 10px 5px 2px 50px;
+    position: relative;
+    height: 32px;
 }
 
-div.meal-eaters-pp{
+div.meal-eaters a:hover {
+    text-decoration: underline;
+}
+
+
+div.meal-eaters-pp {
     display: inline-block;
     width: 32px;
     height: 32px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    position: relative;
-    top: 11px;
-    margin-right: 5px;
+    position: absolute;
+    left: 11px;
+    top: 6px;
+    margin-right: 12px;
 }
-

@@ -1,6 +1,6 @@
 /*
 Filename:
-  optiplex/system/routes/api/system/meals.js
+  optiplex/system/routes/api/user/posts.js
 Description:
   
 
@@ -11,11 +11,12 @@ Oliver Cass (c) 2024
 All Rights Reserved
 */
 
-export default function (req, res) {
-    res.json(API_RESPONSE);
+export default function(req, res) {
+    const user_id = req.params.id;
+    res.json(FEED_API_RESPONSE);
 }
 
-const API_RESPONSE = [
+const FEED_API_RESPONSE = [
     {
         system_id: "askmdaxXSSsAmksa",
         system_name: "14 Grange Road",
@@ -41,6 +42,18 @@ const API_RESPONSE = [
                 pp: "chef-female"
             }
         ]
+    },
+    {
+        user_id: "sdajkadlaksdlaksdj",
+        name: "Oli Cass",
+        pp: 'chef-male',
+        title: "One Fried Egg",
+        img: "egg",
+        description: "A simple dish to get us started",
+        date: "3 hours ago",
+        num_likes: 14,
+        num_shares: 5,
+        num_comments: 6
     },
     {
         system_id: "askmdaxXSSsAmksa",

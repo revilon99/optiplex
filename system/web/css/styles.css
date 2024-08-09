@@ -31,6 +31,7 @@ header {
     top: 0px;
     left: 0px;
     width: 100%;
+    z-index: 1;
 }
 
 header h1 {
@@ -47,14 +48,9 @@ main {
     background-color: #ffffff;
     width: min(380px, 90vw);
     margin: auto;
-    padding-top: 60px;
+    padding-top: 72px;
     padding-bottom: 10px;
     text-align: center;
-    display: none;
-}
-
-main.active {
-    display: block;
 }
 
 main h1 {
@@ -197,12 +193,24 @@ form.quick-form input[type="submit"] {
     }
 
     body main {
-        padding-top: 112px;
+        padding-top: 116px;
     }
 }
 
 @media (max-width:400px) {
     div.post-footer div.button {
-        margin: 5px 5px -5px;
+        margin: 5px auto -5px;
+    }
+    header{
+        padding-top: 6px;
+    }
+    main h1{
+        padding-bottom: 0px;
+    }
+    header h1 {
+        width: 100vw;
+        text-align: center;
+        margin: 0px;
+        position: absolute;
     }
 }

@@ -11,21 +11,16 @@
   
   <%- include('../partials/header'); %>
 
-  <!-- Mains -->
-  <%- include('./mains/home'); %>
-  <%- include('./mains/add'); %>
-  <%- include('./mains/system'); %>
-  <%- include('./mains/account'); %>
-  <%- include('./mains/system-overview'); %>
-  <%- include('./mains/user'); %>
-  <!-- End Mains -->
+  <main id="main"></main>
+  <script>
+    window.AUTH_URL = "<%- auth_url %>";
+  </script>
 
   <%- index_js %>
 
   <div id="svg-res">
     <%- include('../svgs/plate-egg'); %>
     <%- include('../svgs/button-like'); %>
-    <%- include('../svgs/button-dislike'); %>
     <%- include('../svgs/button-comment'); %>
     <%- include('../svgs/button-share'); %>
   </div>

@@ -57,7 +57,8 @@ div.nav-bar-tab a {
 }
 
 div.nav-bar-tab a svg{
-    height: 90%;
+    height: 85%;
+    padding-top: 3px;
 }
 
 div.nav-bar-tab.active a {

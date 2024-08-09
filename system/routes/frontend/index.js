@@ -37,27 +37,26 @@ async function walk(directoryName, action, root = "") {
 
 config({ path: "../.env" });
 
+// CSS
+// find all css files
 let CSS_files = [];
 await walk(__dirname.split("system")[0] + "/system/web/css/", function (file) {
   CSS_files.push(file);
 });
 
-// print web files
-console.log(CSS_files);
-
-// minify css if not in the local dev environment
-
-let index_js = "<script type='module' src='/js/index.js'></script>";
 let index_css = "";
-
-if (process.env.ENVIRONMENT === "local")  for (let file of CSS_files) index_css += `<link rel="stylesheet" href="/css/${file}">`;
+// minify css if not in the local dev environment
+if (process.env.SYSTEM_WEBPACK === "off")  for (let file of CSS_files) index_css += `<link rel="stylesheet" href="/css/${file}">`;
 else {
   index_css += "<style>";
   for (let file of CSS_files) index_css += await minify(`../system/web/css/${file}`);
   index_css += "</style>";
 }
 
-// render the single-page application (JIT)
+// JavaScript
+let index_js = "<script type='module' src='/js/index.js'></script>"; // TODO: use webpack on index.js  
+
+// Render the single-page application (JIT) and store as variable
 let html = "";
 ejs.renderFile(__dirname + "/views/pages/index.ejs",
   { index_js, index_css, auth_url: process.env.AUTH_URL },
