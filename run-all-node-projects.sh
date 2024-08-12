@@ -9,3 +9,4 @@ cd ..
 cd auth
 nohup npm run $1 &
 cd ..
+
