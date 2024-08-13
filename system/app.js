@@ -54,7 +54,7 @@ app.use("/api", apiRoute);
 
 // Serve public content
 app.use("/", express.static("public"));
-app.use("/", express.static("web"));
+if (process.env.SYSTEM_WEBPACK === "off") app.use("/", express.static("web"));
 
 // listen on cli defined port
 app.listen(PORT, () => {
