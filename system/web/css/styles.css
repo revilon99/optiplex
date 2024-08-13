@@ -197,20 +197,45 @@ form.quick-form input[type="submit"] {
     }
 }
 
-@media (max-width:400px) {
+@media (max-width:500px) {
+    svg.icon {
+        position: fixed;
+        height: 82px;
+        top: 12px;
+        left: -15px;
+    }
+
     div.post-footer div.button {
         margin: 5px auto -5px;
     }
-    header{
+
+    header {
         padding-top: 6px;
     }
-    main h1{
+
+    main h1 {
         padding-bottom: 0px;
     }
+
     header h1 {
         width: 100vw;
         text-align: center;
         margin: 0px;
-        position: absolute;
+    }
+
+    div.nav-bar-tab {
+        margin: 0px 14px;
+    }
+
+}
+
+@media (max-width:400px) {
+    svg.icon {
+        height: 50px;
+    }
+
+    header h1 {
+        text-align: center;
+        padding-left: 0px;
     }
 }

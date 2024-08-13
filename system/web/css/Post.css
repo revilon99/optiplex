@@ -45,9 +45,9 @@ div.post-header-pp:hover {
 }
 
 a.post-header-user {
-    float: left;
     font-size: 1.4em;
-    padding-left: 10px;
+    text-align: left;
+    padding-left: 50px;
 }
 
 a.post-header-user:hover {
@@ -56,7 +56,6 @@ a.post-header-user:hover {
 }
 
 p.post-header-date {
-    padding-top: 26px;
     padding-left: 52px;
     text-align: left;
     margin: 0px;

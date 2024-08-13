@@ -16,6 +16,8 @@ export const load_from_hash = () => {
     const hash = window.location.hash;
     const path = hash.split("/");
 
+    window.scrollTo(0, 0);
+
     clear_navbar();
     switch(path[1]){
         case "home":
