@@ -1,7 +1,11 @@
+import { GET } from "../Utilities/Fetch.js";
 import SystemOverview from "./SystemOverview.js";
 
 export default async function(main){
     document.title = "My Systems - The System";
+
+    const response = await GET("/api/system/overview");
+    if(!response) return;
 
     main.innerHTML = `
 <form class="quick-form" id="form-join-a-system" action="/api/system/join" method="get">
@@ -14,6 +18,5 @@ export default async function(main){
 <div id="my-systems"></div>
     `;
 
-    const response = await (await fetch("/api/system/overview")).json();
     for (const r of response) main.appendChild(new SystemOverview(r));
 }

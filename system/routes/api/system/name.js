@@ -11,12 +11,23 @@ Oliver Cass (c) 2024
 All Rights Reserved
 */
 
-export default function (req, res) {
-    const system_id = req.params.id;
-    res.json(API_REPSONSE);
-}
+import System from '../../../database/schema/System.js';
+import { NotFound } from '../../../utils/Responses.js';
 
-const API_REPSONSE = {
-  name: "14 Grange Road",
-  pp: "crab"
+export default async function (req, res) {
+  const system_id = req.params.id;
+
+  let system 
+  try{
+    system = await System.findById(system_id);
+  } catch {
+    return NotFound(res);
+  }
+
+  if (!system) return NotFound(res);
+
+  res.json({
+    name: system.name,
+    pp: system.pp
+  });
 }

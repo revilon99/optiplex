@@ -14,15 +14,12 @@ All Rights Reserved
 // External Libraries
 import { Router } from "express";
 
-
 // endpoints
-import overview from "./user/overview.js";
-import posts from "./user/posts.js";
+import profile from "./user/profile.js";
 
 // Define Routes
 const router = Router();
 
-router.get("/:id", overview);
-router.get("/:id/posts", posts);
+router.get("/:id", profile);
 
 export default router;

@@ -1,18 +1,17 @@
+import { GET } from "../Utilities/Fetch.js";
 import ProfileCard from "./ProfileCard.js";
 import UserPagePost from "./UserPagePost.js";
 
 export default async function(main, user_id){
     main.innerHTML = "<h1>User Profile</h1>";
     
-    const overview = await (await fetch(`/api/user/${user_id}`)).json();
+    const user = await GET(`/api/user/${user_id}`);
+    if(!user) return;
 
-    document.title = `${overview.name} - The System`;
+    document.title = `${user.name} - The System`;
 
-    main.appendChild(new ProfileCard(overview));
+    main.appendChild(new ProfileCard(user));
 
     main.innerHTML += "<h2 style='text-align:center'>Posts</h2>";
-    const posts = await (await fetch(`/api/user/${user_id}/posts`)).json();
-    for(const p of posts) main.appendChild(new UserPagePost(p));
-
-    
+    for(const p of user.posts) main.appendChild(new UserPagePost(p));
 }

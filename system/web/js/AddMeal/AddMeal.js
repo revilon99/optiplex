@@ -1,6 +1,11 @@
+import { GET } from "../Utilities/Fetch.js";
 
 export default async function (main) {
     document.title = "Add Meal - The System";
+
+    const systems = await GET("/api/system/overview");
+    if(!systems) return;
+
     //TODO: make this more event driven
     main.innerHTML = `
 <h1>Add Meal</h1>
@@ -31,14 +36,16 @@ export default async function (main) {
 </form>
     `
 
-    const systems = await (await fetch("/api/system/overview")).json();
+
     const select = document.getElementById("form-add-a-meal-system-select");
     select.innerHTML = '<option value="" disabled selected>Select a system...</option>';
     for (const r of systems) select.innerHTML += `<option value='${r.id}'>${r.name}</option>`;
     
     document.getElementById("form-add-a-meal-system-select").addEventListener("change", async (e) => {
         const system_id = e.target.value;
-        const response = await (await fetch(`/api/system/${system_id}/others`)).json();
+
+        const response = await GET(`/api/system/${system_id}/others`);
+        if(!response) return;
     
         document.getElementById("form-add-a-meal-who-ate").innerHTML = "<label>Who Ate?</label>";
         for (const r of response) {

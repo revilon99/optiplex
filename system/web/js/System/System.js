@@ -1,10 +1,12 @@
+import { GET } from "../Utilities/Fetch.js";
 import LeaderboardUser from "./LeaderboardUser.js";
 import SystemPagePost from "./SystemPagePost.js";
 
 export default async function (main, system_id){
     main.innerHTML = "";
 
-    const system_overview = await (await fetch(`/api/system/${system_id}`)).json();
+    const system_overview = await GET(`/api/system/${system_id}`);
+    if(!system_overview) return;
 
     document.title = `${system_overview.name} - The System`;
 
@@ -18,14 +20,19 @@ export default async function (main, system_id){
     // leaderboard
     // todo: sort on server-side
     const leaderboard = document.createElement("div");
-    const users = await (await fetch(`/api/system/${system_id}/users`)).json();
+    const users = await GET(`/api/system/${system_id}/users`);
+    if(!users) return;
+
+
     for(const user of users) leaderboard.appendChild(new LeaderboardUser(user));
     main.appendChild(leaderboard);
 
     // meals
     main.innerHTML += `<h2 style="text-align: center">Meals</h2>`;
     const feed = document.createElement("div");
-    const meals = await (await fetch(`/api/system/${system_id}/meals`)).json();
+    const meals = await GET(`/api/system/${system_id}/meals`);
+    if(!meals) return;
+
     for(const meal of meals) feed.appendChild(new SystemPagePost(meal));
 
     main.appendChild(feed);

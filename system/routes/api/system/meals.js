@@ -11,113 +11,73 @@ Oliver Cass (c) 2024
 All Rights Reserved
 */
 
-export default function (req, res) {
-    res.json(API_RESPONSE);
-}
+import Meal from '../../../database/schema/Meal.js';
+import System from '../../../database/schema/System.js';
+import { NotFound } from '../../../utils/Responses.js';
+import { prettifyDate } from "../../../utils/Pretty.js";
 
-const API_RESPONSE = [
-    {
-        system_id: "askmdaxXSSsAmksa",
-        system_name: "14 Grange Road",
-        user_id: "sdajkadlaksdlaksdj",
-        name: "Oli Cass",
-        pp: 'chef-male',
-        title: "One Fried Egg",
-        img: "egg",
-        description: "A simple dish to get us started",
-        date: "3 hours ago",
-        num_likes: 14,
-        num_shares: 5,
-        num_comments: 6,
-        eaters: [
-            {
-                id: "saldaksd",
-                name: "John Doe",
-                pp: "chef-male"
-            },
-            {
-                id: "saldaksd",
-                name: "Jane Doe",
-                pp: "chef-female"
-            }
-        ]
-    },
-    {
-        system_id: "askmdaxXSSsAmksa",
-        system_name: "14 Grange Road",
-        user_id: "sdajkadlaksdlaksdj",
-        name: "Oli Cass",
-        pp: 'chef-male',
-        title: "One Fried Egg",
-        img: "egg",
-        description: "A simple dish to get us started",
-        date: "3 hours ago",
-        num_likes: 14,
-        num_shares: 5,
-        num_comments: 6,
-        eaters: [
-            {
-                id: "saldaksd",
-                name: "John Doe",
-                pp: "chef-male"
-            },
-            {
-                id: "saldaksd",
-                name: "Jane Doe",
-                pp: "chef-female"
-            }
-        ]
-    },
-    {
-        system_id: "askmdaxXSSsAmksa",
-        system_name: "14 Grange Road",
-        user_id: "sdajkadlaksdlaksdj",
-        name: "Oli Cass",
-        pp: 'chef-male',
-        title: "One Fried Egg",
-        img: "egg",
-        description: "A simple dish to get us started",
-        date: "3 hours ago",
-        num_likes: 14,
-        num_shares: 5,
-        num_comments: 6,
-        eaters: [
-            {
-                id: "saldaksd",
-                name: "John Doe",
-                pp: "chef-male"
-            },
-            {
-                id: "saldaksd",
-                name: "Jane Doe",
-                pp: "chef-female"
-            }
-        ]
-    },
-    {
-        system_id: "askmdaxXSSsAmksa",
-        system_name: "14 Grange Road",
-        user_id: "sdajkadlaksdlaksdj",
-        name: "Oli Cass",
-        pp: 'chef-male',
-        title: "One Fried Egg",
-        img: "egg",
-        description: "A simple dish to get us started",
-        date: "3 hours ago",
-        num_likes: 14,
-        num_shares: 5,
-        num_comments: 6,
-        eaters: [
-            {
-                id: "saldaksd",
-                name: "John Doe",
-                pp: "chef-male"
-            },
-            {
-                id: "saldaksd",
-                name: "Jane Doe",
-                pp: "chef-female"
-            }
-        ]
+export default async function (req, res) {
+    const system_id = req.params.id;
+
+    let system;
+    try {
+        system = await System.findById(system_id);
+    } catch {
+        return NotFound(res);
     }
-]
+
+    if (!system) return NotFound(res);
+
+    let response = [];
+
+    const meals = await Meal.find({ system: system._id })
+        .populate({
+            path: 'author',
+            select:
+                'name pp',
+        })
+        .populate({
+            path: 'eaters',
+            select:
+                'name pp',
+        })
+        .populate({
+            path: 'likes',
+            select:
+                'name pp',
+        })
+        .populate({
+            path: 'comments',
+            select:
+                'name pp',
+        })
+        .populate({
+            path: 'system',
+            select:
+                'name',
+        });
+
+    response = [];
+    for (const p of meals) {
+        let post = {
+            system_id: p.system._id,
+            system_name: p.system.name,
+            user_id: p.author._id,
+            name: p.author.name,
+            pp: p.author.pp,
+            title: p.title,
+            description: p.description,
+            img: p.photo,
+            date: prettifyDate(p.date),
+            num_likes: p.likes.length,
+            num_shares: p.shares,
+            num_comments: p.comments.length,
+            eaters: []
+        };
+
+        for (let eater of p.eaters) post.eaters.push({ id: eater._id, name: eater.name, pp: eater.pp })
+        response.push(post);
+    }
+
+    res.json(response);
+}

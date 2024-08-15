@@ -7,6 +7,7 @@ import MyAccount from './MyAccount/MyAccount.js';
 import MySystems from './MySystems/MySystems.js';
 import System from './System/System.js';
 import User from './User/User.js';
+import SignUp from './SignUp/SignUp.js';
 
 const main = document.getElementById("main");
 
@@ -32,6 +33,9 @@ export const load_from_hash = () => {
         case "my-account":
             highlight_navbar("account");
             return MyAccount(main);
+
+        case "signup":
+            return SignUp(main);
 
         case "system":
             return System(main, path[2]);

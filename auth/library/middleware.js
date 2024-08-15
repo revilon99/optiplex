@@ -17,7 +17,7 @@ import { config } from "dotenv"
 config({ path: "../.env" });
 
 // this handles self-signed certificates for the develop runtime
-if (process.env.AUTH_URL == "https://auth.optiplex.com/") {
+if (process.env.SELF_SIGNED_CERT) {
   process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0
 }
 

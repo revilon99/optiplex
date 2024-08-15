@@ -11,39 +11,34 @@ Oliver Cass (c) 2024
 All Rights Reserved
 */
 
-export default function(req, res) {
-    res.json(API_RESPONSE);
-}
+import Meal from "../../../database/schema/Meal.js";
+import System from '../../../database/schema/System.js';
 
-const API_RESPONSE = [
-    {
-        pp: "crab",
-        name: "14 Grange Drive",
-        score: 5,
-        id: "sdkadalKLSksla"
-    },
-    {
-        pp: "pizza",
-        name: "18 Manor Place",
-        score: -2,
-        id: "sdkadalKLSksla"
-    },
-    {
-        pp: "octopus",
-        name: "Le Mansion",
-        score: 3,
-        id: "sdkadalKLSksla"
-    },
-    {
-        pp: "beer",
-        name: "1 Range Hill",
-        score: 0,
-        id: "sdkadalKLSksla"
-    },
-    {
-        pp: "crab",
-        name: "473 Belle Vue Terrace",
-        score: 1,
-        id: "sdkadalKLSksla"
+export default async function (req, res) {
+
+    let response = [];
+
+    const systems = await System.find({ users: res.locals.user._id });
+    for (const system of systems) {
+
+        let system_overview = {
+            pp: system.pp,
+            name: system.name,
+            id: system._id,
+            score: 0
+        }
+
+        const meals = await Meal.find({ system: system._id });
+        for (const meal of meals) {
+            if (res.locals.user._id.toString() === meal.author.toString()) system_overview.score += meal.eaters.length;
+
+            for (const eater of meal.eaters) {
+                if (res.locals.user._id.toString() === eater.toString()) system_overview.score--;
+            }
+        }
+
+        response.push(system_overview);
     }
-]
+
+    res.json(response);
+}

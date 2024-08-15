@@ -11,7 +11,11 @@ Oliver Cass (c) 2024
 All Rights Reserved
 */
 
-export default function(req, res) {
+export default async function(req, res) {
+    const user = res.locals.user;
+
+    // todo
+
     res.json(FEED_API_RESPONSE);
 }
 

@@ -1,5 +1,10 @@
-export default function (main) {
+import { GET } from "../Utilities/Fetch.js";
+
+export default async function (main) {
     document.title = "My Account - The System";
+
+    const response = await GET("/api/account");
+    if(!response) return;
 
     main.innerHTML = `
 <h1>Manage Account</h1>
@@ -10,7 +15,7 @@ export default function (main) {
 <h2>Update Name</h2>
 <form id="form-update-name" action="/api/user/update-name" method="post">
     <label>Name: </label>
-    <input type="text" name="name" autocomplete="off" placeholder="Oli Cass" />
+    <input type="text" name="name" autocomplete="off" placeholder="${response.name}" />
     <input type="submit" value="Change Name" />
 </form>
 

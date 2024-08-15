@@ -46,10 +46,14 @@ app.use((_req, res, next) => {
   next();
 });
 
+// Connect to database (defined by .env file)
+import Connection from "./database/connection.js";
+Connection();
+
 // Define routes
 import frontendRoute from "./routes/frontend.js";
 import apiRoute from "./routes/api.js";
-app.use("/", frontendRoute);
+app.use("/", frontendRoute); // Note: likely in the future this will be statically serving the webpacked index.html - so don't bother with auth here
 app.use("/api", apiRoute);
 
 // Serve public content
