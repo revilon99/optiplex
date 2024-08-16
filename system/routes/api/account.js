@@ -1,9 +1,9 @@
 /*
 Filename:
-  optiplex/system/routes/api/feed.js
+  optiplex/system/routes/api/account.js
 Description:
-  
-
+    returns name of user requesting endpoint
+    
 Project:
   system #0002 (system.oli.casa) 
 
