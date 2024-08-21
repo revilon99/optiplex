@@ -1,0 +1,25 @@
+# Sprint 1 (MVP)
+- flesh out database with existing system posts
+
+- meal
+    - Add meal
+    - like functionality
+    - comment functionality
+    - share functionality
+    - edit meal
+    - change meal images to "tasty" svg collection
+
+- system
+    - create system
+    - edit system
+    - add users to system
+    - remove users from system
+
+- sign-up select profile pic
+
+- change user name feature
+- change profile pic feature
+
+- feed
+    - sort by most recent
+    - make more interesting (sort by relevance etc)
