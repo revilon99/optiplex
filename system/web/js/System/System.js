@@ -126,7 +126,14 @@ function edit_system_template(data) {
     button_delete.innerHTML = "Delete System";
     button_delete.addEventListener("click", () => {
         try {
-            console.log("delete");
+            if (confirm(`Are you sure you want to delete ${data.name}?`)) {
+                // Delete it!
+                POST(`/api/system/${data.id}/delete`, {}).then(res => {
+                    window.location.hash = "#/home/"
+                });
+              } else {
+                // Do nothing!
+              }
         } catch (e) {
             console.log(e);
         }
