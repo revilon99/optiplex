@@ -13,7 +13,7 @@ All Rights Reserved
 
 import Meal from '../../database/schema/Meal.js';
 import System from '../../database/schema/System.js';
-import { prettifyDate } from "../../utils/Pretty.js";
+import Post from './schema/Post.js';
 
 export default async function (req, res) {
     // todo: make this more interesting
@@ -48,30 +48,7 @@ export default async function (req, res) {
         });
 
 
-    for (const p of meals) {
-        let user_liked_post = false;
-        for(const user of p.likes) if(user._id.toString() == res.locals.user._id.toString()) user_liked_post = true;
-
-        let post = {
-            id: p._id,
-            system_id: p.system._id,
-            system_name: p.system.name,
-            user_id: p.author._id,
-            name: p.author.name,
-            pp: p.author.pp,
-            title: p.title,
-            description: p.description,
-            img: p.photo,
-            date: prettifyDate(p.date),
-            likes: p.likes,
-            num_shares: p.shares,
-            comments: p.comments,
-            user_liked_post: user_liked_post,
-            user_in_system: true // todo: add posts of interest not accessible to user
-        };
-
-        response.push(post);
-    }
+    for (const p of meals) response.push(Post(res.locals.user, p));
 
     res.json(response);
 }

@@ -15,6 +15,7 @@ import User from "../../../database/schema/User.js";
 import Meal from "../../../database/schema/Meal.js";
 import { prettifyDate } from "../../../utils/Pretty.js";
 import { NotFound } from "../../../utils/Responses.js";
+import Post from "../schema/Post.js";
 
 export default async function (req, res) {
   const user_id = req.params.id;
@@ -71,24 +72,11 @@ export default async function (req, res) {
       response.last_post = prettifyDate(p.date);
     }
 
-    let post = {
-      id: p._id,
-      system_id: p.system._id,
-      system_name: p.system.name,
-      user_id: p.author._id,
-      name: p.author.name,
-      pp: p.author.pp,
-      title: p.title,
-      description: p.description,
-      img: p.photo,
-      date: prettifyDate(p.date),
-      likes: p.likes,
-      num_shares: p.shares,
-      comments: p.comments,
-      eaters: []
-    };
+    let post = Post(res.locals.user, p);
 
-    for(let eater of p.eaters) post.eaters.push({id: eater._id, name: eater.name, pp: eater.pp})
+    post.eaters = [];
+    for(let eater of p.eaters) post.eaters.push({id: eater._id, name: eater.name, pp: eater.pp});
+
     response.posts.push(post);
   }
   

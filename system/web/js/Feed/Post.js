@@ -79,8 +79,6 @@ class Post {
         let likes = data.likes.length;
 
         function update_footer() {
-            
-
             if (post.liked) {
                 post.buttons.like.classList.add("active");
             } else {
