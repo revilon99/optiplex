@@ -20,14 +20,18 @@ import meals from "./system/meals.js"
 import others from "./system/others.js"
 import users from "./system/users.js";
 import name from "./system/name.js";
+import create from "./system/create.js";
 
 // Define Routes
 const router = Router();
 
 router.get("/overview", overview);
+
 router.get("/:id", name)
 router.get("/:id/users", users);
 router.get("/:id/meals", meals);
 router.get("/:id/others", others);
+
+router.post("/create", create);
 
 export default router;

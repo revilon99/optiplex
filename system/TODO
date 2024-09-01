@@ -9,8 +9,9 @@
     - change meal images to "tasty" svg collection
 
 - system
-    - create system
+    - create system - select profile pic
     - edit system
+    - delete system
     - add users to system
     - remove users from system
 

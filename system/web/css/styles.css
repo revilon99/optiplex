@@ -176,7 +176,7 @@ div.checkbox-group {
     margin-top: 5px;
 }
 
-form.quick-form {
+.quick-form {
     height: fit-content;
     text-align: right;
 }

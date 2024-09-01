@@ -68,7 +68,6 @@ export default async function (req, res) {
   for (const p of meals) {
     if(p.date.valueOf() > most_recent){
       most_recent = p.date.valueOf();
-      console.log(p.date.toDateString())
       response.last_post = prettifyDate(p.date);
     }
 
