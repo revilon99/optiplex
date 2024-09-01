@@ -41,6 +41,7 @@ export const load_from_hash = () => {
             return System(main, path[2]);
         case "user":
             return User(main, path[2]);
+            
         default:
             return PageNotFound(main);
     }

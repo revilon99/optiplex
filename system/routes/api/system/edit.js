@@ -1,6 +1,6 @@
 /*
 Filename:
-  optiplex/system/routes/api/system/name.js
+  optiplex/system/routes/api/system/edit.js
 Description:
   
 
@@ -26,9 +26,20 @@ export default async function (req, res) {
 
   if (!system) return NotFound(res);
 
-  res.json({
-    id: system._id,
-    name: system.name,
-    pp: system.pp
-  });
+  let user_has_permission = false;
+  for(const user of system.users) if(user.toString() == res.locals.user._id.toString()) user_has_permission = true;
+
+  if(!user_has_permission){
+    res.status(403);
+    return res.send();
+  }
+
+  try{
+    system.name = req.body.name;
+    await system.save();
+    res.json({});
+  }catch(e){
+    res.status(500);
+    res.json({});
+  }
 }

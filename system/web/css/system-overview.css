@@ -29,13 +29,14 @@ div.system-overview .system-overview-pp {
     margin-right: 3px;
 }
 
-h1.system-overview{
-    padding: 0px 45px;
-    overflow: hidden;
-    text-wrap: nowrap;
-    text-overflow: ellipsis;
-    margin-top: 10px;
+h1.system-overview {
+    padding: 0px 0 0 45px;
+    overflow: hidden;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+    margin-top: 10px;
 }
+
 div.system-overview-pp {
     width: 40px;
     height: 40px;
@@ -57,7 +58,7 @@ div.system-overview .system-overview-name {
     text-overflow: ellipsis;
 }
 
-div.system-overview .system-overview-name:hover{
+div.system-overview .system-overview-name:hover {
     text-decoration: underline;
 }
 
@@ -148,4 +149,11 @@ div.meal-eaters-pp {
     left: 11px;
     top: 6px;
     margin-right: 12px;
+}
+
+.edit-system{
+    padding: 10px;
+    border: 2px solid gray;
+    border-radius: 15px;
+    margin: 10px;
 }

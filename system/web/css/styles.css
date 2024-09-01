@@ -129,6 +129,15 @@ button:hover {
     cursor: pointer;
 }
 
+input[type="submit"].warning,
+button.warning {
+    background-color: #d9534f;
+}
+input[type="submit"].warning:hover,
+button.warning:hover {
+    background-color: #f6544f;
+}
+
 input[type="submit"][disabled]:hover {
     cursor: default;
 }
@@ -181,10 +190,40 @@ div.checkbox-group {
     text-align: right;
 }
 
-form.quick-form input[type="submit"] {
+.quick-form input[type="submit"] {
     width: 40%;
     text-wrap: balance;
     height: fit-content;
+    min-height: 2em;
+}
+
+div.edit-button {
+    width: 40px;
+    height: 35px;
+    float: right;
+    margin-top: 7px;
+    padding-bottom: 5px;
+    padding-left: 1px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+div.edit-button.active{
+    background-color: #3d3d3d;
+    color: white;
+}
+div.edit-button.active:hover{
+    background-color: #5c5c5c;
+}
+
+div.edit-button svg {
+    width: 40px;
+    scale: calc(35 / 40);
+    height: 40px;
+}
+
+div.edit-button:hover {
+    background-color: #ededed;
 }
 
 @media (max-width:800px) {
