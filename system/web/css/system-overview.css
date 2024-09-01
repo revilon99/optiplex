@@ -69,12 +69,23 @@ div.system-overview .system-overview-score {
     font-size: 1.4em;
 }
 
-div.leaderboard-user {
+.leaderboard-user {
     border: 1px solid black;
     height: 50px;
     border-radius: 10px;
     font-size: 1.4em;
     margin: 10px 5px;
+    width: 97%;
+}
+
+button.leaderboard-user {
+    background-color: #e2e2e2;
+    margin-top: 0px;
+}
+
+button.leaderboard-user:hover {
+    background-color: #eee;
+    margin-top: 0px;
 }
 
 div.leaderboard-user .user-name {
@@ -151,15 +162,16 @@ div.meal-eaters-pp {
     margin-right: 12px;
 }
 
-.edit-system{
+.edit-system {
     border-radius: 15px;
     transition: height 2s, padding 2s, margin 2s;
-    overflow: hidden;
     height: 0px;
-    background-color: #eee;
+    overflow: hidden;
+    box-shadow: 1px 1px black;
+    background-color: #f6f6f6;
 }
 
-.edit-system.active{
+.edit-system.active {
     height: 220px;
     padding: 10px;
     margin: 10px;

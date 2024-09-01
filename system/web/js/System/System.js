@@ -46,12 +46,13 @@ export default async function (main, system_id) {
 
     // leaderboard
     // todo: sort on server-side
-    const leaderboard = document.createElement("div");
+
     const users = await GET(`/api/system/${system_id}/users`);
     if (!users) return;
 
-
+    const leaderboard = document.createElement("div");
     for (const user of users) leaderboard.appendChild(new LeaderboardUser(user));
+
     main.appendChild(leaderboard);
 
     // meals
@@ -79,7 +80,19 @@ function edit_button_template() {
 
 function edit_system_template(data) {
     const root = document.createElement("div");
-    root.classList.add("edit-system")
+    root.classList.add("edit-system");
+
+    const button_add_user = document.createElement("div");
+    button_add_user.title = "Add User";
+    button_add_user.innerHTML = `<svg><use href="#add-user"/></svg>`;
+    button_add_user.classList.add("edit-button");
+    button_add_user.addEventListener("click", function () {
+        const copyText = `${window.location.origin}/#/join/${data.id}`;
+        navigator.clipboard.writeText(copyText);
+        alert("Copied Join URL to Clipboard");
+    }, false);
+
+    root.appendChild(button_add_user);
 
     const form = document.createElement("form");
     form.classList.add("quick-form");
@@ -107,7 +120,7 @@ function edit_system_template(data) {
             }).then(res => {
                 window.location.reload();
             });
-            
+
         } catch (e) {
             console.log(e);
         }
@@ -129,15 +142,33 @@ function edit_system_template(data) {
                 POST(`/api/system/${data.id}/delete`, {}).then(res => {
                     window.location.hash = "#/home/"
                 });
-              } else {
+            } else {
                 // Do nothing!
-              }
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    }, false);
+
+    const button_leave = document.createElement("button");
+    button_leave.classList.add("warning");
+    button_leave.innerHTML = "Leave System";
+    button_leave.addEventListener("click", () => {
+        try {
+            if (confirm(`Are you sure you want to leave ${data.name}?`)) {
+                POST(`/api/system/${data.id}/leave`, {}).then(res => {
+                    window.location.hash = "#/home/"
+                });
+            } else {
+                // Do nothing!
+            }
         } catch (e) {
             console.log(e);
         }
     }, false);
 
     root.appendChild(form);
+    root.appendChild(button_leave);
     root.appendChild(button_delete);
 
     return root;

@@ -26,7 +26,7 @@ export default async function (req, res) {
 
     if (!meal) return NotFound(res);
 
-    for(const user in meal.likes) if(user._id.toString() == res.locals.user._id.toString()) {
+    for(const user in meal.likes) if(user.toString() == res.locals.user._id.toString()) {
         res.status(400);
         return res.json({});
     }

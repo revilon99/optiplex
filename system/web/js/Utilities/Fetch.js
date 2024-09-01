@@ -16,17 +16,21 @@ export const POST = async (url, body) => {
     return handle_status(post);
 }
 
-async function handle_status(response){
+async function handle_status(response) {
     switch (response.status) {
-        case 200:
-            return await response.json();
         case 401:
-            // client not recognised by server - but they do have a valid token
+            // client not recognised by server - but they do have a valid oli.casa token
             window.location.hash = "#/signup/";
             return;
-        case 404:
-            // request not found
-            //window.location.hash = "#/error/";
+        case 404: // request not found
             return false;
+        case 200:
+        default:
+            try {
+                return await response.json();
+            } catch (e) {
+                console.log(e);
+                return false;
+            }
     }
 }

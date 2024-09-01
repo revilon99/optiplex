@@ -8,6 +8,7 @@ import MySystems from './MySystems/MySystems.js';
 import System from './System/System.js';
 import User from './User/User.js';
 import SignUp from './SignUp/SignUp.js';
+import Join from './Join/Join.js';
 
 const main = document.getElementById("main");
 
@@ -41,6 +42,8 @@ export const load_from_hash = () => {
             return System(main, path[2]);
         case "user":
             return User(main, path[2]);
+        case "join":
+            return Join(main, path[2]);
             
         default:
             return PageNotFound(main);
