@@ -24,23 +24,20 @@ export default async function (req, res) {
   }
   if (!system) return NotFound(res);
 
-  // return false if user already in system
-  for (const user of system.users) if (user.toString() == res.locals.user._id.toString()) {
-    res.status(409);
-    return res.json({ message: "You are already in this system!", success: false });
+  let user_in_system = false;
+  for(const user of system.users) if(user.toString() == res.locals.user._id.toString()) user_in_system = true;
+
+  if(!user_in_system){
+    res.status(403);
+    return res.json({ success: false, message: "You are not in this system" });
   }
 
   try {
-    system.users.push(res.locals.user._id);
+    system.users = system.users.filter(x => x.toString() != res.locals.user._id.toString());
     await system.save();
-    const response = {
-      success: true,
-      message: "System Joined!",
-      id: system._id
-    }
-    res.json(response);
+    res.json({});
   } catch (e) {
     res.status(500);
-    res.json({ success: false, message: "Server failed to add you. Try again later." });
+    res.json({ success: false, message: "Server failed to remove you. Try again later." });
   }
 }

@@ -156,7 +156,7 @@ function edit_system_template(data) {
     button_leave.addEventListener("click", () => {
         try {
             if (confirm(`Are you sure you want to leave ${data.name}?`)) {
-                POST(`/api/system/${data.id}/leave`, {}).then(res => {
+                GET(`/api/system/${data.id}/leave`).then(() => {
                     window.location.hash = "#/home/"
                 });
             } else {

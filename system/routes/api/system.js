@@ -24,6 +24,7 @@ import create from "./system/create.js";
 import edit from "./system/edit.js";
 import _delete from "./system/delete.js";
 import join from "./system/join.js";
+import leave from "./system/leave.js";
 
 // Define Routes
 const router = Router();
@@ -38,7 +39,7 @@ router.get("/:id/others", others);
 router.post("/:id/edit", edit);
 router.post("/:id/delete", _delete);
 router.get("/:id/join", join);
-router.get("/:id/leave", join);
+router.get("/:id/leave", leave);
 
 router.post("/create", create);
 

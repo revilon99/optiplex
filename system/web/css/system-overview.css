@@ -164,7 +164,7 @@ div.meal-eaters-pp {
 
 .edit-system {
     border-radius: 15px;
-    transition: height 2s, padding 2s, margin 2s;
+    transition: height 1s, padding 1s, margin 1s;
     height: 0px;
     overflow: hidden;
     box-shadow: 1px 1px black;
