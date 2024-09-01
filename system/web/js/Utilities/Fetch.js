@@ -26,7 +26,7 @@ async function handle_status(response){
             return;
         case 404:
             // request not found
-            window.location.hash = "#/error/";
-            return;
+            //window.location.hash = "#/error/";
+            return false;
     }
 }

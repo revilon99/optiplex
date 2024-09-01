@@ -16,7 +16,8 @@
     },
     "scripts": {
         "main": "node app.js 5002 > out.log 2> err.log",
-        "develop": "node app.js 3002 > out.log 2> err.log"
+        "develop": "node app.js 3002 > out.log 2> err.log",
+        "local": "node app.js 3002"
     },
     "type": "module"
 }

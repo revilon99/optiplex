@@ -11,9 +11,9 @@ Oliver Cass (c) 2024
 All Rights Reserved
 */
 
-form#form-add-a-meal div.section {
+form div.section {
     display: none;
 }
-form#form-add-a-meal div.section.visible {
+form div.section.visible {
     display: initial;
 }

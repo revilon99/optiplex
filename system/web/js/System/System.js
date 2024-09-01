@@ -1,3 +1,4 @@
+import PageNotFound from "../PageNotFound/PageNotFound.js";
 import { GET } from "../Utilities/Fetch.js";
 import LeaderboardUser from "./LeaderboardUser.js";
 import SystemPagePost from "./SystemPagePost.js";
@@ -6,7 +7,10 @@ export default async function (main, system_id){
     main.innerHTML = "";
 
     const system_overview = await GET(`/api/system/${system_id}`);
-    if(!system_overview) return;
+    if(!system_overview) {
+        PageNotFound(main);
+        return;
+    }
 
     document.title = `${system_overview.name} - The System`;
 
