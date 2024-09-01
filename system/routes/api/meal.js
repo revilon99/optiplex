@@ -16,10 +16,15 @@ import { Router } from "express";
 
 // endpoints
 import add from "./meal/add.js";
+import like from "./meal/like.js";
+import unlike from "./meal/unlike.js";
 
 // Define Routes
 const router = Router();
 
 router.post("/add", add);
+
+router.get("/like/:id", like);
+router.get("/unlike/:id", unlike);
 
 export default router;

@@ -60,6 +60,7 @@ export default async function (req, res) {
     response = [];
     for (const p of meals) {
         let post = {
+            id: p._id,
             system_id: p.system._id,
             system_name: p.system.name,
             user_id: p.author._id,
@@ -69,9 +70,9 @@ export default async function (req, res) {
             description: p.description,
             img: p.photo,
             date: prettifyDate(p.date),
-            num_likes: p.likes.length,
+            likes: p.likes,
             num_shares: p.shares,
-            num_comments: p.comments.length,
+            comments: p.comments,
             eaters: []
         };
 

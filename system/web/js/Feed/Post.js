@@ -1,4 +1,5 @@
 import { capitalize } from "../Utilities/Text.js";
+import { GET } from "../Utilities/Fetch.js";
 
 class Post {
     constructor(data) {
@@ -49,9 +50,9 @@ class Post {
 
         content.innerHTML += `
             <div class="post-stats">
-                <div class="likes"><p>${data.num_likes}</p><svg width="40px" height="40px"><use href="#button-like"/></svg></div>
+                <div class="likes"><p>${data.likes.length}</p><svg width="40px" height="40px"><use href="#button-like"/></svg></div>
                 <div class="shares"><p>${data.num_shares}</p><svg width="40px" height="40px"><use href="#button-share"/></svg></div>
-                <div class="comments"><p>${data.num_comments}</p><svg width="40px" height="40px"><use href="#button-comment"/></svg></div>
+                <div class="comments"><p>${data.comments.length}</p><svg width="40px" height="40px"><use href="#button-comment"/></svg></div>
             </div>`;
         return content;
     }
@@ -72,16 +73,16 @@ class Post {
             this.buttons[b] = button;
         }
 
-        this.liked = false;
-
+        this.liked = data.user_liked_post;
         let post = this;
 
+        let likes = data.likes.length;
+
         function update_footer() {
-            let likes = data.num_likes;
+            
 
             if (post.liked) {
                 post.buttons.like.classList.add("active");
-                likes++;
             } else {
                 post.buttons.like.classList.remove("active");
             }
@@ -90,17 +91,29 @@ class Post {
         }
 
         this.buttons.like.addEventListener("click", () => {
-            post.liked = !post.liked
+            post.liked = !post.liked;
+
+            if(post.liked){
+                const response = GET(`/api/meal/like/${data.id}`);
+                likes++;
+            }else{
+                const response = GET(`/api/meal/unlike/${data.id}`);
+                likes--;
+            }
+
             update_footer();
         }, false);
 
         this.buttons.comment.addEventListener("click", ()=>{
-            throw Error
+            throw Error;
+            update_footer();
         });
         this.buttons.share.addEventListener("click", ()=>{
-            throw Error
+            throw Error;
+            update_footer();
         });
 
+        update_footer();
         return footer;
     }
 }

@@ -47,8 +47,13 @@ export default async function (req, res) {
                 'name',
         });
 
+
     for (const p of meals) {
+        let user_liked_post = false;
+        for(const user of p.likes) if(user._id.toString() == res.locals.user._id.toString()) user_liked_post = true;
+
         let post = {
+            id: p._id,
             system_id: p.system._id,
             system_name: p.system.name,
             user_id: p.author._id,
@@ -58,10 +63,11 @@ export default async function (req, res) {
             description: p.description,
             img: p.photo,
             date: prettifyDate(p.date),
-            num_likes: p.likes.length,
+            likes: p.likes,
             num_shares: p.shares,
-            num_comments: p.comments.length,
-            user_in_system: true, // todo: add posts of interest not accessible to user
+            comments: p.comments,
+            user_liked_post: user_liked_post,
+            user_in_system: true // todo: add posts of interest not accessible to user
         };
 
         response.push(post);
