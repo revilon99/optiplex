@@ -19,8 +19,6 @@ export default async function (main, system_id) {
     `;
 
     const edit_form = edit_system_template(system_overview);
-    edit_form.style.display = "none";
-
 
     const edit_button = edit_button_template();
     let editing = false;
@@ -29,10 +27,10 @@ export default async function (main, system_id) {
         editing = !editing;
 
         if (editing) {
-            edit_form.style.display = "";
+            edit_form.classList.add("active");
             edit_button.classList.add("active");
         } else {
-            edit_form.style.display = "none";
+            edit_form.classList.remove("active");
             edit_button.classList.remove("active");
         }
 
