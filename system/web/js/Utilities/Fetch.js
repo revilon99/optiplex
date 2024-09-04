@@ -18,6 +18,9 @@ export const POST = async (url, body) => {
 
 async function handle_status(response) {
     switch (response.status) {
+        case 400:
+        case 500:
+            throw Error;
         case 401:
             // client not recognised by server - but they do have a valid oli.casa token
             window.location.hash = "#/signup/";

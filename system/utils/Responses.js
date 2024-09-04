@@ -15,3 +15,8 @@ export const NotFound = (res)=>{
     res.status(404);
     res.send();
 }
+
+export const BadInput = (res)=>{
+  res.status(400);
+  res.send();
+}

@@ -1,8 +1,7 @@
 /*
 Filename:
-  optiplex/system/routes/api/user.js
+  optiplex/system/routes/api/user/update.js
 Description:
-  
 
 Project:
   system #0002 (system.oli.casa) 
@@ -15,13 +14,11 @@ All Rights Reserved
 import { Router } from "express";
 
 // endpoints
-import profile from "./user/profile.js";
-import update from "./user/update.js";
+import name from "./update/name.js";
 
 // Define Routes
 const router = Router();
 
-router.get("/:id", profile);
-router.use("/update", update);
+router.post("/name", name);
 
 export default router;
