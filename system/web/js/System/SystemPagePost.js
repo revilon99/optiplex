@@ -9,6 +9,7 @@ class SystemPagePost extends Post{
         this.element.appendChild(super.header(data, true));
         this.element.appendChild(super.content(data, true));
         this.element.appendChild(super.footer(data));
+        this.element.appendChild(super.comments(data));
 
         return this.element;
     }

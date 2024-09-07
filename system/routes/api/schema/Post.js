@@ -30,10 +30,21 @@ export default function(user, post){
         date: prettifyDate(post.date),
         likes: post.likes,
         num_shares: post.shares,
-        comments: post.comments,
+        comments: comments(user, post.comments),
         user_liked_post: user_liked_post,
         user_in_system: true // todo: add posts of interest not accessible to user
     };
 
     return response;
+}
+
+function comments(user, post_comments){
+  let comments = [];
+  for(let comment of post_comments) comments.push({
+    author: comment.author,
+    body: comment.body,
+    date: prettifyDate(comment.date),
+    can_delete: comment.author._id.toString() == user._id.toString()
+  });
+  return comments;
 }

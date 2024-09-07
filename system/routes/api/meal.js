@@ -18,13 +18,18 @@ import { Router } from "express";
 import add from "./meal/add.js";
 import like from "./meal/like.js";
 import unlike from "./meal/unlike.js";
+import add_comment from "./meal/comment/add.js";
+import delete_comment from "./meal/comment/delete.js";
 
 // Define Routes
 const router = Router();
 
 router.post("/add", add);
 
-router.get("/like/:id", like);
-router.get("/unlike/:id", unlike);
+router.post("/:id/comment/add", add_comment);
+router.post("/:id/comment/delete", delete_comment);
+
+router.get("/:id/like", like);
+router.get("/:id/unlike", unlike);
 
 export default router;

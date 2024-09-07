@@ -1,5 +1,5 @@
 import { capitalize } from "../Utilities/Text.js";
-import { GET } from "../Utilities/Fetch.js";
+import { GET, POST } from "../Utilities/Fetch.js";
 
 class Post {
     constructor(data) {
@@ -9,6 +9,7 @@ class Post {
         this.element.appendChild(this.header(data, data.user_in_system));
         this.element.appendChild(this.content(data, false));
         this.element.appendChild(this.footer(data));
+        this.element.appendChild(this.comments(data));
 
         return this.element;
     }
@@ -91,22 +92,30 @@ class Post {
         this.buttons.like.addEventListener("click", () => {
             post.liked = !post.liked;
 
-            if(post.liked){
-                const response = GET(`/api/meal/like/${data.id}`);
+            if (post.liked) {
+                const response = GET(`/api/meal/${data.id}/like`);
                 likes++;
-            }else{
-                const response = GET(`/api/meal/unlike/${data.id}`);
+            } else {
+                const response = GET(`/api/meal/${data.id}/unlike`);
                 likes--;
             }
 
             update_footer();
         }, false);
 
-        this.buttons.comment.addEventListener("click", ()=>{
-            throw Error;
-            update_footer();
+        this.commenting = false;
+        this.buttons.comment.addEventListener("click", () => {
+            post.commenting = !post.commenting;
+
+            if (post.commenting) {
+                post.buttons.comment.classList.add("active");
+                post.element.querySelector("div.post-comments").classList.add("active");
+            } else {
+                post.buttons.comment.classList.remove("active");
+                post.element.querySelector("div.post-comments").classList.remove("active");
+            }
         });
-        this.buttons.share.addEventListener("click", ()=>{
+        this.buttons.share.addEventListener("click", () => {
             throw Error;
             update_footer();
         });
@@ -114,6 +123,80 @@ class Post {
         update_footer();
         return footer;
     }
+
+    comments(data) {
+        const comments = document.createElement("div");
+        comments.classList.add("post-comments");
+
+        const form = document.createElement("form");
+
+        const input_comment = document.createElement("input");
+        input_comment.type = "text";
+        input_comment.placeholder = "Comment...";
+        input_comment.autocomplete = "off";
+
+        const submit = document.createElement("input");
+        submit.type = "submit";
+        submit.value = "Comment";
+        submit.title = "Comment";
+
+        form.appendChild(input_comment);
+        form.appendChild(submit);
+
+        comments.appendChild(form);
+
+        let post = this;
+
+        form.onsubmit = () => {
+            POST(`/api/meal/${data.id}/comment/add`, {
+                comment: input_comment.value
+            }).then((r) => {
+                post.element.querySelector("div.post-comments").appendChild(new Comment(this, data, r));
+                post.element.querySelector("div.post-content").querySelector("div.comments").querySelector("p").innerHTML = parseInt(post.element.querySelector("div.post-content").querySelector("div.comments").querySelector("p").innerHTML)+1;
+            });
+
+            return false;
+        }
+
+        for (const comment of data.comments) {
+            comments.appendChild(new Comment(this, data, comment));
+        }
+
+        return comments;
+    }
 }
 
 export default Post;
+
+class Comment {
+    constructor(post, data, comment) {
+        const root = document.createElement("div");
+        root.classList.add("post-comment");
+
+        root.innerHTML = `
+            <div title="${comment.author.name}" class="post-header-pp"><a aria-label="${comment.author.name}" href="#/user/${comment.author._id}"><div class="user-pp" style="background-image:url('/svg/user/${comment.author.pp}.svg')"></div></a></div>
+            <a href="#/user/${comment.author._id}" title="${comment.author.name}" class="post-header-user">${comment.author.name}</a>
+            <a class="post-comment-date">${comment.date}</a>
+            <p>${comment.body}</p>
+        `;
+
+        if (comment.can_delete) {
+            const button_delete = document.createElement("button");
+            button_delete.classList.add("delete");
+            button_delete.title = "Delete";
+
+            button_delete.addEventListener("click", function () {
+                POST(`/api/meal/${data.id}/comment/delete`, {
+                    comment: comment
+                }).then(() => {
+                    root.style.display = "none";
+                    post.element.querySelector("div.post-content").querySelector("div.comments").querySelector("p").innerHTML = post.element.querySelector("div.post-content").querySelector("div.comments").querySelector("p").innerHTML-1;
+                });
+            }, false);
+
+            root.appendChild(button_delete);
+        }
+
+        return root;
+    }
+}

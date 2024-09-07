@@ -158,3 +158,85 @@ div.post-stats div {
 div.post-stats div.likes {
     float: left;
 }
+
+div.post-comments{
+    max-height: 0px;
+    overflow-y: hidden;
+    border-top: 1px solid;
+    margin-top: 15px;
+}
+
+div.post-comments.active{
+    min-height: 50px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+div.post-comments.active::-webkit-scrollbar{
+    background: white;
+    width: 7px;
+}
+div.post-comments.active::-webkit-scrollbar-thumb {
+    background: #000;
+}
+div.post-comments.active::-webkit-scrollbar-corner {
+    background: #000;
+}
+/* This next part is important */
+@supports (not selector(::-webkit-scrollbar)) {
+    div.post-comments.active {
+      scrollbar-width: thin;
+      scrollbar-gutter: stable;
+      scrollbar-color: #000000;
+    }
+  }
+
+div.post-comments input[type="text"]{
+    width: 72%;
+    float:left;
+    margin-right: 5px;
+}
+
+div.post-comments input[type="submit"]{
+    min-width: 0px;
+    width: 2em;
+    margin-right: 12px;
+    margin-left: 0px;
+    margin-top: 8px;
+    font-size: 0px;
+    padding: 17px;
+    background-image: url("/svg/icon/send.svg");
+    background-size: contain;
+}
+
+div.post-comment{
+    width: 90%;
+    border: 1px solid black;
+    margin-top:5px;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: left;
+    position: relative;
+}
+
+div.post-comment a.post-comment-date{
+    float:left;
+    margin-left: 10px;
+}
+
+div.post-comment p{
+    margin-top: 24px;
+    margin-bottom: 2px;
+    padding: 0px 5px;
+}
+
+div.post-comment button.delete{
+    min-width: 40px;
+    padding: 20px 5px;
+    font-size: 0px;
+    background-image: url("/svg/icon/delete.svg");
+    background-size: contain;
+    border: 0px;
+    position: absolute;
+    right: 0px;
+    top: 15px;
+}

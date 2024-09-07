@@ -39,6 +39,6 @@ export function prettifyDate(date = Date.now()) {
             }
         } else return "Over a week ago";
     } else {
-        return date.toLocaleDateString();
+        return new Date(date).toLocaleDateString();
     }
 }

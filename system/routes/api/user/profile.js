@@ -54,7 +54,7 @@ export default async function (req, res) {
       'name pp',
   })
   .populate({
-    path: 'comments',
+    path: 'comments.author',
     select:
       'name pp',
   })

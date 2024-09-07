@@ -9,6 +9,7 @@ class UserPagePost extends Post {
         this.element.appendChild(super.header(data, data.system_name != undefined));
         this.element.appendChild(super.content(data, data.eaters != undefined));
         this.element.appendChild(super.footer(data));
+        this.element.appendChild(super.comments(data));
 
 
         return this.element;
