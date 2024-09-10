@@ -1,3 +1,4 @@
+import ImageSelect from "../Components/ImageSelect.js";
 import { GET, POST } from "../Utilities/Fetch.js";
 
 export default async function (main) {
@@ -14,12 +15,7 @@ export default async function (main) {
 
     const edit_name = edit_name_template(response);
 
-    const edit_pp = document.createElement("div");
-    edit_pp.innerHTML = `
-    <h2>Change Profile Picture</h2>
-    <div>
-        <p>change profile picture settings here</p>
-    </div>`;
+    const edit_pp = edit_pp_template(response);
 
     main.appendChild(edit_name);
     main.appendChild(edit_pp);
@@ -70,4 +66,40 @@ const edit_name_template = (data) => {
     container.appendChild(form);
 
     return container;
+}
+
+const edit_pp_template = (data) => {
+    const root = document.createElement("div");
+    root.classList.add("edit-pp");
+    root.innerHTML = `<h2>Change Profile Picture</h2>`;
+
+    const container = document.createElement("div");
+
+    let current_pp = data.pp;
+
+    const pp = document.createElement("div");
+    pp.classList.add("pp");
+    pp.style.backgroundImage = `url('/svg/user/${current_pp}.svg')`;
+
+    const button_change = document.createElement("button");
+    button_change.innerHTML = "Change Profile Picture";
+
+    button_change.addEventListener("click", function () {
+        GET("/api/user/pp")
+            .then((list) => {
+                container.appendChild(new ImageSelect("user", current_pp, list, (img) => {
+                    current_pp = img;
+                    pp.style.backgroundImage = `url('/svg/user/${current_pp}.svg')`;
+                    POST("/api/user/update/pp", {pp: current_pp});
+                }));
+            });
+    }, false);
+
+    container.appendChild(pp);
+
+    root.appendChild(container);
+    root.appendChild(button_change);
+
+
+    return root;
 }

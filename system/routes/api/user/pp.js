@@ -1,8 +1,8 @@
 /*
 Filename:
-  optiplex/system/routes/api/account.js
+  optiplex/system/routes/api/user/pp.js
 Description:
-    returns name of user requesting endpoint
+    returns all available profile pictures for users
     
 Project:
   system #0002 (system.oli.casa) 
@@ -12,5 +12,5 @@ All Rights Reserved
 */
 
 export default async function(_req, res) {
-    res.json({ name: res.locals.user.name, pp: res.locals.user.pp });
+    res.json(["chef-male", "chef-female"]);
 }

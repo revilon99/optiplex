@@ -3,18 +3,15 @@
 - flesh out database with existing system posts
 
 - meal
-    - comment functionality
     - share functionality
     - edit meal
-    - change meal images to "tasty" svg collection
+    - upload photo
 
 - system
     - create system - select profile pic
     - edit system - edit profile pic
-
-- sign-up select profile pic
-
-- change profile pic feature
+- user
+    - sign-up select profile pic
 
 - feed
     - sort by most recent

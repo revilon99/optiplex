@@ -226,6 +226,35 @@ div.edit-button:hover {
     background-color: #ededed;
 }
 
+div.image-select{
+    width: calc(100% - 4px);
+    border: 2px solid black;
+    margin: 10px auto;
+    border-radius: 10px;
+    text-align: left;
+}
+div.image-option{
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+    margin: 5px;
+    cursor: pointer;
+}
+div.image-option div{
+    background-size: contain;
+    width: 100%;
+    height: 100%;
+}
+div.image-option:hover, div.image-option.active{
+    filter: brightness(0.7);
+}
+div.image-select-close{
+    float: right;
+    cursor: pointer;
+    margin: 0px 5px;
+}
+
+
 @media (max-width:800px) {
     nav {
         position: initial;

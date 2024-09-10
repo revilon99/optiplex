@@ -15,10 +15,12 @@ import { Router } from "express";
 
 // endpoints
 import name from "./update/name.js";
+import pp from "./update/pp.js";
 
 // Define Routes
 const router = Router();
 
 router.post("/name", name);
+router.post("/pp", pp);
 
 export default router;
