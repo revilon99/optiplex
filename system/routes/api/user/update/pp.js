@@ -11,6 +11,7 @@ All Rights Reserved
 */
 
 import { BadInput } from "../../../../utils/Responses.js";
+import { userPPs } from "../../res/user-pp.js";
 
 export default async function (req, res) {
     if(!pps.includes(req.body.pp)) return BadInput(res);
@@ -25,4 +26,4 @@ export default async function (req, res) {
     }
 }
 
-const pps = ["chef-male", "chef-female"];
+const pps = userPPs;

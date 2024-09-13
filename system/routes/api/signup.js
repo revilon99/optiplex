@@ -15,14 +15,13 @@ import User from '../../database/schema/User.js'
 
 export default async function(req, res) {
   const user_fullname = req.body.name;
+  const user_pp = req.body.pp;
   const user_id = res.locals.id;
-
-  console.log(user_id);
 
   const new_user = new User({
     id: user_id,
     name: user_fullname,
-    pp: "chef-male" //todo
+    pp: user_pp
   });
 
   const user = await new_user.save();

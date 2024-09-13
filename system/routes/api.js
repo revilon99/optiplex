@@ -24,6 +24,7 @@ import system_middleware from "./api/system_middleware.js";
 import account from "./api/account.js";
 import signup from "./api/signup.js";
 import access from "./api/access.js";
+import resources from './api/resources.js';
 
 // Define Routes
 const router = Router();
@@ -37,5 +38,7 @@ router.get("/account", auth, system_middleware, account);
 router.use("/system", auth, system_middleware, system);
 router.use("/user", auth, system_middleware, user);
 router.use("/meal", auth, system_middleware, meal);
+
+router.use("/res", resources);
 
 export default router;

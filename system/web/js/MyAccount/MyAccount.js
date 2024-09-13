@@ -85,7 +85,7 @@ const edit_pp_template = (data) => {
     button_change.innerHTML = "Change Profile Picture";
 
     button_change.addEventListener("click", function () {
-        GET("/api/user/pp")
+        GET("/api/res/user-pp")
             .then((list) => {
                 container.appendChild(new ImageSelect("user", current_pp, list, (img) => {
                     current_pp = img;

@@ -3,15 +3,13 @@
 - flesh out database with existing system posts
 
 - meal
-    - share functionality
-    - edit meal
     - upload photo
+    - edit meal
+    - share functionality
 
 - system
     - create system - select profile pic
     - edit system - edit profile pic
-- user
-    - sign-up select profile pic
 
 - feed
     - sort by most recent

@@ -1,6 +1,6 @@
 /*
 Filename:
-  optiplex/system/routes/api/user.js
+  optiplex/system/routes/api/res.js
 Description:
   
 
@@ -15,16 +15,11 @@ All Rights Reserved
 import { Router } from "express";
 
 // endpoints
-import profile from "./user/profile.js";
-import update from "./user/update.js";
-import pp from "./res/user-pp.js";
+import userPp from "./res/user-pp.js";
 
 // Define Routes
 const router = Router();
 
-router.get("/pp", pp);
-router.get("/:id", profile);
-
-router.use("/update", update);
+router.get("/user-pp", userPp);
 
 export default router;

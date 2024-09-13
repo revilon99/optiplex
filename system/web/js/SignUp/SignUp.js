@@ -1,3 +1,4 @@
+import ImageSelect from "../Components/ImageSelect.js";
 import { GET, POST } from "../Utilities/Fetch.js";
 
 export default async function (main) {
@@ -7,7 +8,7 @@ export default async function (main) {
 
     // test whether client should be signing up
     const access = await GET("/api/access");
-    if(access){
+    if (access) {
         window.location.hash = "#/home/";
         return;
     }
@@ -43,13 +44,20 @@ export default async function (main) {
     next_button.title = "Continue";
 
     next_button.addEventListener("click", async () => {
+        switch (position) {
+            case 2:
+                if (form.querySelector("input[type='text']").value.length < 1) return;
+
+            default:
+                break;
+        }
         position++;
 
         switch (position) {
             case 2:
                 const name_input = document.createElement("input");
                 name_input.type = "text";
-                name_input.placeholder = "Full Name";
+                name_input.placeholder = "Name";
                 name_input.name = "name";
                 name_input.autocomplete = "name";
 
@@ -59,17 +67,27 @@ export default async function (main) {
             case 3:
                 input.name = form.querySelector("input[type='text']").value;
                 form.innerHTML = "";
+                input.pp = "chef-male";
+                GET("/api/res/user-pp")
+                    .then((list) => {
+                        form.appendChild(new ImageSelect("user", input.pp, list, (img) => {
+                            input.pp = img;
+                        }, false));
+                    });
                 break;
-            case 5:
+            case 4:
+                form.innerHTML = "";
+                break;
+            case 6:
                 form.innerHTML = `
                     <div class="signup-food" style="background-image: url('/svg/tasty/taco.svg')"></div>
                     <div class="signup-food" style="background-image: url('/svg/tasty/steak.svg')"></div>
                 `;
                 break;
-            case 6:
+            case 7:
                 form.innerHTML = ``;
                 break;
-            case 7:
+            case 8:
                 form.innerHTML = `
                     <div class="signup-food" style="background-image: url('/svg/tasty/served-plate.svg')"></div>
                     <div class="signup-food" style="background-image: url('/svg/tasty/served-plate.svg')"></div>
@@ -97,7 +115,7 @@ const messages = [
     () => "Welcome to The System!",
     () => "This is a new Social Media that allows you to keep track of the communal cooking in a house or a flat share.",
     () => "First, to get started please enter your name",
-    // todo: select profile picture
+    () => "Now, select your profile picture",
     (data) => `Welcome, ${data.name}!`,
     () => "The System is simple",
     () => "One meal is equal to another meal",
