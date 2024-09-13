@@ -21,6 +21,7 @@ import like from "./meal/like.js";
 import unlike from "./meal/unlike.js";
 import add_comment from "./meal/comment/add.js";
 import delete_comment from "./meal/comment/delete.js";
+import share from "./meal/share.js";
 
 // Define Routes
 const router = Router();
@@ -32,6 +33,7 @@ router.post("/:id/comment/delete", delete_comment);
 
 router.get("/:id/like", like);
 router.get("/:id/unlike", unlike);
+router.get("/:id/share", share);
 router.get("/:id/delete", delete_post);
 
 export default router;

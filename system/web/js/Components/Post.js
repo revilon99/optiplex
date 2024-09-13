@@ -64,7 +64,7 @@ class Post {
         footer.className = "post-footer";
         let buttons = ["like", "comment", "share"];
 
-        if(data.user_post) buttons.push("delete");
+        if (data.user_post) buttons.push("delete");
 
         this.buttons = {};
         for (let b of buttons) {
@@ -118,13 +118,28 @@ class Post {
                 post.element.querySelector("div.post-comments").classList.remove("active");
             }
         });
-        this.buttons.share.addEventListener("click", () => {
-            // todo
-            throw Error;
-            update_footer();
+        this.buttons.share.addEventListener("click", async () => {
+            const blob = await fetch(`/meal/${data.id}.png`).then(r => r.blob());
+            const file = new File([blob], 'meal.png', {
+                type: blob.type,
+            })
+            const shareData = {
+                title: `${data.title} - ${data.system_name} - The System`,
+                text: `Check out my new meal '${data.title}' I cooked for ${data.system_name} on The System!`,
+                url: `${window.location.origin}/#/system/${data.system_id}`,
+                files: [file]
+            };
+
+            try {
+                await navigator.share(shareData);
+                GET(`/api/meal/${data.id}/share`);
+                post.element.querySelector("div.post-content").querySelector("div.shares").querySelector("p").innerHTML = data.num_shares + 1;
+            } catch (err) {
+
+            }
         });
 
-        if(data.user_post) this.buttons.delete.addEventListener("click", () => {
+        if (data.user_post) this.buttons.delete.addEventListener("click", () => {
             try {
                 if (confirm(`Are you sure you want to delete your meal?`)) {
                     // Delete it!
@@ -171,7 +186,7 @@ class Post {
                 comment: input_comment.value
             }).then((r) => {
                 post.element.querySelector("div.post-comments").appendChild(new Comment(this, data, r));
-                post.element.querySelector("div.post-content").querySelector("div.comments").querySelector("p").innerHTML = parseInt(post.element.querySelector("div.post-content").querySelector("div.comments").querySelector("p").innerHTML)+1;
+                post.element.querySelector("div.post-content").querySelector("div.comments").querySelector("p").innerHTML = parseInt(post.element.querySelector("div.post-content").querySelector("div.comments").querySelector("p").innerHTML) + 1;
             });
 
             return false;
@@ -209,7 +224,7 @@ class Comment {
                     comment: comment
                 }).then(() => {
                     root.style.display = "none";
-                    post.element.querySelector("div.post-content").querySelector("div.comments").querySelector("p").innerHTML = post.element.querySelector("div.post-content").querySelector("div.comments").querySelector("p").innerHTML-1;
+                    post.element.querySelector("div.post-content").querySelector("div.comments").querySelector("p").innerHTML = post.element.querySelector("div.post-content").querySelector("div.comments").querySelector("p").innerHTML - 1;
                 });
             }, false);
 
