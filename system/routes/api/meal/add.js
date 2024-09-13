@@ -13,12 +13,13 @@ All Rights Reserved
 
 import { Types } from "mongoose";
 import Meal from "../../../database/schema/Meal.js";
-
+import { BadInput } from "../../../utils/Responses.js";
 
 export default async function (req, res) {
   const eaters = req.body.who_ate.map(e => Types.ObjectId.createFromHexString(e));
 
   //TODO: add data validation
+  if(req.body.date.valueOf() > Date.now().valueOf()) return BadInput(res);
 
   let new_meal = new Meal({
     title: req.body.title,

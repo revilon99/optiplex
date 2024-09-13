@@ -19,6 +19,7 @@ export default async function (main) {
     input_date_cooked.name = "date";
     input_date_cooked.type = "date";
     input_date_cooked.required = true;
+    input_date_cooked.max = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];
     section.date.appendChild(input_date_cooked);
 
     section.system = document.createElement("div");
