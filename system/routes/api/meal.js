@@ -16,6 +16,7 @@ import { Router } from "express";
 
 // endpoints
 import add from "./meal/add.js";
+import delete_post from "./meal/delete.js";
 import like from "./meal/like.js";
 import unlike from "./meal/unlike.js";
 import add_comment from "./meal/comment/add.js";
@@ -31,5 +32,6 @@ router.post("/:id/comment/delete", delete_comment);
 
 router.get("/:id/like", like);
 router.get("/:id/unlike", unlike);
+router.get("/:id/delete", delete_post);
 
 export default router;

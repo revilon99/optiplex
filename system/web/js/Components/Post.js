@@ -62,7 +62,10 @@ class Post {
         // footer
         let footer = document.createElement("div");
         footer.className = "post-footer";
-        const buttons = ["like", "comment", "share"];
+        let buttons = ["like", "comment", "share"];
+
+        if(data.user_post) buttons.push("delete");
+
         this.buttons = {};
         for (let b of buttons) {
             let button = document.createElement("div");
@@ -116,8 +119,24 @@ class Post {
             }
         });
         this.buttons.share.addEventListener("click", () => {
+            // todo
             throw Error;
             update_footer();
+        });
+
+        if(data.user_post) this.buttons.delete.addEventListener("click", () => {
+            try {
+                if (confirm(`Are you sure you want to delete your meal?`)) {
+                    // Delete it!
+                    GET(`/api/meal/${data.id}/delete`).then(res => {
+                        window.location.reload();
+                    });
+                } else {
+                    // Do nothing!
+                }
+            } catch (e) {
+                console.log(e);
+            }
         });
 
         update_footer();

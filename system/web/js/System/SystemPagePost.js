@@ -1,4 +1,4 @@
-import Post from "../Feed/Post.js";
+import Post from "../Components/Post.js";
 
 class SystemPagePost extends Post{
     constructor(data) {

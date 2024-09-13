@@ -32,7 +32,8 @@ export default function(user, post){
         num_shares: post.shares,
         comments: comments(user, post.comments),
         user_liked_post: user_liked_post,
-        user_in_system: true // todo: add posts of interest not accessible to user
+        user_in_system: true, // todo: add posts of interest not accessible to user
+        user_post: (post.author._id.toString() == user._id.toString())
     };
 
     return response;

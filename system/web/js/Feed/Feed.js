@@ -1,5 +1,5 @@
 import { GET } from "../Utilities/Fetch.js";
-import Post from "./Post.js";
+import Post from "../Components/Post.js";
 
 export default async function(main){
     document.title = "Home - The System";

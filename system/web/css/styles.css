@@ -254,6 +254,9 @@ div.image-select-close{
     margin: 0px 5px;
 }
 
+div.post-footer div.button.delete{
+    color: red;
+}
 
 @media (max-width:800px) {
     nav {
