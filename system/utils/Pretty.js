@@ -20,7 +20,8 @@ export function prettifyDate(date = Date.now()) {
                 if (timeSincePost < 1000 * 60 * 60) {  // 1 hour
                     if (timeSincePost < 1000 * 60) {   // 1 minute
                         let seconds = Math.floor(timeSincePost / 1000);
-                        let plural = seconds < 2 ? '' : 's';
+                        let plural = seconds == 1 ? '' : 's';
+                        if(seconds < 0) seconds = 0;
                         return `${seconds} second${plural} ago`
                     } else {
                         let minutes = Math.floor(timeSincePost / (1000 * 60));
