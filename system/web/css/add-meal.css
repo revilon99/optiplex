@@ -17,3 +17,8 @@ form div.section {
 form div.section.visible {
     display: initial;
 }
+
+canvas.photo{
+  width: 250px;
+  height: 200px;
+}

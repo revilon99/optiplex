@@ -33,7 +33,7 @@ class Post {
         let content = document.createElement("div");
         content.className = "post-content";
         content.innerHTML = `
-            <div class="meal-image" style="background-image: url('/svg/plate/${data.img}.svg')"></div>
+            <div class="meal-image" style="background-image: url('/meal/${data.id}.png')"></div>
             <h2>${data.title}</h2>
             <p>
             ${data.description}

@@ -17,7 +17,6 @@ import { Schema, model } from "mongoose";
 const mealSchema = Schema({
     title: String,
     description: String,
-    photo: String,
     date: Date,
     system: { type: Schema.Types.ObjectId, ref: "System"},
     author: { type: Schema.Types.ObjectId, ref: "User"},

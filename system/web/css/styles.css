@@ -114,6 +114,7 @@ form input[type="text"],
 }
 
 input[type="submit"],
+input[type="file"],
 button {
     min-width: 40%;
     margin: 5px;
@@ -124,6 +125,7 @@ button {
 }
 
 input[type="submit"]:hover,
+input[type="file"]:hover,
 button:hover {
     background-color: rgb(240, 240, 240);
     cursor: pointer;
@@ -256,6 +258,10 @@ div.image-select-close{
 
 div.post-footer div.button.delete{
     color: red;
+}
+
+.hidden{
+    display: none;
 }
 
 @media (max-width:800px) {

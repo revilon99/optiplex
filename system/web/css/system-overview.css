@@ -119,11 +119,14 @@ p.user-score {
 }
 
 div.meal-image {
-    margin: 10px;
+    margin: 10px auto;
     height: 200px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    border: 2px solid black;
+    width: 250px;
+    border-radius:  12px;
 }
 
 div.meal-eaters {

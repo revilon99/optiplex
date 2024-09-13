@@ -20,6 +20,7 @@ export default async function (main) {
     input_date_cooked.type = "date";
     input_date_cooked.required = true;
     input_date_cooked.max = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];
+    input_date_cooked.value = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0]
     section.date.appendChild(input_date_cooked);
 
     section.system = document.createElement("div");
@@ -56,12 +57,40 @@ export default async function (main) {
     input_description.placeholder = "Description";
 
     const photo_selection = document.createElement("div");
-    photo_selection.innerHTML = `
-        <label>Photo:</label>
-        <p>
-            Add photo functionality here
-        </p>
-    `;
+    const label_photo = document.createElement("label");
+    label_photo.setAttribute("for", "img");
+    label_photo.innerHTML = "Select Photo:";
+
+    const input_photo = document.createElement("input");
+    input_photo.type = "file";
+    input_photo.id = "img";
+    input_photo.name = "img";
+    input_photo.required = true;
+    input_photo.setAttribute("accept", "image/*");
+
+    let photo = "";
+    input_photo.addEventListener("change", () => {
+        if (input_photo.files && input_photo.files[0]) {
+            let img = document.createElement('img');
+            img.classList.add("hidden");
+            img.src = URL.createObjectURL(input_photo.files[0]); // set src to blob url
+            photo_selection.appendChild(img);
+            img.onload = () => {
+                let canvas = document.createElement('canvas');
+                canvas.classList.add("photo")
+                canvas.width = 500;
+                canvas.height = 400;
+
+                photo_selection.appendChild(canvas);
+                let ctx = canvas.getContext("2d");
+                ctx.drawImage(img, (500 - img.width * (400 / img.height)) / 2, 0, img.width * (400 / img.height), 400);
+                photo = canvas.toDataURL();
+            }
+        }
+    }, false);
+
+    photo_selection.appendChild(label_photo);
+    photo_selection.appendChild(input_photo);
 
     section.details.appendChild(input_mealname);
     section.details.appendChild(input_description);
@@ -98,25 +127,25 @@ export default async function (main) {
     }, false);
 
     form.onsubmit = () => {
-        try{
+        try {
             submit_data();
-        }catch(e){
+        } catch (e) {
             console.log(e)
         }
         return false; // prevent refresh
     }
 
-    function submit_data(){  
+    function submit_data() {
         const add_meal_data = {
             date: input_date_cooked.value,
             system_id: input_system.value,
             who_ate: get_who_ate(),
             title: input_mealname.value,
             description: input_description.value,
-            photo: "egg" // TODO
+            photo: photo
         };
-            
-        POST("/api/meal/add", add_meal_data).then((data)=>{
+
+        POST("/api/meal/add", add_meal_data).then((data) => {
             window.location.hash = `/system/${data.system}/`;
         });
     }
@@ -124,10 +153,10 @@ export default async function (main) {
 
 
 
-function get_who_ate(){
+function get_who_ate() {
     const checked = document.querySelectorAll('input[type=checkbox]:checked');
 
     let whoate = []
-    checked.forEach(e => {if(e.name == "whoate[]") whoate.push(e.value)});
+    checked.forEach(e => { if (e.name == "whoate[]") whoate.push(e.value) });
     return whoate;
 }

@@ -5,3 +5,4 @@ package-lock*
 *.log
 .src/
 dist/
+meal/
