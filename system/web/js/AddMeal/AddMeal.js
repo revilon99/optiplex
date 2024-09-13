@@ -105,7 +105,7 @@ export default async function (main) {
         return false; // prevent refresh
     }
 
-    function submit_data(){   
+    function submit_data(){  
         const add_meal_data = {
             date: input_date_cooked.value,
             system_id: input_system.value,
@@ -115,7 +115,9 @@ export default async function (main) {
             photo: "egg" // TODO
         };
             
-        const response = POST("/api/meal/add", add_meal_data);
+        POST("/api/meal/add", add_meal_data).then((data)=>{
+            window.location.hash = `/system/${data.system}/`;
+        });
     }
 }
 
