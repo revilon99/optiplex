@@ -229,11 +229,13 @@ div.edit-button:hover {
 }
 
 div.image-select{
-    width: calc(100% - 4px);
+    width: calc(100% - 10px);
+    max-height: 110px;
     border: 2px solid black;
     margin: 10px auto;
     border-radius: 10px;
     text-align: left;
+    overflow-y: auto;
 }
 div.image-option{
     width: 60px;
@@ -248,12 +250,14 @@ div.image-option div{
     height: 100%;
 }
 div.image-option:hover, div.image-option.active{
-    filter: brightness(0.7);
+    filter: brightness(0.8);
+    background-color: #ffffff;
+    border-radius: 50%;
 }
 div.image-select-close{
-    float: right;
     cursor: pointer;
     margin: 0px 5px;
+    text-align: right;
 }
 
 div.post-footer div.button.delete{

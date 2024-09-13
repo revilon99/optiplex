@@ -10,4 +10,6 @@ export default async function(main){
     main.innerHTML = "";    
 
     for (const r of response) main.appendChild(new Post(r));
+
+    if(response.length < 1) main.innerHTML += `<br>Nothing to show! Try joining a system.`;
 }
