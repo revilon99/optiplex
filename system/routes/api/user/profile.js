@@ -62,7 +62,8 @@ export default async function (req, res) {
     path: 'system',
     select:
       'name',
-  });
+  })
+  .sort("field -date");
 
   response.posts = [];
   for (const p of meals) {

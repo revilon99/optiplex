@@ -45,7 +45,8 @@ export default async function (req, res) {
             path: 'system',
             select:
                 'name',
-        });
+        })
+        .sort("field -date");
 
 
     for (const p of meals) response.push(Post(res.locals.user, p));
