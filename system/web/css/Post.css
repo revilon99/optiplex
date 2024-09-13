@@ -171,24 +171,6 @@ div.post-comments.active{
     max-height: 200px;
     overflow-y: auto;
 }
-div.post-comments.active::-webkit-scrollbar{
-    background: white;
-    width: 7px;
-}
-div.post-comments.active::-webkit-scrollbar-thumb {
-    background: #000;
-}
-div.post-comments.active::-webkit-scrollbar-corner {
-    background: #000;
-}
-/* This next part is important */
-@supports (not selector(::-webkit-scrollbar)) {
-    div.post-comments.active {
-      scrollbar-width: thin;
-      scrollbar-gutter: stable;
-      scrollbar-color: #000000;
-    }
-  }
 
 div.post-comments input[type="text"]{
     width: 72%;
@@ -209,7 +191,7 @@ div.post-comments input[type="submit"]{
 }
 
 div.post-comment{
-    width: 90%;
+    width: 96%;
     border: 1px solid black;
     margin-top:5px;
     padding: 5px;

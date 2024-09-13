@@ -45,7 +45,7 @@ export default async function (req, res) {
     // save photo
     const base64Data = req.body.photo.replace(/^data:image\/png;base64,/, "");
     writeFile(`${__dirname.split("system")[0]}/system/public/meal/${meal._id.toString()}.png`, base64Data, 'base64', function (err) {
-      console.log(err);
+      
     });
 
     res.json(meal);

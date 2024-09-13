@@ -96,10 +96,10 @@ class Post {
             post.liked = !post.liked;
 
             if (post.liked) {
-                const response = GET(`/api/meal/${data.id}/like`);
+                GET(`/api/meal/${data.id}/like`);
                 likes++;
             } else {
-                const response = GET(`/api/meal/${data.id}/unlike`);
+                GET(`/api/meal/${data.id}/unlike`);
                 likes--;
             }
 
