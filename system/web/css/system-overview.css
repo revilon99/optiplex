@@ -1,0 +1,181 @@
+/*
+Filename:
+  optiplex/system/web/css/system-overview.css
+Description:
+  
+
+Project:
+  system #0002 (system.oli.casa) 
+
+Oliver Cass (c) 2024
+All Rights Reserved
+*/
+
+div.system-overview {
+    text-align: left;
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 40px;
+    margin: 10px;
+}
+
+div.system-overview .system-overview-pp {
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    float: left;
+    margin-top: -9px;
+    position: initial;
+    margin-right: 3px;
+}
+
+h1.system-overview {
+    padding: 0px 0 0 45px;
+    overflow: hidden;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+    margin-top: 10px;
+}
+
+div.system-overview-pp {
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    margin-top: 6px;
+    position: absolute;
+    margin-left: 5px;
+}
+
+div.system-overview .system-overview-name {
+    font-size: 1.4em;
+    text-align: left;
+    padding-top: 9px;
+    padding-left: 3px;
+    float: left;
+    width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+div.system-overview .system-overview-name:hover {
+    text-decoration: underline;
+}
+
+div.system-overview .system-overview-score {
+    margin: 0px;
+    float: right;
+    padding: 7px 6px 0px 0px;
+    font-size: 1.4em;
+}
+
+.leaderboard-user {
+    border: 1px solid black;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 1.4em;
+    margin: 10px 5px;
+    width: 97%;
+}
+
+button.leaderboard-user {
+    background-color: #e2e2e2;
+    margin-top: 0px;
+}
+
+button.leaderboard-user:hover {
+    background-color: #eee;
+    margin-top: 0px;
+}
+
+div.leaderboard-user .user-name {
+    margin-top: 12px;
+    text-align: left;
+    float: left;
+    max-width: 70%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+div.leaderboard-user .user-name:hover {
+    text-decoration: underline;
+}
+
+div.leaderboard-user .user-pp {
+    margin: 5px 10px;
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    float: left;
+    overflow: initial;
+}
+
+p.user-score {
+    float: right;
+    margin: 0px;
+    margin-top: 13px;
+    margin-right: 20px;
+}
+
+div.meal-image {
+    margin: 10px auto;
+    height: 200px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 2px solid black;
+    width: 250px;
+    border-radius:  12px;
+}
+
+div.meal-eaters {
+    border-top: 1px solid black;
+    padding-bottom: 8px;
+}
+
+
+div.meal-eaters a {
+    font-size: 1.1em;
+    text-align: left;
+    margin: 2px auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 10px 5px 2px 50px;
+    position: relative;
+    height: 32px;
+}
+
+div.meal-eaters a:hover {
+    text-decoration: underline;
+}
+
+
+div.meal-eaters-pp {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    left: 11px;
+    top: 6px;
+    margin-right: 12px;
+}
+
+.edit-system {
+    border-radius: 15px;
+    transition: height 1s, padding 1s, margin 1s;
+    height: 0px;
+    overflow: hidden;
+    box-shadow: 1px 1px black;
+    background-color: #f6f6f6;
+}
+
+.edit-system.active {
+    height: 312px;
+    padding: 10px;
+    margin: 10px;
+}

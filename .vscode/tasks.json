@@ -16,6 +16,22 @@
 			"problemMatcher": [],
 			"label": "auth",
 			"detail": "npm run develop"
+		},
+		{
+			"type": "npm",
+			"script": "develop",
+			"path": "system",
+			"problemMatcher": [],
+			"label": "The System",
+			"detail": "npm run develop"
+		},
+		{
+			"type": "npm",
+			"script": "local",
+			"path": "system",
+			"problemMatcher": [],
+			"label": "The System",
+			"detail": "npm run local"
 		}
 	]
 }

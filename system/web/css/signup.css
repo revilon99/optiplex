@@ -1,0 +1,72 @@
+div.signup-chef {
+    width: 200px;
+    height: 200px;
+    background-image: url("/svg/tasty/chef.svg");
+    background-size: contain;
+}
+
+div.signup-dialog{
+    border: 3px solid black;
+    border-radius: 25px;
+    margin: 32px 32px 32px min(80px, 10%);
+    padding: 21px 0px;
+    font-size: 1.2em;
+    position: relative;
+    max-width: 60%;
+}
+
+div.signup-dialog p{
+    margin: 0px;
+    padding: 0px 5px;
+}
+
+div.signup-dialog:after {
+    content:'';
+    position: absolute;
+    top: 100%;
+    left: min(171px, 79%);
+    margin-left: -50px;
+    width: 0;
+    height: 0;
+    border-top: solid 54px #000;
+    border-left: solid 8px transparent;
+    border-right: solid 50px transparent;
+}
+div.signup-dialog-triangle {
+    content:'';
+    position: absolute;
+    top: calc(100% - 2px);
+    left: min(173px, 80%);
+    margin-left: -50px;
+    width: 0;
+    height: 0;
+    border-top: solid 52px #fff;
+    border-left: solid 7px transparent;
+    border-right: solid 48px transparent;
+    z-index: 1;
+}
+
+div.signup-next-button{
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 150px;
+    font-size: 1.5em;
+    padding:  6px 0px;
+    margin-right: 26px;
+    cursor: pointer;
+    float: right;
+}
+
+form.signup-form{
+    width: 90%;
+    margin: 20px auto 10px;
+}
+
+div.signup-food{
+    width: min(30vw, 130px);
+    height: min(30vw, 130px);
+    background-size: cover;
+    display: inline-block;
+    margin: 15px;
+    background-repeat: no-repeat;
+}

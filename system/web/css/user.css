@@ -1,0 +1,20 @@
+div.profilecard{
+    margin-bottom: 10px;
+}
+
+.profilecard h3{
+    font-size: 32px;
+    margin: 0px;
+    font-weight: 300;
+    text-align: left;
+    padding-left: 71px;
+    padding-top: 10px;
+}
+
+.profilecard .post-header-pp div{
+    width: 60px;
+    height: 60px;
+    cursor: initial;
+}
+
+.profilecard a.last-post{text-align: left;margin-left: 72px;}

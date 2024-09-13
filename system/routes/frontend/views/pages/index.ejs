@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Home - The System</title>
+  <%- include('../partials/head'); %>
+  <%- index_css %>
+</head>
+
+<body>
+  
+  <%- include('../partials/header'); %>
+
+  <main id="main"></main>
+  <script>
+    window.AUTH_URL = "<%- auth_url %>";
+  </script>
+
+  <%- index_js %>
+
+  <div id="svg-res">
+    <%- include('../svgs/button-like'); %>
+    <%- include('../svgs/button-comment'); %>
+    <%- include('../svgs/button-share'); %>
+    <%- include('../svgs/button-edit'); %>
+    <%- include('../svgs/button-send'); %>
+    <%- include('../svgs/button-delete'); %>
+    <%- include('../svgs/add-user'); %>
+  </div>
+</body>
+
+</html>

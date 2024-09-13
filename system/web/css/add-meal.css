@@ -1,0 +1,24 @@
+/*
+Filename:
+  optiplex/system/web/css/add-meal.css
+Description:
+  
+
+Project:
+  system #0002 (system.oli.casa) 
+
+Oliver Cass (c) 2024
+All Rights Reserved
+*/
+
+form div.section {
+    display: none;
+}
+form div.section.visible {
+    display: initial;
+}
+
+canvas.photo{
+  width: 250px;
+  height: 200px;
+}

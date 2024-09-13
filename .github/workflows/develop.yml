@@ -34,10 +34,16 @@ jobs:
     needs: copy-environment
     steps:
       - run: cd /home/ocass/optiplex/develop/auth && npm install --save
+
+  setup-system:
+    runs-on: self-hosted
+    needs: copy-environment
+    steps:
+      - run: cd /home/ocass/optiplex/develop/system && npm install --save
   
   run-all-node-projects:
     runs-on: self-hosted
-    needs: [setup-portal, setup-auth]
+    needs: [setup-portal, setup-auth, setup-system]
     steps:
       - run: RUNNER_TRACKING_ID="" && chmod +x /home/ocass/optiplex/develop/run-all-node-projects.sh && /home/ocass/optiplex/develop/run-all-node-projects.sh develop
   

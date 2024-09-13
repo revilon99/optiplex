@@ -1,0 +1,7 @@
+div.edit-pp div.pp{
+    background-size: contain;
+    width: 80px;
+    height: 80px;
+    margin: auto;
+    transition: 0.5s width, 0.5s height;
+}
