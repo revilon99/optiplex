@@ -4,9 +4,12 @@
 
 - meal
     - upload photo
-    - edit meal
+    - delete meal
     - share functionality
 
 - feed
     - sort by most recent
     - make more interesting (sort by relevance etc)
+
+- add user pps
+- add system pps
