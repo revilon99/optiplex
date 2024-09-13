@@ -16,10 +16,12 @@ import { Router } from "express";
 
 // endpoints
 import userPp from "./res/user-pp.js";
+import systemPp from "./res/system-pp.js";
 
 // Define Routes
 const router = Router();
 
 router.get("/user-pp", userPp);
+router.get("/system-pp", systemPp);
 
 export default router;

@@ -1,3 +1,4 @@
+import ImageSelect from "../Components/ImageSelect.js";
 import PageNotFound from "../PageNotFound/PageNotFound.js";
 import { GET, POST } from "../Utilities/Fetch.js";
 import LeaderboardUser from "./LeaderboardUser.js";
@@ -109,6 +110,15 @@ function edit_system_template(data) {
     input_name.name = "name";
     input_name.autocomplete = false;
 
+    const input_pp = document.createElement("div");
+    let system_pp = data.pp;
+    GET("/api/res/system-pp")
+        .then((list) => {
+            input_pp.appendChild(new ImageSelect("system", system_pp, list, (img) => {
+                system_pp = img;
+            }, false));
+        });
+
     const submit = document.createElement("input");
     submit.type = "submit";
     submit.value = "Edit";
@@ -116,7 +126,8 @@ function edit_system_template(data) {
     form.onsubmit = () => {
         try {
             POST(`/api/system/${data.id}/edit`, {
-                name: input_name.value
+                name: input_name.value,
+                pp: system_pp
             }).then(res => {
                 window.location.reload();
             });
@@ -130,6 +141,7 @@ function edit_system_template(data) {
     form.appendChild(title);
     form.appendChild(input_name_label);
     form.appendChild(input_name);
+    form.appendChild(input_pp);
     form.appendChild(submit);
 
     const button_delete = document.createElement("button");

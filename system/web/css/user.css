@@ -14,6 +14,7 @@ div.profilecard{
 .profilecard .post-header-pp div{
     width: 60px;
     height: 60px;
+    cursor: initial;
 }
 
 .profilecard a.last-post{text-align: left;margin-left: 72px;}

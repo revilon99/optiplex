@@ -36,6 +36,7 @@ export default async function (req, res) {
 
   try{
     system.name = req.body.name;
+    system.pp = req.body.pp;
     await system.save();
     res.json({});
   }catch(e){

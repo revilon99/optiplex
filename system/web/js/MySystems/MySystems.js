@@ -1,18 +1,19 @@
+import ImageSelect from "../Components/ImageSelect.js";
 import { GET, POST } from "../Utilities/Fetch.js";
 import SystemOverview from "./SystemOverview.js";
 
-export default async function(main){
+export default async function (main) {
     document.title = "My Systems - The System";
 
     const response = await GET("/api/system/overview");
-    if(!response) return;
-/*
-<form class="quick-form" id="form-join-a-system" action="/api/system/join" method="get">
-    <h2>Join a System</h2>
-    <input type="text" name="id" autocomplete="off" placeholder="System Join Code" />
-    <input type="submit" value="Request to Join System" />
-</form>
-*/
+    if (!response) return;
+    /*
+    <form class="quick-form" id="form-join-a-system" action="/api/system/join" method="get">
+        <h2>Join a System</h2>
+        <input type="text" name="id" autocomplete="off" placeholder="System Join Code" />
+        <input type="submit" value="Request to Join System" />
+    </form>
+    */
     main.innerHTML = `
 <h2>My Systems</h2>
 <div id="my-systems"></div>
@@ -38,7 +39,13 @@ const createSystem = () => {
     input_name.placeholder = "System Name";
 
     const input_pp = document.createElement("div");
-    input_pp.innerHTML = `TODO: implement system profile pic selection`;
+    let system_pp = "crab";
+    GET("/api/res/system-pp")
+        .then((list) => {
+            input_pp.appendChild(new ImageSelect("system", system_pp, list, (img) => {
+                system_pp = img;
+            }, false));
+        });
 
     const submit = document.createElement("input");
     submit.type = "submit";
@@ -51,19 +58,19 @@ const createSystem = () => {
     const button_init = document.createElement("button");
     button_init.innerHTML = "Create a System";
 
-    button_init.addEventListener("click", function(e){
+    button_init.addEventListener("click", function (e) {
         form.style.display = "initial";
         button_init.style.display = "none";
     }, false);
 
     form.onsubmit = () => {
-        try{
+        try {
             POST("/api/system/create", {
                 name: input_name.value,
-                pp: "crab"
+                pp: system_pp
             })
-            .then((res) => window.location.hash = `#/system/${res._id}`);
-        }catch(e){
+                .then((res) => window.location.hash = `#/system/${res._id}`);
+        } catch (e) {
             console.log(e);
         }
 
