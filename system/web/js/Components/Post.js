@@ -126,7 +126,7 @@ class Post {
             const shareData = {
                 title: `${data.title} - ${data.system_name} - The System`,
                 text: `Check out my new meal '${data.title}' I cooked for ${data.system_name} on The System!`,
-                url: `${window.location.origin}/#/system/${data.system_id}`,
+                //url: `${window.location.origin}/#/system/${data.system_id}`,
                 files: [file]
             };
 

@@ -13,7 +13,7 @@ All Rights Reserved
 
 // Imports
 import User from "../../schema/User.js";
-import { verifyToken, RandomString } from "../../jwt/Token.js";
+import { createSecretToken, RandomString } from "../../jwt/Token.js";
 import { hash } from "bcrypt";
 import { send as sendEmail } from "../../mail/mail.js"
 
