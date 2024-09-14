@@ -1,0 +1,23 @@
+{
+    "name": "the-system",
+    "version": "0.0.1",
+    "description": "A food sharing application for house/flat shares",
+    "dependencies": {
+        "body-parser": "^1.20.2",
+        "compression": "^1.7.4",
+        "cookie-parser": "^1.4.6",
+        "dotenv": "^16.4.5",
+        "ejs": "^3.1.10",
+        "express": "latest",
+        "jsonwebtoken": "^9.0.2",
+        "minify": "^11.2.1",
+        "mongoose": "^8.4.3",
+        "webpack": "^5.93.0"
+    },
+    "scripts": {
+        "main": "node app.js 5002 > out.log 2> err.log",
+        "develop": "node app.js 3002 > out.log 2> err.log",
+        "local": "node app.js 3002"
+    },
+    "type": "module"
+}

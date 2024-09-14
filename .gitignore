@@ -3,3 +3,6 @@ package-lock*
 *.env
 .vscode*
 *.log
+.src/
+dist/
+*.png

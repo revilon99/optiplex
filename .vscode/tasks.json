@@ -4,10 +4,10 @@
 		{
 			"type": "npm",
 			"script": "develop",
-			"path": "hello-world",
+			"path": "portal",
 			"problemMatcher": [],
-			"label": "hello-world",
-			"detail": "node index.js 3000"
+			"label": "portal",
+			"detail": "npm run develop"
 		},
 		{
 			"type": "npm",
@@ -16,6 +16,22 @@
 			"problemMatcher": [],
 			"label": "auth",
 			"detail": "npm run develop"
+		},
+		{
+			"type": "npm",
+			"script": "develop",
+			"path": "system",
+			"problemMatcher": [],
+			"label": "The System",
+			"detail": "npm run develop"
+		},
+		{
+			"type": "npm",
+			"script": "local",
+			"path": "system",
+			"problemMatcher": [],
+			"label": "The System",
+			"detail": "npm run local"
 		}
 	]
 }

@@ -23,21 +23,27 @@ jobs:
     steps:
       - run: cp /home/ocass/optiplex/config/develop.env /home/ocass/optiplex/develop/.env
 
-  setup-hello-world:
+  setup-portal:
     runs-on: self-hosted
     needs: copy-environment
     steps:
-      - run: cd /home/ocass/optiplex/develop/hello-world && npm install --save
+      - run: cd /home/ocass/optiplex/develop/portal && npm install --save
 
   setup-auth:
     runs-on: self-hosted
     needs: copy-environment
     steps:
       - run: cd /home/ocass/optiplex/develop/auth && npm install --save
+
+  setup-system:
+    runs-on: self-hosted
+    needs: copy-environment
+    steps:
+      - run: cd /home/ocass/optiplex/develop/system && npm install --save
   
   run-all-node-projects:
     runs-on: self-hosted
-    needs: [setup-hello-world, setup-auth]
+    needs: [setup-portal, setup-auth, setup-system]
     steps:
       - run: RUNNER_TRACKING_ID="" && chmod +x /home/ocass/optiplex/develop/run-all-node-projects.sh && /home/ocass/optiplex/develop/run-all-node-projects.sh develop
   

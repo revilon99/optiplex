@@ -22,9 +22,12 @@ config();
 
 const key = async (req, res) => {
     const id = req.params.id;
-    User.findById(id).then((user) => {
-        res.send(user.key)
-    });
+    const user = await User.findById(id)
+    if(!user){
+      res.send("");
+    }else{
+      res.send(user.key);
+    }
 };
 
 export default key;

@@ -8,8 +8,8 @@ jobs:
     runs-on: self-hosted
     continue-on-error: true
     steps:
-      - run: kill -9 $(lsof -t -i:5000) || true
-      - run: kill -9 $(lsof -t -i:5001) || true
+      - run: kill -9 $(lsof -t -i:3000) || true
+      - run: kill -9 $(lsof -t -i:3001) || true
 
   fetch-main-branch:
     needs: kill-all-node-processes 
@@ -23,21 +23,27 @@ jobs:
     steps:
       - run: cp /home/ocass/optiplex/config/main.env /home/ocass/optiplex/main/.env
 
-  setup-hello-world:
+  setup-portal:
     runs-on: self-hosted
     needs: copy-environment
     steps:
-      - run: cd /home/ocass/optiplex/main/hello-world && npm install --save
+      - run: cd /home/ocass/optiplex/main/portal && npm install --save
 
   setup-auth:
     runs-on: self-hosted
     needs: copy-environment
     steps:
       - run: cd /home/ocass/optiplex/main/auth && npm install --save
+
+  setup-system:
+    runs-on: self-hosted
+    needs: copy-environment
+    steps:
+      - run: cd /home/ocass/optiplex/main/system && npm install --save
   
   run-all-node-projects:
     runs-on: self-hosted
-    needs: [setup-hello-world, setup-auth]
+    needs: [setup-portal, setup-auth, setup-system]
     steps:
       - run: RUNNER_TRACKING_ID="" && chmod +x /home/ocass/optiplex/main/run-all-node-projects.sh && /home/ocass/optiplex/main/run-all-node-projects.sh main
   

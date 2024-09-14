@@ -1,0 +1,19 @@
+{
+  "name": "portal",
+  "version": "0.0.1",
+  "description": "Portal for oli.casa",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "latest",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.4.3"
+  },
+  "scripts": {
+    "main": "node app.js 5000 > out.log 2> err.log",
+    "develop": "node app.js 3000 > out.log 2> err.log"
+  },
+  "type": "module"
+}

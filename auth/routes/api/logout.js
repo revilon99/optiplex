@@ -22,12 +22,10 @@ export function logout (_req, res) {
   res.redirect("/");
 }
 
-export function logoutHard (req, res) {
+export async function logoutHard (req, res) {
   try {
     const token = verifyToken(req.cookies.token);
-    User.findByIdAndUpdate(token.id, {key: RandomString()}).then(()=>{
-      res.redirect("/");
-    });
+    await User.findByIdAndUpdate(token.id, {key: RandomString()});
   } catch(e) {
     // do nothing - no user found or token invalid
     console.log(e)
