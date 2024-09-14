@@ -21,7 +21,7 @@ config();
 
 // connect to database
 const dbconnection = async () => {
-  connect(process.env.MONGODB_URL + "portal")
+  connect(process.env.MONGODB_URL + process.env.DB_PREFIX + "-" + "portal")
     .then(() => console.log("Database connected"))
     .catch((err) => console.error(err));
 };
