@@ -15,15 +15,14 @@ import { verifyToken } from '../../jwt/Token.js'
 import User            from "../../schema/User.js";
 
 // Login Route
-export function login(req, res) {
+export async function login(req, res) {
     try {
         const token = verifyToken(req.cookies.token);
-        User.findById(token.id).then(user => {
+        const user = await User.findById(token.id);
+        
         if(user) res.render("pages/home", {email: user.email})
         else     res.redirect("/logout");
-        }).err(()=>{
-          res.redirect("/logout");
-        });    
+          
     } catch {
         const error = req.query.error || "";
         const redirect = req.query.redirect || "";
@@ -44,18 +43,19 @@ export function signup(req, res) {
 }
 
 // Modify Account Details Route
-export function myAccount(req, res){
+export async function myAccount(req, res){
     const error   = req.query.error || "";
     const success = req.query.msg   || "";
     try {
         const token = verifyToken(req.cookies.token);
-        User.findById(token.id).then(user => {
+        const user = await User.findById(token.id)
+        
         if(user) {
             let prettySuccess = "";
             if(success === "SUCCESS") prettySuccess = "Password successfully changed.";
             res.render("pages/my_account", {email: user.email, error: prettifyError(error), success: prettySuccess})
-        }else throw error;
-        });    
+        }else res.redirect("/logout");
+
     } catch {
         res.redirect("/logout");
     }
