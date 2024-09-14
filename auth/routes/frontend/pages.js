@@ -21,6 +21,8 @@ export function login(req, res) {
         User.findById(token.id).then(user => {
         if(user) res.render("pages/home", {email: user.email})
         else     res.redirect("/logout");
+        }).err(()=>{
+          res.redirect("/logout");
         });    
     } catch {
         const error = req.query.error || "";
